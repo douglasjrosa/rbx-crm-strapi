@@ -4,7 +4,8 @@
   "info": {
     "singularName": "company",
     "pluralName": "companies",
-    "displayName": "company"
+    "displayName": "company",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -29,7 +30,9 @@
           "localized": true
         }
       },
-      "type": "string"
+      "type": "string",
+      "unique": true,
+      "required": true
     },
     "cnpj": {
       "pluginOptions": {
@@ -42,6 +45,17 @@
       "required": true,
       "max": "15",
       "unique": true
+    },
+    "ie": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "biginteger",
+      "unique": true,
+      "min": "12",
+      "max": "12"
     }
   }
 }
