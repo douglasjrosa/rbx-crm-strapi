@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "seller_tokens",
+  "info": {
+    "singularName": "seller-token",
+    "pluralName": "seller-tokens",
+    "displayName": "sellerToken"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string",
+      "unique": true
+    },
+    "sessionToken": {
+      "type": "text"
+    }
+  }
+}

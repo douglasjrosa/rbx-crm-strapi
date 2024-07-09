@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "issuers",
+  "info": {
+    "singularName": "issuer",
+    "pluralName": "issuers",
+    "displayName": "Issuer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "companyData": {
+      "type": "component",
+      "repeatable": false,
+      "component": "company-components.company-data"
+    },
+    "blingAccessToken": {
+      "type": "text"
+    },
+    "blingRefreshToken": {
+      "type": "text"
+    },
+    "blingClientId": {
+      "type": "text"
+    },
+    "blingClientSecret": {
+      "type": "text"
+    },
+    "blingExpiresIn": {
+      "type": "integer"
+    },
+    "payment_methods": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment-method.payment-method"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "collectionName": "components_company_components_company_data",
+  "info": {
+    "displayName": "companyData",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "cnpj": {
+      "type": "biginteger",
+      "unique": true,
+      "required": true
+    },
+    "displayName": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "oficialName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "ie": {
+      "type": "biginteger"
+    },
+    "country": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "countryCode": {
+      "type": "integer"
+    },
+    "addressNumber": {
+      "type": "integer"
+    },
+    "addressComplement": {
+      "type": "string"
+    },
+    "neighborhood": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "biginteger"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "nfeEmail": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "icmsTaxpayer": {
+      "type": "integer"
+    },
+    "cnae": {
+      "type": "biginteger"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

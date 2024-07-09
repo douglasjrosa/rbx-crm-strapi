@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_order_components_items",
+  "info": {
+    "displayName": "items",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "productCode": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "qty": {
+      "type": "integer"
+    },
+    "mounted": {
+      "type": "boolean",
+      "default": false
+    },
+    "export": {
+      "type": "boolean",
+      "default": false
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "subtotal": {
+      "type": "decimal"
+    }
+  }
+}

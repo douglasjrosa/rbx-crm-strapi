@@ -1,0 +1,79 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "deal": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::deal.deal",
+      "inversedBy": "order"
+    },
+    "seller": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "deliverForecast": {
+      "type": "date"
+    },
+    "freightType": {
+      "type": "string"
+    },
+    "orderDiscount": {
+      "type": "decimal"
+    },
+    "extraCosts": {
+      "type": "decimal"
+    },
+    "orderSubtotalValue": {
+      "type": "decimal"
+    },
+    "orderTotalValue": {
+      "type": "decimal"
+    },
+    "clientOrderCode": {
+      "type": "string"
+    },
+    "observations": {
+      "type": "text"
+    },
+    "company": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::company.company"
+    },
+    "issuer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::issuer.issuer"
+    },
+    "payment_method": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::payment-method.payment-method"
+    },
+    "freightValue": {
+      "type": "decimal"
+    },
+    "items": {
+      "displayName": "items",
+      "type": "component",
+      "repeatable": true,
+      "component": "order-components.items"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

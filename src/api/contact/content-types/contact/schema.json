@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contacts",
+  "info": {
+    "singularName": "contact",
+    "pluralName": "contacts",
+    "displayName": "Contact",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "email": {
+      "type": "string"
+    },
+    "decisionRole": {
+      "type": "string"
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company",
+      "inversedBy": "contacts"
+    },
+    "interactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::interaction.interaction",
+      "mappedBy": "contact"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "interactions",
+  "info": {
+    "singularName": "interaction",
+    "pluralName": "interactions",
+    "displayName": "Interaction",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    },
+    "content": {
+      "type": "text"
+    },
+    "deal": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::deal.deal",
+      "inversedBy": "interactions"
+    },
+    "contact": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contact.contact",
+      "inversedBy": "interactions"
+    },
+    "seller": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

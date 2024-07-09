@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "deals",
+  "info": {
+    "singularName": "deal",
+    "pluralName": "deals",
+    "displayName": "Deal",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "reasonForLoss": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string"
+    },
+    "interactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::interaction.interaction",
+      "mappedBy": "deal"
+    },
+    "order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::order.order",
+      "mappedBy": "deal"
+    },
+    "company": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::company.company"
+    },
+    "seller": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}
