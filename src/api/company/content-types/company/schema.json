@@ -41,9 +41,7 @@
         }
       },
       "type": "biginteger",
-      "min": "14",
       "required": true,
-      "max": "15",
       "unique": true
     },
     "ie": {
@@ -53,9 +51,19 @@
         }
       },
       "type": "biginteger",
-      "unique": true,
-      "min": "12",
-      "max": "12"
+      "unique": true
+    },
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
