@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_settings",
+  "info": {
+    "singularName": "user-setting",
+    "pluralName": "user-settings",
+    "displayName": "userSetting",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string",
+      "unique": true
+    },
+    "jwt": {
+      "type": "text"
+    },
+    "themeMode": {
+      "type": "enumeration",
+      "enum": [
+        "system",
+        "dark",
+        "light"
+      ],
+      "default": "light"
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "settings"
+    },
+    "email": {
+      "type": "string"
+    }
+  }
+}

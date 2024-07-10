@@ -15,9 +15,6 @@
     "reasonForLoss": {
       "type": "string"
     },
-    "stage": {
-      "type": "string"
-    },
     "interactions": {
       "type": "relation",
       "relation": "oneToMany",
@@ -43,6 +40,29 @@
     "active": {
       "type": "boolean",
       "default": true
+    },
+    "stage": {
+      "type": "enumeration",
+      "enum": [
+        "Send proposal",
+        "Follow up",
+        "Negotiation",
+        "Won",
+        "Lost"
+      ],
+      "default": "Send proposal"
+    },
+    "followUpAt": {
+      "type": "datetime"
+    },
+    "negotiationAt": {
+      "type": "datetime"
+    },
+    "wonAt": {
+      "type": "datetime"
+    },
+    "lostAt": {
+      "type": "datetime"
     }
   }
 }

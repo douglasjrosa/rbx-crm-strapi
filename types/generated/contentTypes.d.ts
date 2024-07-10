@@ -770,6 +770,16 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    user_setting: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::user-setting.user-setting'
+    >;
+    settings: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::user-setting.user-setting'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -925,7 +935,6 @@ export interface ApiDealDeal extends Schema.CollectionType {
   };
   attributes: {
     reasonForLoss: Attribute.String;
-    stage: Attribute.String;
     interactions: Attribute.Relation<
       'api::deal.deal',
       'oneToMany',
@@ -943,6 +952,14 @@ export interface ApiDealDeal extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     active: Attribute.Boolean & Attribute.DefaultTo<true>;
+    stage: Attribute.Enumeration<
+      ['Send proposal', 'Follow up', 'Negotiation', 'Won', 'Lost']
+    > &
+      Attribute.DefaultTo<'Send proposal'>;
+    followUpAt: Attribute.DateTime;
+    negotiationAt: Attribute.DateTime;
+    wonAt: Attribute.DateTime;
+    lostAt: Attribute.DateTime;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::deal.deal', 'oneToOne', 'admin::user'> &
@@ -1134,29 +1151,40 @@ export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
   };
 }
 
-export interface ApiSellerTokenSellerToken extends Schema.CollectionType {
-  collectionName: 'seller_tokens';
+export interface ApiUserSettingUserSetting extends Schema.CollectionType {
+  collectionName: 'user_settings';
   info: {
-    singularName: 'seller-token';
-    pluralName: 'seller-tokens';
-    displayName: 'sellerToken';
+    singularName: 'user-setting';
+    pluralName: 'user-settings';
+    displayName: 'userSetting';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
     username: Attribute.String & Attribute.Unique;
-    sessionToken: Attribute.Text;
+    jwt: Attribute.Text;
+    themeMode: Attribute.Enumeration<['system', 'dark', 'light']> &
+      Attribute.DefaultTo<'light'>;
+    phone: Attribute.BigInteger;
+    displayName: Attribute.String;
+    user: Attribute.Relation<
+      'api::user-setting.user-setting',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    email: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::seller-token.seller-token',
+      'api::user-setting.user-setting',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::seller-token.seller-token',
+      'api::user-setting.user-setting',
       'oneToOne',
       'admin::user'
     > &
@@ -1189,7 +1217,7 @@ declare module '@strapi/types' {
       'api::issuer.issuer': ApiIssuerIssuer;
       'api::order.order': ApiOrderOrder;
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod;
-      'api::seller-token.seller-token': ApiSellerTokenSellerToken;
+      'api::user-setting.user-setting': ApiUserSettingUserSetting;
     }
   }
 }
