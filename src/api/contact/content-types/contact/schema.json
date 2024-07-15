@@ -36,7 +36,7 @@
       "target": "api::interaction.interaction",
       "mappedBy": "contact"
     },
-    "active": {
+    "isActive": {
       "type": "boolean",
       "default": true
     }

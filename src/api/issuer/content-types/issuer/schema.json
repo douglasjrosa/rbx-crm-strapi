@@ -12,11 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "companyData": {
-      "type": "component",
-      "repeatable": false,
-      "component": "company-components.company-data"
-    },
     "blingAccessToken": {
       "type": "text"
     },
@@ -37,9 +32,14 @@
       "relation": "oneToMany",
       "target": "api::payment-method.payment-method"
     },
-    "active": {
+    "isActive": {
       "type": "boolean",
       "default": true
+    },
+    "company": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::company.company"
     }
   }
 }

@@ -770,11 +770,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    user_setting: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'api::user-setting.user-setting'
-    >;
     settings: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToOne',
@@ -825,7 +820,7 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    active: Attribute.Boolean &
+    isActive: Attribute.Boolean &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -835,7 +830,7 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
     seller: Attribute.Relation<
       'api::company.company',
       'oneToOne',
-      'plugin::users-permissions.user'
+      'api::user-setting.user-setting'
     >;
     creditLimit: Attribute.Decimal &
       Attribute.SetPluginOptions<{
@@ -904,7 +899,7 @@ export interface ApiContactContact extends Schema.CollectionType {
       'oneToMany',
       'api::interaction.interaction'
     >;
-    active: Attribute.Boolean & Attribute.DefaultTo<true>;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -949,17 +944,18 @@ export interface ApiDealDeal extends Schema.CollectionType {
     seller: Attribute.Relation<
       'api::deal.deal',
       'oneToOne',
-      'plugin::users-permissions.user'
+      'api::user-setting.user-setting'
     >;
-    active: Attribute.Boolean & Attribute.DefaultTo<true>;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
     stage: Attribute.Enumeration<
       ['Send proposal', 'Follow up', 'Negotiation', 'Won', 'Lost']
     > &
       Attribute.DefaultTo<'Send proposal'>;
     followUpAt: Attribute.DateTime;
     negotiationAt: Attribute.DateTime;
-    wonAt: Attribute.DateTime;
-    lostAt: Attribute.DateTime;
+    startedAt: Attribute.DateTime;
+    finishedAt: Attribute.DateTime;
+    migrationId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::deal.deal', 'oneToOne', 'admin::user'> &
@@ -996,7 +992,7 @@ export interface ApiInteractionInteraction extends Schema.CollectionType {
     seller: Attribute.Relation<
       'api::interaction.interaction',
       'oneToOne',
-      'plugin::users-permissions.user'
+      'api::user-setting.user-setting'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1027,7 +1023,6 @@ export interface ApiIssuerIssuer extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    companyData: Attribute.Component<'company-components.company-data'>;
     blingAccessToken: Attribute.Text;
     blingRefreshToken: Attribute.Text;
     blingClientId: Attribute.Text;
@@ -1038,7 +1033,12 @@ export interface ApiIssuerIssuer extends Schema.CollectionType {
       'oneToMany',
       'api::payment-method.payment-method'
     >;
-    active: Attribute.Boolean & Attribute.DefaultTo<true>;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
+    company: Attribute.Relation<
+      'api::issuer.issuer',
+      'oneToOne',
+      'api::company.company'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1072,7 +1072,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     seller: Attribute.Relation<
       'api::order.order',
       'oneToOne',
-      'plugin::users-permissions.user'
+      'api::user-setting.user-setting'
     >;
     deliverForecast: Attribute.Date;
     freightType: Attribute.String;
@@ -1099,7 +1099,8 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     >;
     freightValue: Attribute.Decimal;
     items: Attribute.Component<'order-components.items', true>;
-    active: Attribute.Boolean & Attribute.DefaultTo<true>;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
+    migrationId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

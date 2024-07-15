@@ -33,7 +33,7 @@
       "component": "company-components.company-data",
       "required": false
     },
-    "active": {
+    "isActive": {
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -45,7 +45,7 @@
     "seller": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "api::user-setting.user-setting"
     },
     "creditLimit": {
       "pluginOptions": {

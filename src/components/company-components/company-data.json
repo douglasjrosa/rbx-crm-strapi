@@ -69,11 +69,19 @@
       "type": "biginteger"
     },
     "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "companySize": {
+      "type": "string"
+    },
+    "simplesNacional": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

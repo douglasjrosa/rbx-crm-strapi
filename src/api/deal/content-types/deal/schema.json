@@ -35,9 +35,9 @@
     "seller": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "api::user-setting.user-setting"
     },
-    "active": {
+    "isActive": {
       "type": "boolean",
       "default": true
     },
@@ -58,11 +58,14 @@
     "negotiationAt": {
       "type": "datetime"
     },
-    "wonAt": {
+    "startedAt": {
       "type": "datetime"
     },
-    "lostAt": {
+    "finishedAt": {
       "type": "datetime"
+    },
+    "migrationId": {
+      "type": "integer"
     }
   }
 }

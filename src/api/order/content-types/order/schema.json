@@ -21,7 +21,7 @@
     "seller": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "api::user-setting.user-setting"
     },
     "deliverForecast": {
       "type": "date"
@@ -71,9 +71,12 @@
       "repeatable": true,
       "component": "order-components.items"
     },
-    "active": {
+    "isActive": {
       "type": "boolean",
       "default": true
+    },
+    "migrationId": {
+      "type": "integer"
     }
   }
 }

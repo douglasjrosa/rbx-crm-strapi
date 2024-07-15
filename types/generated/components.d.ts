@@ -28,6 +28,8 @@ export interface CompanyComponentsCompanyData extends Schema.Component {
     icmsTaxpayer: Attribute.Integer;
     cnae: Attribute.BigInteger;
     logo: Attribute.Media<'images'>;
+    companySize: Attribute.String;
+    simplesNacional: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 

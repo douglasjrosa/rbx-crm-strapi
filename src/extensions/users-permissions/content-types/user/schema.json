@@ -65,12 +65,6 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "user_setting": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::user-setting.user-setting",
-      "mappedBy": "users_permissions_user"
-    },
     "settings": {
       "type": "relation",
       "relation": "oneToOne",
