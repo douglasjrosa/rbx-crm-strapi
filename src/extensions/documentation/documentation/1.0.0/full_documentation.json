@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-07-21T02:22:08.417Z"
+    "x-generation-date": "2024-07-22T23:39:37.305Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -88,6 +88,8 @@
       },
       "CompanyLocalizationRequest": {
         "required": [
+          "displayName",
+          "cnpj",
           "locale"
         ],
         "type": "object",
@@ -133,6 +135,14 @@
           "seasonality": {
             "type": "integer"
           },
+          "displayName": {
+            "type": "string"
+          },
+          "cnpj": {
+            "type": "string",
+            "pattern": "^\\d*$",
+            "example": "123456789"
+          },
           "locale": {
             "type": "string"
           }
@@ -145,6 +155,10 @@
         ],
         "properties": {
           "data": {
+            "required": [
+              "displayName",
+              "cnpj"
+            ],
             "type": "object",
             "properties": {
               "contacts": {
@@ -187,6 +201,14 @@
               },
               "seasonality": {
                 "type": "integer"
+              },
+              "displayName": {
+                "type": "string"
+              },
+              "cnpj": {
+                "type": "string",
+                "pattern": "^\\d*$",
+                "example": "123456789"
               },
               "locale": {
                 "type": "string"
@@ -311,6 +333,10 @@
       },
       "Company": {
         "type": "object",
+        "required": [
+          "displayName",
+          "cnpj"
+        ],
         "properties": {
           "contacts": {
             "type": "object",
@@ -378,15 +404,7 @@
                                         "id": {
                                           "type": "number"
                                         },
-                                        "cnpj": {
-                                          "type": "string",
-                                          "pattern": "^\\d*$",
-                                          "example": "123456789"
-                                        },
-                                        "displayName": {
-                                          "type": "string"
-                                        },
-                                        "oficialName": {
+                                        "corporateReason": {
                                           "type": "string"
                                         },
                                         "email": {
@@ -1444,6 +1462,14 @@
                                     "seasonality": {
                                       "type": "integer"
                                     },
+                                    "displayName": {
+                                      "type": "string"
+                                    },
+                                    "cnpj": {
+                                      "type": "string",
+                                      "pattern": "^\\d*$",
+                                      "example": "123456789"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -2219,6 +2245,14 @@
           "seasonality": {
             "type": "integer"
           },
+          "displayName": {
+            "type": "string"
+          },
+          "cnpj": {
+            "type": "string",
+            "pattern": "^\\d*$",
+            "example": "123456789"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -2305,15 +2339,7 @@
           "id": {
             "type": "number"
           },
-          "cnpj": {
-            "type": "string",
-            "pattern": "^\\d*$",
-            "example": "123456789"
-          },
-          "displayName": {
-            "type": "string"
-          },
-          "oficialName": {
+          "corporateReason": {
             "type": "string"
           },
           "email": {
@@ -3973,15 +3999,7 @@
                           "id": {
                             "type": "number"
                           },
-                          "cnpj": {
-                            "type": "string",
-                            "pattern": "^\\d*$",
-                            "example": "123456789"
-                          },
-                          "displayName": {
-                            "type": "string"
-                          },
-                          "oficialName": {
+                          "corporateReason": {
                             "type": "string"
                           },
                           "email": {
@@ -4447,6 +4465,14 @@
                       },
                       "seasonality": {
                         "type": "integer"
+                      },
+                      "displayName": {
+                        "type": "string"
+                      },
+                      "cnpj": {
+                        "type": "string",
+                        "pattern": "^\\d*$",
+                        "example": "123456789"
                       },
                       "createdAt": {
                         "type": "string",
@@ -5600,15 +5626,7 @@
                                                                 "id": {
                                                                   "type": "number"
                                                                 },
-                                                                "cnpj": {
-                                                                  "type": "string",
-                                                                  "pattern": "^\\d*$",
-                                                                  "example": "123456789"
-                                                                },
-                                                                "displayName": {
-                                                                  "type": "string"
-                                                                },
-                                                                "oficialName": {
+                                                                "corporateReason": {
                                                                   "type": "string"
                                                                 },
                                                                 "email": {
@@ -6074,6 +6092,14 @@
                                                             },
                                                             "seasonality": {
                                                               "type": "integer"
+                                                            },
+                                                            "displayName": {
+                                                              "type": "string"
+                                                            },
+                                                            "cnpj": {
+                                                              "type": "string",
+                                                              "pattern": "^\\d*$",
+                                                              "example": "123456789"
                                                             },
                                                             "createdAt": {
                                                               "type": "string",
@@ -6990,15 +7016,7 @@
                                                                 "id": {
                                                                   "type": "number"
                                                                 },
-                                                                "cnpj": {
-                                                                  "type": "string",
-                                                                  "pattern": "^\\d*$",
-                                                                  "example": "123456789"
-                                                                },
-                                                                "displayName": {
-                                                                  "type": "string"
-                                                                },
-                                                                "oficialName": {
+                                                                "corporateReason": {
                                                                   "type": "string"
                                                                 },
                                                                 "email": {
@@ -8055,6 +8073,14 @@
                                                             },
                                                             "seasonality": {
                                                               "type": "integer"
+                                                            },
+                                                            "displayName": {
+                                                              "type": "string"
+                                                            },
+                                                            "cnpj": {
+                                                              "type": "string",
+                                                              "pattern": "^\\d*$",
+                                                              "example": "123456789"
                                                             },
                                                             "createdAt": {
                                                               "type": "string",
@@ -10324,15 +10350,7 @@
                           "id": {
                             "type": "number"
                           },
-                          "cnpj": {
-                            "type": "string",
-                            "pattern": "^\\d*$",
-                            "example": "123456789"
-                          },
-                          "displayName": {
-                            "type": "string"
-                          },
-                          "oficialName": {
+                          "corporateReason": {
                             "type": "string"
                           },
                           "email": {
@@ -10799,6 +10817,14 @@
                       "seasonality": {
                         "type": "integer"
                       },
+                      "displayName": {
+                        "type": "string"
+                      },
+                      "cnpj": {
+                        "type": "string",
+                        "pattern": "^\\d*$",
+                        "example": "123456789"
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -11203,15 +11229,7 @@
                                                                 "id": {
                                                                   "type": "number"
                                                                 },
-                                                                "cnpj": {
-                                                                  "type": "string",
-                                                                  "pattern": "^\\d*$",
-                                                                  "example": "123456789"
-                                                                },
-                                                                "displayName": {
-                                                                  "type": "string"
-                                                                },
-                                                                "oficialName": {
+                                                                "corporateReason": {
                                                                   "type": "string"
                                                                 },
                                                                 "email": {
@@ -12268,6 +12286,14 @@
                                                             },
                                                             "seasonality": {
                                                               "type": "integer"
+                                                            },
+                                                            "displayName": {
+                                                              "type": "string"
+                                                            },
+                                                            "cnpj": {
+                                                              "type": "string",
+                                                              "pattern": "^\\d*$",
+                                                              "example": "123456789"
                                                             },
                                                             "createdAt": {
                                                               "type": "string",

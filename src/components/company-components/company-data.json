@@ -7,17 +7,7 @@
   },
   "options": {},
   "attributes": {
-    "cnpj": {
-      "type": "biginteger",
-      "unique": true,
-      "required": true
-    },
-    "displayName": {
-      "type": "string",
-      "unique": true,
-      "required": true
-    },
-    "oficialName": {
+    "corporateReason": {
       "type": "string"
     },
     "email": {

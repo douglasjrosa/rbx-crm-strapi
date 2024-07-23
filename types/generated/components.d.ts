@@ -8,9 +8,7 @@ export interface CompanyComponentsCompanyData extends Schema.Component {
     description: '';
   };
   attributes: {
-    cnpj: Attribute.BigInteger & Attribute.Required & Attribute.Unique;
-    displayName: Attribute.String & Attribute.Required & Attribute.Unique;
-    oficialName: Attribute.String;
+    corporateReason: Attribute.String;
     email: Attribute.String;
     ie: Attribute.BigInteger;
     country: Attribute.String;
