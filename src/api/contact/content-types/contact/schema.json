@@ -24,12 +24,6 @@
     "decisionRole": {
       "type": "string"
     },
-    "company": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::company.company",
-      "inversedBy": "contacts"
-    },
     "interactions": {
       "type": "relation",
       "relation": "oneToMany",
@@ -39,6 +33,9 @@
     "isActive": {
       "type": "boolean",
       "default": true
+    },
+    "companyId": {
+      "type": "string"
     }
   }
 }

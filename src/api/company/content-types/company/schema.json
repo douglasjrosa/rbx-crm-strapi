@@ -16,12 +16,6 @@
     }
   },
   "attributes": {
-    "contacts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::contact.contact",
-      "mappedBy": "company"
-    },
     "isActive": {
       "pluginOptions": {
         "i18n": {

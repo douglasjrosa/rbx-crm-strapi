@@ -362,6 +362,522 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiCompanyCompany extends Schema.CollectionType {
+  collectionName: 'companies';
+  info: {
+    singularName: 'company';
+    pluralName: 'companies';
+    displayName: 'company';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    isActive: Attribute.Boolean &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<true>;
+    seller: Attribute.Relation<
+      'api::company.company',
+      'oneToOne',
+      'api::user-setting.user-setting'
+    >;
+    creditLimit: Attribute.Decimal &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    maximumPaymentTerm: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seasonality: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    displayName: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    cnpj: Attribute.BigInteger &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    corporateReason: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ie: Attribute.BigInteger &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    country: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    address: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    countryCode: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    addressNumber: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    addressComplement: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    neighborhood: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    postalCode: Attribute.BigInteger &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    city: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    state: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    website: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    phone: Attribute.BigInteger &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icmsTaxpayer: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    cnae: Attribute.BigInteger &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    companySize: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    simplesNacional: Attribute.Boolean &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    nfeEmail: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    email: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::company.company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::company.company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::company.company',
+      'oneToMany',
+      'api::company.company'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiContactContact extends Schema.CollectionType {
+  collectionName: 'contacts';
+  info: {
+    singularName: 'contact';
+    pluralName: 'contacts';
+    displayName: 'Contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    phone: Attribute.BigInteger;
+    email: Attribute.String;
+    decisionRole: Attribute.String;
+    interactions: Attribute.Relation<
+      'api::contact.contact',
+      'oneToMany',
+      'api::interaction.interaction'
+    >;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
+    companyId: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDealDeal extends Schema.CollectionType {
+  collectionName: 'deals';
+  info: {
+    singularName: 'deal';
+    pluralName: 'deals';
+    displayName: 'Deal';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    reasonForLoss: Attribute.String;
+    interactions: Attribute.Relation<
+      'api::deal.deal',
+      'oneToMany',
+      'api::interaction.interaction'
+    >;
+    order: Attribute.Relation<'api::deal.deal', 'oneToOne', 'api::order.order'>;
+    company: Attribute.Relation<
+      'api::deal.deal',
+      'oneToOne',
+      'api::company.company'
+    >;
+    seller: Attribute.Relation<
+      'api::deal.deal',
+      'oneToOne',
+      'api::user-setting.user-setting'
+    >;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
+    stage: Attribute.Enumeration<
+      ['Send proposal', 'Follow up', 'Negotiation', 'Won', 'Lost']
+    > &
+      Attribute.DefaultTo<'Send proposal'>;
+    followUpAt: Attribute.DateTime;
+    negotiationAt: Attribute.DateTime;
+    startedAt: Attribute.DateTime;
+    finishedAt: Attribute.DateTime;
+    migrationId: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::deal.deal', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::deal.deal', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInteractionInteraction extends Schema.CollectionType {
+  collectionName: 'interactions';
+  info: {
+    singularName: 'interaction';
+    pluralName: 'interactions';
+    displayName: 'Interaction';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    type: Attribute.String;
+    content: Attribute.Text;
+    deal: Attribute.Relation<
+      'api::interaction.interaction',
+      'manyToOne',
+      'api::deal.deal'
+    >;
+    contact: Attribute.Relation<
+      'api::interaction.interaction',
+      'manyToOne',
+      'api::contact.contact'
+    >;
+    seller: Attribute.Relation<
+      'api::interaction.interaction',
+      'oneToOne',
+      'api::user-setting.user-setting'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::interaction.interaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::interaction.interaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiIssuerIssuer extends Schema.CollectionType {
+  collectionName: 'issuers';
+  info: {
+    singularName: 'issuer';
+    pluralName: 'issuers';
+    displayName: 'Issuer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    blingAccessToken: Attribute.Text;
+    blingRefreshToken: Attribute.Text;
+    blingClientId: Attribute.Text;
+    blingClientSecret: Attribute.Text;
+    blingExpiresIn: Attribute.Integer;
+    payment_methods: Attribute.Relation<
+      'api::issuer.issuer',
+      'oneToMany',
+      'api::payment-method.payment-method'
+    >;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
+    company: Attribute.Relation<
+      'api::issuer.issuer',
+      'oneToOne',
+      'api::company.company'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::issuer.issuer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::issuer.issuer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderOrder extends Schema.CollectionType {
+  collectionName: 'orders';
+  info: {
+    singularName: 'order';
+    pluralName: 'orders';
+    displayName: 'Order';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    deal: Attribute.Relation<'api::order.order', 'oneToOne', 'api::deal.deal'>;
+    seller: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::user-setting.user-setting'
+    >;
+    deliverForecast: Attribute.Date;
+    freightType: Attribute.String;
+    orderDiscount: Attribute.Decimal;
+    extraCosts: Attribute.Decimal;
+    orderSubtotalValue: Attribute.Decimal;
+    orderTotalValue: Attribute.Decimal;
+    clientOrderCode: Attribute.String;
+    observations: Attribute.Text;
+    company: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::company.company'
+    >;
+    issuer: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::issuer.issuer'
+    >;
+    payment_method: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::payment-method.payment-method'
+    >;
+    freightValue: Attribute.Decimal;
+    items: Attribute.Component<'order-components.items', true>;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
+    migrationId: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
+  collectionName: 'payment_methods';
+  info: {
+    singularName: 'payment-method';
+    pluralName: 'payment-methods';
+    displayName: 'PaymentMethod';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    description: Attribute.String;
+    conditions: Attribute.String;
+    blingAccountCnpj: Attribute.BigInteger;
+    blingAccountName: Attribute.String;
+    blingPaymentMethodId: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::payment-method.payment-method',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::payment-method.payment-method',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiUserSettingUserSetting extends Schema.CollectionType {
+  collectionName: 'user_settings';
+  info: {
+    singularName: 'user-setting';
+    pluralName: 'user-settings';
+    displayName: 'userSetting';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    username: Attribute.String & Attribute.Unique;
+    jwt: Attribute.Text;
+    themeMode: Attribute.Enumeration<['system', 'dark', 'light']> &
+      Attribute.DefaultTo<'light'>;
+    phone: Attribute.BigInteger;
+    displayName: Attribute.String;
+    user: Attribute.Relation<
+      'api::user-setting.user-setting',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    email: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::user-setting.user-setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::user-setting.user-setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -792,531 +1308,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiCompanyCompany extends Schema.CollectionType {
-  collectionName: 'companies';
-  info: {
-    singularName: 'company';
-    pluralName: 'companies';
-    displayName: 'company';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    contacts: Attribute.Relation<
-      'api::company.company',
-      'oneToMany',
-      'api::contact.contact'
-    >;
-    isActive: Attribute.Boolean &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Attribute.DefaultTo<true>;
-    seller: Attribute.Relation<
-      'api::company.company',
-      'oneToOne',
-      'api::user-setting.user-setting'
-    >;
-    creditLimit: Attribute.Decimal &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    maximumPaymentTerm: Attribute.Integer &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    seasonality: Attribute.Integer &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    displayName: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    cnpj: Attribute.BigInteger &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    corporateReason: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    ie: Attribute.BigInteger &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    country: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    address: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    countryCode: Attribute.Integer &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    addressNumber: Attribute.Integer &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    addressComplement: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    neighborhood: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    postalCode: Attribute.BigInteger &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    city: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    state: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    website: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    phone: Attribute.BigInteger &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    icmsTaxpayer: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    cnae: Attribute.BigInteger &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    companySize: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    simplesNacional: Attribute.Boolean &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    nfeEmail: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    email: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::company.company',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::company.company',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::company.company',
-      'oneToMany',
-      'api::company.company'
-    >;
-    locale: Attribute.String;
-  };
-}
-
-export interface ApiContactContact extends Schema.CollectionType {
-  collectionName: 'contacts';
-  info: {
-    singularName: 'contact';
-    pluralName: 'contacts';
-    displayName: 'Contact';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String;
-    phone: Attribute.BigInteger;
-    email: Attribute.String;
-    decisionRole: Attribute.String;
-    company: Attribute.Relation<
-      'api::contact.contact',
-      'manyToOne',
-      'api::company.company'
-    >;
-    interactions: Attribute.Relation<
-      'api::contact.contact',
-      'oneToMany',
-      'api::interaction.interaction'
-    >;
-    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::contact.contact',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::contact.contact',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiDealDeal extends Schema.CollectionType {
-  collectionName: 'deals';
-  info: {
-    singularName: 'deal';
-    pluralName: 'deals';
-    displayName: 'Deal';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    reasonForLoss: Attribute.String;
-    interactions: Attribute.Relation<
-      'api::deal.deal',
-      'oneToMany',
-      'api::interaction.interaction'
-    >;
-    order: Attribute.Relation<'api::deal.deal', 'oneToOne', 'api::order.order'>;
-    company: Attribute.Relation<
-      'api::deal.deal',
-      'oneToOne',
-      'api::company.company'
-    >;
-    seller: Attribute.Relation<
-      'api::deal.deal',
-      'oneToOne',
-      'api::user-setting.user-setting'
-    >;
-    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
-    stage: Attribute.Enumeration<
-      ['Send proposal', 'Follow up', 'Negotiation', 'Won', 'Lost']
-    > &
-      Attribute.DefaultTo<'Send proposal'>;
-    followUpAt: Attribute.DateTime;
-    negotiationAt: Attribute.DateTime;
-    startedAt: Attribute.DateTime;
-    finishedAt: Attribute.DateTime;
-    migrationId: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::deal.deal', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::deal.deal', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiInteractionInteraction extends Schema.CollectionType {
-  collectionName: 'interactions';
-  info: {
-    singularName: 'interaction';
-    pluralName: 'interactions';
-    displayName: 'Interaction';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    type: Attribute.String;
-    content: Attribute.Text;
-    deal: Attribute.Relation<
-      'api::interaction.interaction',
-      'manyToOne',
-      'api::deal.deal'
-    >;
-    contact: Attribute.Relation<
-      'api::interaction.interaction',
-      'manyToOne',
-      'api::contact.contact'
-    >;
-    seller: Attribute.Relation<
-      'api::interaction.interaction',
-      'oneToOne',
-      'api::user-setting.user-setting'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::interaction.interaction',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::interaction.interaction',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiIssuerIssuer extends Schema.CollectionType {
-  collectionName: 'issuers';
-  info: {
-    singularName: 'issuer';
-    pluralName: 'issuers';
-    displayName: 'Issuer';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    blingAccessToken: Attribute.Text;
-    blingRefreshToken: Attribute.Text;
-    blingClientId: Attribute.Text;
-    blingClientSecret: Attribute.Text;
-    blingExpiresIn: Attribute.Integer;
-    payment_methods: Attribute.Relation<
-      'api::issuer.issuer',
-      'oneToMany',
-      'api::payment-method.payment-method'
-    >;
-    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
-    company: Attribute.Relation<
-      'api::issuer.issuer',
-      'oneToOne',
-      'api::company.company'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::issuer.issuer',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::issuer.issuer',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiOrderOrder extends Schema.CollectionType {
-  collectionName: 'orders';
-  info: {
-    singularName: 'order';
-    pluralName: 'orders';
-    displayName: 'Order';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    deal: Attribute.Relation<'api::order.order', 'oneToOne', 'api::deal.deal'>;
-    seller: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'api::user-setting.user-setting'
-    >;
-    deliverForecast: Attribute.Date;
-    freightType: Attribute.String;
-    orderDiscount: Attribute.Decimal;
-    extraCosts: Attribute.Decimal;
-    orderSubtotalValue: Attribute.Decimal;
-    orderTotalValue: Attribute.Decimal;
-    clientOrderCode: Attribute.String;
-    observations: Attribute.Text;
-    company: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'api::company.company'
-    >;
-    issuer: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'api::issuer.issuer'
-    >;
-    payment_method: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'api::payment-method.payment-method'
-    >;
-    freightValue: Attribute.Decimal;
-    items: Attribute.Component<'order-components.items', true>;
-    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
-    migrationId: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
-  collectionName: 'payment_methods';
-  info: {
-    singularName: 'payment-method';
-    pluralName: 'payment-methods';
-    displayName: 'PaymentMethod';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    description: Attribute.String;
-    conditions: Attribute.String;
-    blingAccountCnpj: Attribute.BigInteger;
-    blingAccountName: Attribute.String;
-    blingPaymentMethodId: Attribute.BigInteger;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::payment-method.payment-method',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::payment-method.payment-method',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiUserSettingUserSetting extends Schema.CollectionType {
-  collectionName: 'user_settings';
-  info: {
-    singularName: 'user-setting';
-    pluralName: 'user-settings';
-    displayName: 'userSetting';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    username: Attribute.String & Attribute.Unique;
-    jwt: Attribute.Text;
-    themeMode: Attribute.Enumeration<['system', 'dark', 'light']> &
-      Attribute.DefaultTo<'light'>;
-    phone: Attribute.BigInteger;
-    displayName: Attribute.String;
-    user: Attribute.Relation<
-      'api::user-setting.user-setting',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    email: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::user-setting.user-setting',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::user-setting.user-setting',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1327,14 +1318,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'plugin::upload.file': PluginUploadFile;
-      'plugin::upload.folder': PluginUploadFolder;
-      'plugin::content-releases.release': PluginContentReleasesRelease;
-      'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
-      'plugin::i18n.locale': PluginI18NLocale;
-      'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
-      'plugin::users-permissions.role': PluginUsersPermissionsRole;
-      'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::company.company': ApiCompanyCompany;
       'api::contact.contact': ApiContactContact;
       'api::deal.deal': ApiDealDeal;
@@ -1343,6 +1326,14 @@ declare module '@strapi/types' {
       'api::order.order': ApiOrderOrder;
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod;
       'api::user-setting.user-setting': ApiUserSettingUserSetting;
+      'plugin::upload.file': PluginUploadFile;
+      'plugin::upload.folder': PluginUploadFolder;
+      'plugin::content-releases.release': PluginContentReleasesRelease;
+      'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
+      'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
+      'plugin::users-permissions.role': PluginUsersPermissionsRole;
+      'plugin::users-permissions.user': PluginUsersPermissionsUser;
     }
   }
 }
