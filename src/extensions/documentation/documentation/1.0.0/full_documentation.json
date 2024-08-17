@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-08T19:55:16.994Z"
+    "x-generation-date": "2024-08-14T13:24:02.343Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -191,6 +191,10 @@
           "email": {
             "type": "string"
           },
+          "expiresAt": {
+            "type": "string",
+            "format": "date"
+          },
           "locale": {
             "type": "string"
           }
@@ -305,6 +309,10 @@
               },
               "email": {
                 "type": "string"
+              },
+              "expiresAt": {
+                "type": "string",
+                "format": "date"
               },
               "locale": {
                 "type": "string"
@@ -1127,6 +1135,10 @@
           },
           "email": {
             "type": "string"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date"
           },
           "createdAt": {
             "type": "string",
@@ -2154,6 +2166,10 @@
                                                             "email": {
                                                               "type": "string"
                                                             },
+                                                            "expiresAt": {
+                                                              "type": "string",
+                                                              "format": "date"
+                                                            },
                                                             "createdAt": {
                                                               "type": "string",
                                                               "format": "date-time"
@@ -2566,6 +2582,10 @@
                                     "migrationId": {
                                       "type": "integer"
                                     },
+                                    "expiresAt": {
+                                      "type": "string",
+                                      "format": "date"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -2942,6 +2962,10 @@
               },
               "migrationId": {
                 "type": "integer"
+              },
+              "expiresAt": {
+                "type": "string",
+                "format": "date"
               }
             }
           }
@@ -3835,6 +3859,10 @@
                                                             "email": {
                                                               "type": "string"
                                                             },
+                                                            "expiresAt": {
+                                                              "type": "string",
+                                                              "format": "date"
+                                                            },
                                                             "createdAt": {
                                                               "type": "string",
                                                               "format": "date-time"
@@ -4247,6 +4275,10 @@
                                     "migrationId": {
                                       "type": "integer"
                                     },
+                                    "expiresAt": {
+                                      "type": "string",
+                                      "format": "date"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -4543,6 +4575,10 @@
           },
           "migrationId": {
             "type": "integer"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date"
           },
           "createdAt": {
             "type": "string",
@@ -5716,6 +5752,10 @@
                                               "email": {
                                                 "type": "string"
                                               },
+                                              "expiresAt": {
+                                                "type": "string",
+                                                "format": "date"
+                                              },
                                               "createdAt": {
                                                 "type": "string",
                                                 "format": "date-time"
@@ -6127,6 +6167,10 @@
                       },
                       "migrationId": {
                         "type": "integer"
+                      },
+                      "expiresAt": {
+                        "type": "string",
+                        "format": "date"
                       },
                       "createdAt": {
                         "type": "string",
@@ -7186,6 +7230,10 @@
                       },
                       "email": {
                         "type": "string"
+                      },
+                      "expiresAt": {
+                        "type": "string",
+                        "format": "date"
                       },
                       "createdAt": {
                         "type": "string",
@@ -8474,6 +8522,10 @@
                                               "email": {
                                                 "type": "string"
                                               },
+                                              "expiresAt": {
+                                                "type": "string",
+                                                "format": "date"
+                                              },
                                               "createdAt": {
                                                 "type": "string",
                                                 "format": "date-time"
@@ -8885,6 +8937,10 @@
                       },
                       "migrationId": {
                         "type": "integer"
+                      },
+                      "expiresAt": {
+                        "type": "string",
+                        "format": "date"
                       },
                       "createdAt": {
                         "type": "string",

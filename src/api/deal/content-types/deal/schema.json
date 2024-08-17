@@ -66,6 +66,9 @@
     },
     "migrationId": {
       "type": "integer"
+    },
+    "expiresAt": {
+      "type": "date"
     }
   }
 }

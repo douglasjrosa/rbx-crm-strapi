@@ -225,6 +225,14 @@
         }
       },
       "type": "string"
+    },
+    "expiresAt": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "date"
     }
   }
 }
