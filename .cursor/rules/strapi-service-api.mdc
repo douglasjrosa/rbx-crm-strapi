@@ -1,0 +1,2994 @@
+---
+description: [STRAPI-SERVICE-API] @Strapi Document Service API - Comprehensive documentation on Strapi's Document Service API, including available methods, parameters, practical examples and recommendations based on Strapi's official documentation
+globs: 
+alwaysApply: false
+---
+
+# Strapi Document Service API - Technical Documentation [STRAPI-SERVICE-API]
+
+## Documentation Consultation Guidelines
+
+For AI Agent consumption:
+
+1. **Only use this document when specific implementation details of the Document Service API are needed**
+2. **Use direct section references**: When referencing sections of this document, use section identifiers (e.g., [STRAPI-SERVICE-API-2.3]) to locate specific information
+3. **Avoid scanning the entire document**: Target only the specific sections you need
+
+## Quick Reference Index
+
+* [STRAPI-SERVICE-API-1] [Document Service API](mdc:#strapi-service-api-1-document-service-api)
+  + [STRAPI-SERVICE-API-1.1] [Overview](mdc:#strapi-service-api-11-overview)
+    - [STRAPI-SERVICE-API-1.1.1] [Concept and Purpose](mdc:#strapi-service-api-111-concept-and-purpose)
+    - [STRAPI-SERVICE-API-1.1.2] [When to Use](mdc:#strapi-service-api-112-when-to-use)
+    - [STRAPI-SERVICE-API-1.1.3] [API Access](mdc:#strapi-service-api-113-api-access)
+  + [STRAPI-SERVICE-API-1.2] [Search Methods](mdc:#strapi-service-api-12-search-methods)
+    - [STRAPI-SERVICE-API-1.2.1] [findOne() Method](mdc:#strapi-service-api-121-findone-method)
+    - [STRAPI-SERVICE-API-1.2.2] [findFirst() Method](mdc:#strapi-service-api-122-findfirst-method)
+    - [STRAPI-SERVICE-API-1.2.3] [findMany() Method](mdc:#strapi-service-api-123-findmany-method)
+  + [STRAPI-SERVICE-API-1.3] [Manipulation Methods](mdc:#strapi-service-api-13-manipulation-methods)
+    - [STRAPI-SERVICE-API-1.3.1] [create() Method](mdc:#strapi-service-api-131-method-create)
+    - [STRAPI-SERVICE-API-1.3.2] [update() Method](mdc:#strapi-service-api-132-method-update)
+    - [STRAPI-SERVICE-API-1.3.3] [delete() Method](mdc:#strapi-service-api-133-method-delete)
+  + [STRAPI-SERVICE-API-1.4] [Publication Methods](mdc:#strapi-service-api-14-publication-methods)
+    - [STRAPI-SERVICE-API-1.4.1] [publish() Method](mdc:#strapi-service-api-141-method-publish)
+    - [STRAPI-SERVICE-API-1.4.2] [unpublish() Method](mdc:#strapi-service-api-142-method-unpublish)
+    - [STRAPI-SERVICE-API-1.4.3] [discardDraft() Method](mdc:#strapi-service-api-143-method-discarddraft)
+  + [STRAPI-SERVICE-API-1.5] [Count Method](mdc:#strapi-service-api-15-count-method)
+    - [STRAPI-SERVICE-API-1.5.1] [count() Method](mdc:#strapi-service-api-151-method-count)
+  + [STRAPI-SERVICE-API-1.6] [Common Parameters](mdc:#strapi-service-api-16-common-parameters)
+    - [STRAPI-SERVICE-API-1.6.1] [Parameter locale](mdc:#strapi-service-api-161-parameter-locale)
+    - [STRAPI-SERVICE-API-1.6.2] [Parameter status](mdc:#strapi-service-api-162-parameter-status)
+    - [STRAPI-SERVICE-API-1.6.3] [Parameter fields](mdc:#strapi-service-api-163-parameter-fields)
+    - [STRAPI-SERVICE-API-1.6.4] [Parameter populate](mdc:#strapi-service-api-164-parameter-populate)
+    - [STRAPI-SERVICE-API-1.6.5] [Parameter filters](mdc:#strapi-service-api-165-parameter-filters)
+  + [STRAPI-SERVICE-API-1.7] [Working with Relations](mdc:#strapi-service-api-17-working-with-relations)
+    - [STRAPI-SERVICE-API-1.7.1] [Connecting Relations](mdc:#strapi-service-api-171-connecting-relations)
+    - [STRAPI-SERVICE-API-1.7.2] [Disconnecting Relations](mdc:#strapi-service-api-172-disconnecting-relations)
+    - [STRAPI-SERVICE-API-1.7.3] [Defining Relations](mdc:#strapi-service-api-173-defining-relations)
+    - [STRAPI-SERVICE-API-1.7.4] [Combining Relation Operations](mdc:#strapi-service-api-174-combining-relation-operations)
+    - [STRAPI-SERVICE-API-1.7.5] [Working with Relations in Different Locales](mdc:#strapi-service-api-175-working-with-relations-in-different-locales)
+  + [STRAPI-SERVICE-API-1.8] [Document Service API Best Practices](mdc:#strapi-service-api-18-document-service-api-best-practices)
+    - [STRAPI-SERVICE-API-1.8.1] [Error Handling](mdc:#strapi-service-api-181-error-handling)
+    - [STRAPI-SERVICE-API-1.8.2] [Query Optimization](mdc:#strapi-service-api-182-query-optimization)
+    - [STRAPI-SERVICE-API-1.8.3] [Batch Operations](mdc:#strapi-service-api-183-batch-operations)
+    - [STRAPI-SERVICE-API-1.8.4] [Service Reuse](mdc:#strapi-service-api-184-service-reuse)
+    - [STRAPI-SERVICE-API-1.8.5] [State Transitions](mdc:#strapi-service-api-185-state-transitions)
+    - [STRAPI-SERVICE-API-1.8.6] [Entity Service API Migration](mdc:#strapi-service-api-186-entity-service-api-migration)
+* [STRAPI-SERVICE-API-2] [Working with Fields](mdc:#strapi-service-api-2-working-with-fields)
+  + [STRAPI-SERVICE-API-2.1] [Selecting Fields Overview](mdc:#strapi-service-api-21-selecting-fields-overview)
+  + [STRAPI-SERVICE-API-2.2] [Using fields with findOne()](mdc:#strapi-service-api-22-using-fields-with-findone)
+  + [STRAPI-SERVICE-API-2.3] [Using fields with findFirst()](mdc:#strapi-service-api-23-using-fields-with-findfirst)
+  + [STRAPI-SERVICE-API-2.4] [Using fields with findMany()](mdc:#strapi-service-api-24-using-fields-with-findmany)
+  + [STRAPI-SERVICE-API-2.5] [Using fields with create()](mdc:#strapi-service-api-25-using-fields-with-create)
+  + [STRAPI-SERVICE-API-2.6] [Using fields with update()](mdc:#strapi-service-api-26-using-fields-with-update)
+  + [STRAPI-SERVICE-API-2.7] [Using fields with delete()](mdc:#strapi-service-api-27-using-fields-with-delete)
+  + [STRAPI-SERVICE-API-2.8] [Using fields with Publication Methods](mdc:#strapi-service-api-28-using-fields-with-publication-methods)
+  + [STRAPI-SERVICE-API-2.9] [Best Practices for Field Selection](mdc:#strapi-service-api-29-best-practices-for-field-selection)
+* [STRAPI-SERVICE-API-3] [Advanced Filtering](mdc:#strapi-service-api-3-advanced-filtering)
+  + [STRAPI-SERVICE-API-3.1] [Filter Operators Overview](mdc:#strapi-service-api-31-filter-operators-overview)
+  + [STRAPI-SERVICE-API-3.2] [Attribute Operators](mdc:#strapi-service-api-32-attribute-operators)
+    - [STRAPI-SERVICE-API-3.2.1] [Equality Operators](mdc:#strapi-service-api-321-equality-operators)
+    - [STRAPI-SERVICE-API-3.2.2] [Comparison Operators](mdc:#strapi-service-api-322-comparison-operators)
+    - [STRAPI-SERVICE-API-3.2.3] [Array Operators](mdc:#strapi-service-api-323-array-operators)
+    - [STRAPI-SERVICE-API-3.2.4] [String Operators](mdc:#strapi-service-api-324-string-operators)
+    - [STRAPI-SERVICE-API-3.2.5] [Null Operators](mdc:#strapi-service-api-325-null-operators)
+  + [STRAPI-SERVICE-API-3.3] [Logical Operators](mdc:#strapi-service-api-33-logical-operators)
+    - [STRAPI-SERVICE-API-3.3.1] [$and - Logical AND](mdc:#strapi-service-api-331-and---logical-and)
+    - [STRAPI-SERVICE-API-3.3.2] [$or - Logical OR](mdc:#strapi-service-api-332-or---logical-or)
+    - [STRAPI-SERVICE-API-3.3.3] [$not - Logical NOT](mdc:#strapi-service-api-333-not---logical-not)
+  + [STRAPI-SERVICE-API-3.4] [Advanced Filter Combinations](mdc:#strapi-service-api-34-advanced-filter-combinations)
+  + [STRAPI-SERVICE-API-3.5] [Filtering Best Practices](mdc:#strapi-service-api-35-filtering-best-practices)
+* [STRAPI-SERVICE-API-4] [Working with Locales](mdc:#strapi-service-api-4-working-with-locales)
+  + [STRAPI-SERVICE-API-4.1] [Locale Parameter Overview](mdc:#strapi-service-api-41-locale-parameter-overview)
+  + [STRAPI-SERVICE-API-4.2] [Using locale with Search Methods](mdc:#strapi-service-api-42-using-locale-with-search-methods)
+    - [STRAPI-SERVICE-API-4.2.1] [With findOne()](mdc:#strapi-service-api-421-with-findone)
+    - [STRAPI-SERVICE-API-4.2.2] [With findFirst()](mdc:#strapi-service-api-422-with-findfirst)
+    - [STRAPI-SERVICE-API-4.2.3] [With findMany()](mdc:#strapi-service-api-423-with-findmany)
+  + [STRAPI-SERVICE-API-4.3] [Using locale with Manipulation Methods](mdc:#strapi-service-api-43-using-locale-with-manipulation-methods)
+    - [STRAPI-SERVICE-API-4.3.1] [With create()](mdc:#strapi-service-api-431-with-create)
+    - [STRAPI-SERVICE-API-4.3.2] [With update()](mdc:#strapi-service-api-432-with-update)
+    - [STRAPI-SERVICE-API-4.3.3] [With delete()](mdc:#strapi-service-api-433-with-delete)
+  + [STRAPI-SERVICE-API-4.4] [Using locale with Publication Methods](mdc:#strapi-service-api-44-using-locale-with-publication-methods)
+    - [STRAPI-SERVICE-API-4.4.1] [With publish()](mdc:#strapi-service-api-441-with-publish)
+    - [STRAPI-SERVICE-API-4.4.2] [With unpublish()](mdc:#strapi-service-api-442-with-unpublish)
+    - [STRAPI-SERVICE-API-4.4.3] [With discardDraft()](mdc:#strapi-service-api-443-with-discarddraft)
+  + [STRAPI-SERVICE-API-4.5] [Using locale with count()](mdc:#strapi-service-api-45-using-locale-with-count)
+  + [STRAPI-SERVICE-API-4.6] [Best Practices for Working with Locales](mdc:#strapi-service-api-46-best-practices-for-working-with-locales)
+* [STRAPI-SERVICE-API-5] [Document Service Middlewares](mdc:#strapi-service-api-5-document-service-middlewares)
+  + [STRAPI-SERVICE-API-5.1] [Middlewares Overview](mdc:#strapi-service-api-51-middlewares-overview)
+  + [STRAPI-SERVICE-API-5.2] [Registering Middlewares](mdc:#strapi-service-api-52-registering-middlewares)
+    - [STRAPI-SERVICE-API-5.2.1] [Middleware Function Structure](mdc:#strapi-service-api-521-middleware-function-structure)
+    - [STRAPI-SERVICE-API-5.2.2] [Where to Register Middlewares](mdc:#strapi-service-api-522-where-to-register-middlewares)
+  + [STRAPI-SERVICE-API-5.3] [Implementing Middlewares](mdc:#strapi-service-api-53-implementing-middlewares)
+    - [STRAPI-SERVICE-API-5.3.1] [Basic Middleware Pattern](mdc:#strapi-service-api-531-basic-middleware-pattern)
+    - [STRAPI-SERVICE-API-5.3.2] [Filtering by Content Type](mdc:#strapi-service-api-532-filtering-by-content-type)
+    - [STRAPI-SERVICE-API-5.3.3] [Filtering by Action](mdc:#strapi-service-api-533-filtering-by-action)
+    - [STRAPI-SERVICE-API-5.3.4] [Data Transformation Example](mdc:#strapi-service-api-534-data-transformation-example)
+    - [STRAPI-SERVICE-API-5.3.5] [Validation Example](mdc:#strapi-service-api-535-validation-example)
+  + [STRAPI-SERVICE-API-5.4] [Middleware Best Practices](mdc:#strapi-service-api-54-middleware-best-practices)
+  + [STRAPI-SERVICE-API-5.5] [Common Use Cases](mdc:#strapi-service-api-55-common-use-cases)
+* [STRAPI-SERVICE-API-6] [Populating Fields](mdc:#strapi-service-api-6-populating-fields)
+  + [STRAPI-SERVICE-API-6.1] [Populate Parameter Overview](mdc:#strapi-service-api-61-populate-parameter-overview)
+  + [STRAPI-SERVICE-API-6.2] [Working with Relations and Media Fields](mdc:#strapi-service-api-62-working-with-relations-and-media-fields)
+    - [STRAPI-SERVICE-API-6.2.1] [Populate All Relations (One Level)](mdc:#strapi-service-api-621-populate-all-relations-one-level)
+    - [STRAPI-SERVICE-API-6.2.2] [Populate Specific Relations (One Level)](mdc:#strapi-service-api-622-populate-specific-relations-one-level)
+    - [STRAPI-SERVICE-API-6.2.3] [Populate Nested Relations (Multiple Levels)](mdc:#strapi-service-api-623-populate-nested-relations-multiple-levels)
+  + [STRAPI-SERVICE-API-6.3] [Working with Components and Dynamic Zones](mdc:#strapi-service-api-63-working-with-components-and-dynamic-zones)
+    - [STRAPI-SERVICE-API-6.3.1] [Populating Components](mdc:#strapi-service-api-631-populating-components)
+    - [STRAPI-SERVICE-API-6.3.2] [Populating Dynamic Zones](mdc:#strapi-service-api-632-populating-dynamic-zones)
+  + [STRAPI-SERVICE-API-6.4] [Using Populate with Manipulation Methods](mdc:#strapi-service-api-64-using-populate-with-manipulation-methods)
+    - [STRAPI-SERVICE-API-6.4.1] [With create()](mdc:#strapi-service-api-641-with-create)
+    - [STRAPI-SERVICE-API-6.4.2] [With update()](mdc:#strapi-service-api-642-with-update)
+    - [STRAPI-SERVICE-API-6.4.3] [With Publication Methods](mdc:#strapi-service-api-643-with-publication-methods)
+  + [STRAPI-SERVICE-API-6.5] [Best Practices for Populating](mdc:#strapi-service-api-65-best-practices-for-populating)
+* [STRAPI-SERVICE-API-7] [Sorting and Pagination](mdc:#strapi-service-api-7-sorting-and-pagination)
+  + [STRAPI-SERVICE-API-7.1] [Sorting Results](mdc:#strapi-service-api-71-sorting-results)
+    - [STRAPI-SERVICE-API-7.1.1] [Sorting on a Single Field](mdc:#strapi-service-api-711-sorting-on-a-single-field)
+    - [STRAPI-SERVICE-API-7.1.2] [Sorting on Multiple Fields](mdc:#strapi-service-api-712-sorting-on-multiple-fields)
+  + [STRAPI-SERVICE-API-7.2] [Paginating Results](mdc:#strapi-service-api-72-paginating-results)
+    - [STRAPI-SERVICE-API-7.2.1] [Basic Pagination](mdc:#strapi-service-api-721-basic-pagination)
+    - [STRAPI-SERVICE-API-7.2.2] [Alternative Pagination with Start and Limit](mdc:#strapi-service-api-722-alternative-pagination-with-start-and-limit)
+  + [STRAPI-SERVICE-API-7.3] [Combining Sorting and Pagination](mdc:#strapi-service-api-73-combining-sorting-and-pagination)
+  + [STRAPI-SERVICE-API-7.4] [Best Practices for Sorting and Pagination](mdc:#strapi-service-api-74-best-practices-for-sorting-and-pagination)
+* [STRAPI-SERVICE-API-8] [Working with Draft & Publish Status](mdc:#strapi-service-api-8-working-with-draft-publish-status)
+  + [STRAPI-SERVICE-API-8.1] [Status Parameter Overview](mdc:#strapi-service-api-81-status-parameter-overview)
+  + [STRAPI-SERVICE-API-8.2] [Using Status with Search Methods](mdc:#strapi-service-api-82-using-status-with-search-methods)
+    - [STRAPI-SERVICE-API-8.2.1] [With findOne()](mdc:#strapi-service-api-821-with-findone)
+    - [STRAPI-SERVICE-API-8.2.2] [With findFirst()](mdc:#strapi-service-api-822-with-findfirst)
+    - [STRAPI-SERVICE-API-8.2.3] [With findMany()](mdc:#strapi-service-api-823-with-findmany)
+  + [STRAPI-SERVICE-API-8.3] [Using Status with count()](mdc:#strapi-service-api-83-using-status-with-count)
+  + [STRAPI-SERVICE-API-8.4] [Creating and Publishing in One Step](mdc:#strapi-service-api-84-creating-and-publishing-in-one-step)
+  + [STRAPI-SERVICE-API-8.5] [Updating and Publishing in One Step](mdc:#strapi-service-api-85-updating-and-publishing-in-one-step)
+  + [STRAPI-SERVICE-API-8.6] [Best Practices for Working with Status](mdc:#strapi-service-api-86-best-practices-for-working-with-status)
+
+## [STRAPI-SERVICE-API-1] Document Service API
+
+### [STRAPI-SERVICE-API-1.1] Overview
+
+#### [STRAPI-SERVICE-API-1.1.1] Concept and Purpose
+
+The Document Service API is an internal Strapi API, built on top of the **Query Engine API**, used to perform CRUD operations (create, read, update, and delete) on **documents**:
+
+* Provides a programmatic interface for manipulating documents within the Strapi backend
+* Replaces the Entity Service API used in Strapi v4 (which is deprecated in Strapi v5)
+* Enables Strapi-specific operations, such as publishing/unpublishing documents and discarding drafts
+* Supports advanced features like internationalization, draft/publish, and relation management
+
+#### [STRAPI-SERVICE-API-1.1.2] When to Use
+
+The Document Service API is recommended for the following scenarios:
+
+* **Plugin development**: For manipulating documents within custom plugins
+* **Backend logic**: For implementing business rules that need to manipulate documents
+* **Strapi customizations**: To extend or modify the default behavior of Strapi
+* **Batch operations**: To perform operations on multiple documents programmatically
+
+#### [STRAPI-SERVICE-API-1.1.3] API Access
+
+The Document Service API is accessed through the global `strapi.documents()` object:
+
+```javascript
+// Basic syntax
+const documentService = strapi.documents('api::content-type-name.content-type-name');
+
+// Example
+const restaurantService = strapi.documents('api::restaurant.restaurant');
+```
+
+### [STRAPI-SERVICE-API-1.2] Search Methods
+
+#### [STRAPI-SERVICE-API-1.2.1] `findOne()` Method
+
+The `findOne()` method searches for a specific document based on the document ID and the provided parameters.
+
+Syntax: `findOne(parameters: Params) => Document`
+
+##### Parameters
+
+| Parameter | Description                                                    | Default Value                    | Type                   |
+|-----------|----------------------------------------------------------------|----------------------------------|------------------------|
+| documentId| Document ID to be found                                        | null                             | String                 |
+| locale    | Localization of the document to be found                       | Default localization             | String or undefined    |
+| status    | Publication status (if Draft & Publish is enabled)             | 'draft'                          | 'published' or 'draft' |
+| fields    | Specific fields to be returned                                 | All fields                       | Object                 |
+| populate  | Relations, media fields, components or dynamic zones to include| null                             | Object                 |
+
+##### Example
+
+If only the `documentId` is provided without other parameters, `findOne()` returns the draft version of a document in the default localization:
+
+```javascript
+// Find a document by documentId
+const restaurant = await strapi.documents('api::restaurant.restaurant').findOne({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm'
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   name: "Biscotte Restaurant",
+//   publishedAt: null, // draft version (default)
+//   locale: "en", // default localization
+//   // …
+// }
+```
+
+#### [STRAPI-SERVICE-API-1.2.2] `findFirst()` Method
+
+The `findFirst()` method searches for the first document that matches the provided parameters.
+
+Syntax: `findFirst(parameters: Params) => Document`
+
+##### Parameters
+
+| Parameter | Description                                                    | Default Value                    | Type                   |
+|-----------|----------------------------------------------------------------|----------------------------------|------------------------|
+| locale    | Localization of the document to be found                       | Default localization             | String or undefined    |
+| status    | Publication status (if Draft & Publish is enabled)             | 'draft'                          | 'published' or 'draft' |
+| filters   | Filters to be applied in the search                            | null                             | Object                 |
+| fields    | Specific fields to be returned                                 | All fields                       | Object                 |
+| populate  | Relations, media fields, components or dynamic zones to include| null                             | Object                 |
+
+##### Examples
+
+By default, `findFirst()` returns the draft version, in the default localization, of the first document for the unique identifier passed:
+
+```javascript
+// Find the first document
+const restaurant = await strapi.documents('api::restaurant.restaurant').findFirst();
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   name: "Restaurant Biscotte",
+//   publishedAt: null,
+//   locale: "en"
+//   // …
+// }
+```
+
+Find the first document that matches the provided parameters:
+
+```javascript
+// Find the first document that starts with "Pizzeria"
+const pizzeria = await strapi.documents('api::restaurant.restaurant').findFirst({
+    filters: {
+        name: {
+            $startsWith: "Pizzeria"
+        }
+    }
+});
+
+// Response
+// {
+//   documentId: "j9k8l7m6n5o4p3q2r1s0tuv",
+//   name: "Pizzeria Arrivederci",
+//   publishedAt: null,
+//   locale: "en"
+//   // …
+// }
+```
+
+#### [STRAPI-SERVICE-API-1.2.3] `findMany()` Method
+
+The `findMany()` method searches for documents that match the provided parameters.
+
+Syntax: `findMany(parameters: Params) => Document[]`
+
+##### Parameters
+
+| Parameter  | Description                                                    | Default Value                    | Type                   |
+|------------|----------------------------------------------------------------|----------------------------------|------------------------|
+| locale     | Localization of the documents to be found                      | Default localization             | String or undefined    |
+| status     | Publication status (if Draft & Publish is enabled)             | 'draft'                          | 'published' or 'draft' |
+| filters    | Filters to be applied in the search                            | null                             | Object                 |
+| fields     | Specific fields to be returned                                 | All fields                       | Object                 |
+| populate   | Relations, media fields, components or dynamic zones to include| null                             | Object                 |
+| sort       | Sorting of results                                             | null                             | Object or Array        |
+| pagination | Pagination of results                                          | { page: 1, pageSize: 10 }        | Object                 |
+
+##### Examples
+
+By default, `findMany()` returns all draft documents in the default localization:
+
+```javascript
+// Find all documents
+const restaurants = await strapi.documents('api::restaurant.restaurant').findMany();
+
+// Response
+// [
+//   {
+//     documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//     name: "Restaurant Biscotte",
+//     publishedAt: null,
+//     locale: "en"
+//     // …
+//   },
+//   {
+//     documentId: "j9k8l7m6n5o4p3q2r1s0tuv",
+//     name: "Pizzeria Arrivederci",
+//     publishedAt: null,
+//     locale: "en"
+//     // …
+//   }
+// ]
+```
+
+Find all published documents with pagination and sorting:
+
+```javascript
+// Find published restaurants, sorted by name
+const publishedRestaurants = await strapi.documents('api::restaurant.restaurant').findMany({
+    status: 'published',
+    sort: {
+        name: 'asc'
+    },
+    pagination: {
+        page: 1,
+        pageSize: 25
+    }
+});
+```
+
+### [STRAPI-SERVICE-API-1.3] Manipulation Methods
+
+#### [STRAPI-SERVICE-API-1.3.1] Method `create()`
+
+The `create()` method creates a new document based on the provided data.
+
+Syntax: `create(parameters: Params) => Document`
+
+##### Parameters
+
+| Parameter  | Description                                                    | Default Value                    | Type                   |
+|------------|----------------------------------------------------------------|----------------------------------|------------------------|
+| data       | Data for the new document                                      | Required                         | Object                 |
+| locale     | Locale of the document to be created                           | Default locale                   | String or undefined    |
+| fields     | Specific fields to be returned                                 | All fields                       | Object                 |
+| populate   | Relations, media fields, components or dynamic zones to include| null                             | Object                 |
+
+##### Example
+
+Create a new document:
+
+```javascript
+// Create a new restaurant
+const newRestaurant = await strapi.documents('api::restaurant.restaurant').create({
+    data: {
+        name: 'New Restaurant',
+        description: 'Description for the new restaurant',
+        categories: {
+            connect: ['category-id-1', 'category-id-2']
+        }
+    }
+});
+
+// Response
+// {
+//   documentId: "n4m3o2p1q0r9s8t7u6v5wxyz",
+//   name: "New Restaurant",
+//   description: "Description for the new restaurant",
+//   publishedAt: null, // Created as draft by default
+//   locale: "en"
+//   // …
+// }
+```
+
+#### [STRAPI-SERVICE-API-1.3.2] Method `update()`
+
+The `update()` method updates an existing document based on the provided data.
+
+Syntax: `update(parameters: Params) => Document`
+
+##### Parameters
+
+| Parameter  | Description                                                    | Default Value                    | Type                   |
+|------------|----------------------------------------------------------------|----------------------------------|------------------------|
+| documentId | ID of the document to be updated                               | null                             | String                 |
+| data       | Data to be updated                                             | Required                         | Object                 |
+| locale     | Locale of the document to be updated                           | Default locale                   | String or undefined    |
+| fields     | Specific fields to be returned                                 | All fields                       | Object                 |
+| populate   | Relations, media fields, components or dynamic zones to include| null                             | Object                 |
+
+##### Example
+
+Update an existing document:
+
+```javascript
+// Update an existing restaurant
+const updatedRestaurant = await strapi.documents('api::restaurant.restaurant').update({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    data: {
+        name: 'Updated Restaurant Name',
+        description: 'Updated description for the restaurant'
+    }
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   name: "Updated Restaurant Name",
+//   description: "Updated description for the restaurant",
+//   publishedAt: null,
+//   locale: "en"
+//   // …
+// }
+```
+
+#### [STRAPI-SERVICE-API-1.3.3] Method `delete()`
+
+The `delete()` method deletes an existing document.
+
+Syntax: `delete(parameters: Params) => Document`
+
+##### Parameters
+
+| Parameter  | Description                                                    | Default Value                    | Type                   |
+|------------|----------------------------------------------------------------|----------------------------------|------------------------|
+| documentId | ID of the document to be deleted                               | null                             | String                 |
+| locale     | Locale of the document to be deleted                           | Default locale                   | String, '*' or null    |
+| fields     | Specific fields to be returned                                 | All fields                       | Object                 |
+| populate   | Relations, media fields, components or dynamic zones to include| null                             | Object                 |
+
+##### Example
+
+Delete an existing document:
+
+```javascript
+// Delete a restaurant
+const deletedRestaurant = await strapi.documents('api::restaurant.restaurant').delete({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm'
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   entries: [
+//     {
+//       documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//       name: "Restaurant Name",
+//       publishedAt: null,
+//       locale: "en"
+//       // ...
+//     }
+//   ]
+// }
+```
+
+### [STRAPI-SERVICE-API-1.4] Publication Methods
+
+#### [STRAPI-SERVICE-API-1.4.1] Method `publish()`
+
+The `publish()` method publishes one or all versions of a document's locale.
+
+This method is only available if Draft & Publish is enabled on the content type.
+
+Syntax: `publish(parameters: Params) => { documentId: ID, entries: Document[] }`
+
+##### Parameters
+
+| Parameter  | Description                                                    | Default Value                    | Type                   |
+|------------|----------------------------------------------------------------|----------------------------------|------------------------|
+| documentId | ID of the document to be published                             | null                             | String                 |
+| locale     | Locale of the document to be published                         | Only the default locale          | String, '*' or null    |
+| fields     | Specific fields to be returned                                 | All fields                       | Object                 |
+| populate   | Relations, media fields, components or dynamic zones to include| null                             | Object                 |
+
+##### Example
+
+If no `locale` parameter is provided, `publish()` publishes only the default locale version of the document:
+
+```javascript
+// Publish a restaurant
+const publishedRestaurant = await strapi.documents('api::restaurant.restaurant').publish({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   entries: [
+//     {
+//       "documentId": "a1b2c3d4e5f6g7h8i9j0klm",
+//       "name": "Biscotte Restaurant",
+//       "publishedAt": "2024-03-14T18:30:48.870Z",
+//       "locale": "en"
+//       // …
+//     }
+//   ]
+// }
+```
+
+#### [STRAPI-SERVICE-API-1.4.2] Method `unpublish()`
+
+The `unpublish()` method unpublishes one or all versions of a document's locale.
+
+This method is only available if Draft & Publish is enabled on the content type.
+
+Syntax: `unpublish(parameters: Params) => { documentId: ID, entries: Document[] }`
+
+##### Parameters
+
+| Parameter  | Description                                                    | Default Value                    | Type                   |
+|------------|----------------------------------------------------------------|----------------------------------|------------------------|
+| documentId | ID of the document to be unpublished                           | null                             | String                 |
+| locale     | Locale of the document to be unpublished                       | Only the default locale          | String, '*' or null    |
+| fields     | Specific fields to be returned                                 | All fields                       | Object                 |
+| populate   | Relations, media fields, components or dynamic zones to include| null                             | Object                 |
+
+##### Example
+
+If no `locale` parameter is provided, `unpublish()` unpublishes only the default locale version of the document:
+
+```javascript
+// Unpublish a restaurant
+const unpublishedRestaurant = await strapi.documents('api::restaurant.restaurant').unpublish({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm'
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   entries: [
+//     {
+//       documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//       name: "Biscotte Restaurant",
+//       publishedAt: null,
+//       locale: "en"
+//       // …
+//     }
+//   ]
+// }
+```
+
+#### [STRAPI-SERVICE-API-1.4.3] Method `discardDraft()`
+
+The `discardDraft()` method discards draft data and replaces it with the published version.
+
+This method is only available if Draft & Publish is enabled on the content type.
+
+Syntax: `discardDraft(parameters: Params) => { documentId: ID, entries: Document[] }`
+
+##### Parameters
+
+| Parameter  | Description                                                    | Default Value                    | Type                   |
+|------------|----------------------------------------------------------------|----------------------------------|------------------------|
+| documentId | ID of the document to discard the draft                        | null                             | String                 |
+| locale     | Locale of the document to discard the draft                    | Only the default locale          | String, '*' or null    |
+| fields     | Specific fields to be returned                                 | All fields                       | Object                 |
+| populate   | Relations, media fields, components or dynamic zones to include| null                             | Object                 |
+
+##### Example
+
+If no `locale` parameter is provided, `discardDraft()` discards draft data and replaces it with the published version only for the default locale:
+
+```javascript
+// Discard draft of a restaurant
+const discardedDraft = await strapi.documents('api::restaurant.restaurant').discardDraft({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm'
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   entries: [
+//     {
+//       documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//       name: "Biscotte Restaurant",
+//       publishedAt: null,
+//       locale: "en"
+//       // …
+//     }
+//   ]
+// }
+```
+
+### [STRAPI-SERVICE-API-1.5] Count Method
+
+#### [STRAPI-SERVICE-API-1.5.1] Method `count()`
+
+The `count()` method counts the number of documents that match the provided parameters.
+
+Syntax: `count(parameters: Params) => number`
+
+##### Parameters
+
+| Parameter  | Description                                                    | Default Value                    | Type                   |
+|------------|----------------------------------------------------------------|----------------------------------|------------------------|
+| locale     | Locale of the documents to be counted                          | Default locale                   | String or null         |
+| status     | Publication status (if Draft & Publish is enabled)             | 'draft'                          | 'published' or 'draft' |
+| filters    | Filters to be applied in the count                             | null                             | Object                 |
+
+##### Observation about document counting
+
+Since published documents necessarily also have a draft counterpart, a published document is still counted as having a draft version.
+
+This means that counting with the `status: 'draft'` parameter still returns the total number of documents corresponding to other parameters, even if some documents have already been published and are no longer displayed as "draft" or "modified" in the Content Manager.
+
+##### Examples
+
+If no parameter is provided, the `count()` method counts the total number of documents for the default locale:
+
+```javascript
+// Count all documents (drafts)
+const totalCount = await strapi.documents('api::restaurant.restaurant').count();
+```
+
+Count only published documents:
+
+```javascript
+// Count only published documents
+const publishedCount = await strapi.documents('api::restaurant.restaurant').count({
+    status: 'published'
+});
+```
+
+Count documents with filters:
+
+```javascript
+// Count restaurants whose name starts with 'Pizzeria'
+const pizzeriaCount = await strapi.documents('api::restaurant.restaurant').count({
+    filters: {
+        name: {
+            $startsWith: "Pizzeria"
+        }
+    }
+});
+```
+
+### [STRAPI-SERVICE-API-1.6] Common Parameters
+
+#### [STRAPI-SERVICE-API-1.6.1] Parameter `locale`
+
+The `locale` parameter allows specifying the locale of documents in operations.
+
+##### Possible Values
+
+| Value     | Description                                            |
+|-----------|--------------------------------------------------------|
+| Undefined | Uses the default locale (generally 'en')               |
+| 'en'      | Uses the specific locale (e.g., 'en', 'fr', 'es')      |
+| '*'       | All locales (for batch operations)                     |
+
+##### Example Uses
+
+```javascript
+// Search for a document in the default locale
+const defaultLocaleDoc = await strapi.documents('api::restaurant.restaurant').findOne({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm'
+});
+
+// Search for a document in French
+const frenchDoc = await strapi.documents('api::restaurant.restaurant').findOne({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: 'fr'
+});
+
+// Publish all versions of a document in all locales
+const allLocalesPublished = await strapi.documents('api::restaurant.restaurant').publish({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: '*'
+});
+```
+
+#### [STRAPI-SERVICE-API-1.6.2] Parameter `status`
+
+The `status` parameter allows specifying the publication status of documents in operations, when Draft & Publish is enabled.
+
+##### Possible Values
+
+| Value       | Description              |
+|-------------|--------------------------|
+| 'draft'     | Documents in draft state |
+| 'published' | Published documents      |
+
+##### Example Uses
+
+```javascript
+// Search for only published documents
+const publishedDocs = await strapi.documents('api::restaurant.restaurant').findMany({
+    status: 'published'
+});
+
+// Search for only draft documents
+const draftDocs = await strapi.documents('api::restaurant.restaurant').findMany({
+    status: 'draft'
+});
+```
+
+#### [STRAPI-SERVICE-API-1.6.3] Parameter `fields`
+
+The `fields` parameter allows selecting which fields should be returned in the response.
+
+##### Example Uses
+
+```javascript
+// Search for only name and description
+const restaurant = await strapi.documents('api::restaurant.restaurant').findOne({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    fields: ['name', 'description']
+});
+```
+
+#### [STRAPI-SERVICE-API-1.6.4] Parameter `populate`
+
+The `populate` parameter allows including relations, media fields, components or dynamic zones in the response.
+
+##### Example Uses
+
+```javascript
+// Search for a restaurant with its categories and main image
+const restaurant = await strapi.documents('api::restaurant.restaurant').findOne({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    populate: {
+        categories: true,
+        mainImage: {
+            fields: ['url', 'alternativeText']
+        }
+    }
+});
+```
+
+#### [STRAPI-SERVICE-API-1.6.5] Parameter `filters`
+
+The `filters` parameter allows filtering documents based on specific conditions.
+
+##### Available Operators
+
+| Operator      | Description                             | Category                     |
+|---------------|-----------------------------------------|------------------------------|
+| $eq           | Equal to                                | Attribute Operator           |
+| $ne           | Not equal to                            | Attribute Operator           |
+| $lt           | Less than                               | Attribute Operator           |
+| $lte          | Less than or equal to                   | Attribute Operator           |
+| $gt           | Greater than                            | Attribute Operator           |
+| $gte          | Greater than or equal to                | Attribute Operator           |
+| $in           | Included in an array                    | Attribute Operator           |
+| $notIn        | Not included in an array                | Attribute Operator           |
+| $contains     | Contains                                | Attribute Operator           |
+| $notContains  | Does not contain                        | Attribute Operator           |
+| $containsi    | Contains (case-insensitive)             | Attribute Operator           |
+| $notContainsi | Does not contain (case-insensitive)     | Attribute Operator           |
+| $null         | Is null                                 | Attribute Operator           |
+| $notNull      | Is not null                             | Attribute Operator           |
+| $between      | Is between                              | Attribute Operator           |
+| $startsWith   | Starts with                             | Attribute Operator           |
+| $startsWithi  | Starts with (case-insensitive)          | Attribute Operator           |
+| $endsWith     | Ends with                               | Attribute Operator           |
+| $endsWithi    | Ends with (case-insensitive)            | Attribute Operator           |
+| $or           | Joins filters in an "or" expression     | Logical Operator             |
+| $and          | Joins filters in an "and" expression    | Logical Operator             |
+| $not          | Joins filters in a "not" expression     | Logical & Attribute Operator |
+
+##### Example Uses
+
+```javascript
+// Simple filter
+const restaurantsWithName = await strapi.documents('api::restaurant.restaurant').findMany({
+    filters: {
+        name: {
+            $containsi: 'pizza'
+        }
+    }
+});
+
+// Compound filter
+const restaurantsComplex = await strapi.documents('api::restaurant.restaurant').findMany({
+    filters: {
+        $or: [{
+                name: {
+                    $containsi: 'pizza'
+                }
+            },
+            {
+                name: {
+                    $containsi: 'pasta'
+                }
+            }
+        ],
+        rating: {
+            $gte: 4
+        }
+    }
+});
+```
+
+### [STRAPI-SERVICE-API-1.7] Working with Relations
+
+#### [STRAPI-SERVICE-API-1.7.1] Connecting Relations
+
+Relations can be connected through the `create()` and `update()` methods:
+
+```javascript
+// Connect categories to a restaurant
+const updatedRestaurant = await strapi.documents('api::restaurant.restaurant').update({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    data: {
+        categories: {
+            connect: ['category-id-1', 'category-id-2']
+        }
+    }
+});
+```
+
+#### [STRAPI-SERVICE-API-1.7.2] Disconnecting Relations
+
+Relations can be disconnected through the `update()` method:
+
+```javascript
+// Disconnect categories from a restaurant
+const updatedRestaurant = await strapi.documents('api::restaurant.restaurant').update({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    data: {
+        categories: {
+            disconnect: ['category-id-1']
+        }
+    }
+});
+```
+
+#### [STRAPI-SERVICE-API-1.7.3] Defining Relations
+
+Relations can be completely redefined through the `update()` method:
+
+```javascript
+// Define exact categories for a restaurant (replaces all previous)
+const updatedRestaurant = await strapi.documents('api::restaurant.restaurant').update({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    data: {
+        categories: {
+            set: ['category-id-3', 'category-id-4']
+        }
+    }
+});
+```
+
+#### [STRAPI-SERVICE-API-1.7.4] Combining Relation Operations
+
+It's possible to combine `connect` and `disconnect` operations in a single update:
+
+```javascript
+// Connect new categories and disconnect others in a single operation
+const updatedRestaurant = await strapi.documents('api::restaurant.restaurant').update({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    data: {
+        categories: {
+            connect: ['category-id-3'],
+            disconnect: ['category-id-1']
+        }
+    }
+});
+```
+
+#### [STRAPI-SERVICE-API-1.7.5] Working with Relations in Different Locales
+
+When internationalization is enabled, you can specify the locale of relations:
+
+```javascript
+// Connect categories in a specific locale
+const updatedRestaurant = await strapi.documents('api::restaurant.restaurant').update({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: 'fr',
+    data: {
+        categories: {
+            connect: [{
+                documentId: 'category-id-1',
+                locale: 'fr'
+            }]
+        }
+    }
+});
+```
+
+### [STRAPI-SERVICE-API-1.8] Document Service API Best Practices
+
+#### [STRAPI-SERVICE-API-1.8.1] Error Handling
+
+Implement appropriate error handling when using the Document Service API:
+
+```javascript
+try {
+    const restaurant = await strapi.documents('api::restaurant.restaurant').findOne({
+        documentId: 'a1b2c3d4e5f6g7h8i9j0klm'
+    });
+    // Process the result
+} catch (error) {
+    // Handle error
+    console.error('Error searching for document:', error.message);
+
+    // Check specific error status
+    if (error.details && error.details.code === 'DOCUMENT_NOT_FOUND') {
+        console.error('Document not found');
+    }
+}
+```
+
+#### [STRAPI-SERVICE-API-1.8.2] Query Optimization
+
+To optimize performance, limit returned fields and populate only necessary relations:
+
+```javascript
+// Optimized query
+const restaurants = await strapi.documents('api::restaurant.restaurant').findMany({
+    fields: ['name', 'address'], // Only essential fields
+    populate: {
+        mainImage: {
+            fields: ['url'] // Only essential fields from the relation
+        }
+    },
+    pagination: {
+        pageSize: 10 // Limit number of results
+    }
+});
+```
+
+#### [STRAPI-SERVICE-API-1.8.3] Batch Operations
+
+For batch operations, consider using loop or Promise.all:
+
+```javascript
+// Update multiple documents
+const updatePromises = documentIds.map(documentId =>
+    strapi.documents('api::restaurant.restaurant').update({
+        documentId,
+        data: {
+            featured: true
+        }
+    })
+);
+
+const updatedRestaurants = await Promise.all(updatePromises);
+```
+
+#### [STRAPI-SERVICE-API-1.8.4] Service Reuse
+
+For efficient reuse, store service reference:
+
+```javascript
+// Reuse document service
+const restaurantService = strapi.documents('api::restaurant.restaurant');
+
+// Now can use the service multiple times
+const count = await restaurantService.count();
+const restaurants = await restaurantService.findMany();
+const featuredRestaurants = await restaurantService.findMany({
+    filters: {
+        featured: true
+    }
+});
+```
+
+#### [STRAPI-SERVICE-API-1.8.5] State Transitions
+
+Implement state transitions (like draft to published) consistently:
+
+```javascript
+// Function to publish a document after update
+async function updateAndPublish(documentId, data) {
+    // First update the document
+    await strapi.documents('api::restaurant.restaurant').update({
+        documentId,
+        data
+    });
+
+    // Then publish the document
+    return strapi.documents('api::restaurant.restaurant').publish({
+        documentId
+    });
+}
+
+// Use the function
+const publishedRestaurant = await updateAndPublish('a1b2c3d4e5f6g7h8i9j0klm', {
+    name: 'Updated Restaurant Name',
+    description: 'Updated description'
+});
+```
+
+#### [STRAPI-SERVICE-API-1.8.6] Entity Service API Migration
+
+The Document Service API replaces the Entity Service API from Strapi v4. When migrating from Strapi v4 to v5, make these changes:
+
+**Strapi v4 (Entity Service API) code:**
+
+```javascript
+// Search entities
+const entities = await strapi.entityService.findMany('api::restaurant.restaurant', {
+    filters: {
+        name: {
+            $contains: 'pizza'
+        }
+    }
+});
+
+// Update entity
+const updated = await strapi.entityService.update('api::restaurant.restaurant', 1, {
+    data: {
+        name: 'Updated Name'
+    }
+});
+```
+
+**Strapi v5 (Document Service API) code:**
+
+```javascript
+// Search documents
+const documents = await strapi.documents('api::restaurant.restaurant').findMany({
+    filters: {
+        name: {
+            $contains: 'pizza'
+        }
+    }
+});
+
+// Update document
+const updated = await strapi.documents('api::restaurant.restaurant').update({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    data: {
+        name: 'Updated Name'
+    }
+});
+```
+
+Main differences in migration:
+1. Use `strapi.documents('content-type')` instead of `strapi.entityService`
+2. Use `documentId` instead of numeric ID
+3. Modified parameter structure (parameters are passed as a single object)
+4. New specific methods for publishing and managing drafts
+
+## [STRAPI-SERVICE-API-2] Working with Fields
+
+### [STRAPI-SERVICE-API-2.1] Selecting Fields Overview
+
+By default, the Document Service API returns all fields of a document but does not populate any fields. The `fields` parameter allows you to specify which fields should be returned in the response, optimizing your queries by retrieving only necessary data.
+
+> **Note**: Though it's recommended to target entries by their `documentId` in Strapi 5, entries might still have an `id` field in the returned response. This should ease the transition from Strapi 4.
+
+### [STRAPI-SERVICE-API-2.2] Using `fields` with `findOne()`
+
+To select specific fields while finding a document by ID:
+
+```javascript
+// Only retrieve name and description fields
+const document = await strapi.documents("api::restaurant.restaurant").findOne({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    fields: ["name", "description"],
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   name: "Biscotte Restaurant",
+//   description: "Welcome to Biscotte restaurant! ..."
+// }
+```
+
+### [STRAPI-SERVICE-API-2.3] Using `fields` with `findFirst()`
+
+To select specific fields while finding the first document that matches certain criteria:
+
+```javascript
+// Only retrieve name and description fields
+const document = await strapi.documents("api::restaurant.restaurant").findFirst({
+    fields: ["name", "description"],
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   name: "Biscotte Restaurant",
+//   description: "Welcome to Biscotte restaurant! ..."
+// }
+```
+
+### [STRAPI-SERVICE-API-2.4] Using `fields` with `findMany()`
+
+To select specific fields while retrieving multiple documents:
+
+```javascript
+// Only retrieve name and description fields for all documents
+const documents = await strapi.documents("api::restaurant.restaurant").findMany({
+    fields: ["name", "description"],
+});
+
+// Response
+// [
+//   {
+//     documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//     name: "Biscotte Restaurant",
+//     description: "Welcome to Biscotte restaurant! ..."
+//   }
+//   // ...
+// ]
+```
+
+### [STRAPI-SERVICE-API-2.5] Using `fields` with `create()`
+
+To select specific fields in the response when creating a document:
+
+```javascript
+// Only return name and description fields in the response
+const document = await strapi.documents("api::restaurant.restaurant").create({
+    data: {
+        name: "Restaurant B",
+        description: "Description for the restaurant",
+    },
+    fields: ["name", "description"],
+});
+
+// Response
+// {
+//   id: 4,
+//   documentId: 'fmtr6d7ktzpgrijqaqgr6vxs',
+//   name: 'Restaurant B',
+//   description: 'Description for the restaurant'
+// }
+```
+
+### [STRAPI-SERVICE-API-2.6] Using `fields` with `update()`
+
+To select specific fields in the response when updating a document:
+
+```javascript
+// Only return the name field in the response
+const document = await strapi.documents("api::restaurant.restaurant").update({
+    documentId: "fmtr6d7ktzpgrijqaqgr6vxs",
+    data: {
+        name: "Restaurant C",
+    },
+    fields: ["name"],
+});
+
+// Response
+// { 
+//   documentId: 'fmtr6d7ktzpgrijqaqgr6vxs',
+//   name: 'Restaurant C'
+// }
+```
+
+### [STRAPI-SERVICE-API-2.7] Using `fields` with `delete()`
+
+To select specific fields in the response when deleting a document:
+
+```javascript
+// Only return the name field from the deleted document
+const document = await strapi.documents("api::restaurant.restaurant").delete({
+    documentId: "fmtr6d7ktzpgrijqaqgr6vxs",
+    fields: ["name"],
+});
+
+// Response
+// {
+//   documentId: 'fmtr6d7ktzpgrijqaqgr6vxs',
+//   // All of the deleted document's versions are returned
+//   entries: [
+//     {
+//       id: 4,
+//       documentId: 'fmtr6d7ktzpgrijqaqgr6vxs',
+//       name: 'Restaurant C',
+//       // …
+//     }
+//   ]
+// }
+```
+
+### [STRAPI-SERVICE-API-2.8] Using `fields` with Publication Methods
+
+The `fields` parameter can also be used with publication-related methods to control the response data:
+
+#### With `publish()`
+
+```javascript
+// Only return the name field when publishing
+const document = await strapi.documents("api::restaurant.restaurant").publish({
+    documentId: "fmtr6d7ktzpgrijqaqgr6vxs",
+    fields: ["name"],
+});
+
+// Response
+// {
+//   documentId: 'fmtr6d7ktzpgrijqaqgr6vxs',
+//   // All of the published locale entries are returned
+//   entries: [
+//     {
+//       documentId: 'fmtr6d7ktzpgrijqaqgr6vxs',
+//       name: 'Restaurant B'
+//     }
+//   ]
+// }
+```
+
+#### With `unpublish()`
+
+```javascript
+// Only return the name field when unpublishing
+const document = await strapi.documents("api::restaurant.restaurant").unpublish({
+    documentId: "fmtr6d7ktzpgrijqaqgr6vxs",
+    fields: ["name"],
+});
+
+// Response
+// {
+//   documentId: 'fmtr6d7ktzpgrijqaqgr6vxs',
+//   // All of the unpublished locale entries are returned
+//   entries: [
+//     {
+//       documentId: 'fmtr6d7ktzpgrijqaqgr6vxs',
+//       name: 'Restaurant B'
+//     }
+//   ]
+// }
+```
+
+#### With `discardDraft()`
+
+```javascript
+// Only return the name field when discarding drafts
+const document = await strapi.documents("api::restaurant.restaurant").discardDraft({
+    documentId: "fmtr6d7ktzpgrijqaqgr6vxs",
+    fields: ["name"],
+});
+
+// Response
+// {
+//   documentId: "fmtr6d7ktzpgrijqaqgr6vxs",
+//   // All of the discarded draft entries are returned
+//   entries: [
+//     {
+//       "name": "Restaurant B"
+//     }
+//   ]
+// }
+```
+
+### [STRAPI-SERVICE-API-2.9] Best Practices for Field Selection
+
+When working with the `fields` parameter, follow these best practices:
+
+1. **Only select what you need**: Limiting fields improves query performance, especially for large documents
+2. **Always include required fields**: Make sure to include any fields needed for your application logic
+3. **Be consistent**: Maintain a consistent approach to field selection across your codebase
+4. **Combine with `populate`**: For relations, use both `fields` and `populate` parameters for optimal data retrieval
+5. **Consider documentation**: Document the selected fields in your code to improve maintainability
+
+## [STRAPI-SERVICE-API-3] Advanced Filtering
+
+### [STRAPI-SERVICE-API-3.1] Filter Operators Overview
+
+The Document Service API provides powerful filtering capabilities through a wide range of operators. These operators can be used to create complex queries for retrieving specific data.
+
+The table below lists all available filter operators:
+
+| Operator          | Description                              | Category                     |
+|-------------------|------------------------------------------|------------------------------|
+| $eq               | Equal                                    | Attribute Operator           |
+| $eqi              | Equal (case-insensitive)                 | Attribute Operator           |
+| $ne               | Not equal                                | Attribute Operator           |
+| $nei              | Not equal (case-insensitive)             | Attribute Operator           |
+| $lt               | Less than                                | Attribute Operator           |
+| $lte              | Less than or equal to                    | Attribute Operator           |
+| $gt               | Greater than                             | Attribute Operator           |
+| $gte              | Greater than or equal to                 | Attribute Operator           |
+| $in               | Included in an array                     | Attribute Operator           |
+| $notIn            | Not included in an array                 | Attribute Operator           |
+| $contains         | Contains                                 | Attribute Operator           |
+| $notContains      | Does not contain                         | Attribute Operator           |
+| $containsi        | Contains (case-insensitive)              | Attribute Operator           |
+| $notContainsi     | Does not contain (case-insensitive)      | Attribute Operator           |
+| $null             | Is null                                  | Attribute Operator           |
+| $notNull          | Is not null                              | Attribute Operator           |
+| $between          | Is between                               | Attribute Operator           |
+| $startsWith       | Starts with                              | Attribute Operator           |
+| $startsWithi      | Starts with (case-insensitive)           | Attribute Operator           |
+| $endsWith         | Ends with                                | Attribute Operator           |
+| $endsWithi        | Ends with (case-insensitive)             | Attribute Operator           |
+| $or               | Joins filters in an "or" expression      | Logical Operator             |
+| $and              | Joins filters in an "and" expression     | Logical Operator             |
+| $not              | Joins filters in a "not" expression      | Logical & Attribute Operator |
+
+### [STRAPI-SERVICE-API-3.2] Attribute Operators
+
+Attribute operators are applied directly to document fields to filter results based on specific conditions.
+
+#### [STRAPI-SERVICE-API-3.2.1] Equality Operators
+
+##### `$eq` - Equal to
+
+Filters documents where the attribute exactly matches the specified value.
+
+```javascript
+// Find articles with title exactly equal to "Hello World"
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $eq: 'Hello World',
+        },
+    },
+});
+
+// Simplified syntax (omitting $eq)
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: 'Hello World',
+    },
+});
+```
+
+##### `$eqi` - Equal to (case-insensitive)
+
+Filters documents where the attribute matches the specified value, ignoring case.
+
+```javascript
+// Find articles with title matching "hello world" (case-insensitive)
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $eqi: 'hello WORLD',
+        },
+    },
+});
+```
+
+##### `$ne` - Not equal to
+
+Filters documents where the attribute does not match the specified value.
+
+```javascript
+// Find articles with title not equal to "Hello World"
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $ne: 'Hello World',
+        },
+    },
+});
+```
+
+##### `$nei` - Not equal to (case-insensitive)
+
+Filters documents where the attribute does not match the specified value, ignoring case.
+
+```javascript
+// Find articles with title not matching "hello world" (case-insensitive)
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $nei: 'hello world',
+        },
+    },
+});
+```
+
+#### [STRAPI-SERVICE-API-3.2.2] Comparison Operators
+
+##### `$lt` - Less than
+
+Filters documents where the attribute is less than the specified value.
+
+```javascript
+// Find articles with rating less than 10
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        rating: {
+            $lt: 10,
+        },
+    },
+});
+```
+
+##### `$lte` - Less than or equal to
+
+Filters documents where the attribute is less than or equal to the specified value.
+
+```javascript
+// Find articles with rating less than or equal to 10
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        rating: {
+            $lte: 10,
+        },
+    },
+});
+```
+
+##### `$gt` - Greater than
+
+Filters documents where the attribute is greater than the specified value.
+
+```javascript
+// Find articles with rating greater than 5
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        rating: {
+            $gt: 5,
+        },
+    },
+});
+```
+
+##### `$gte` - Greater than or equal to
+
+Filters documents where the attribute is greater than or equal to the specified value.
+
+```javascript
+// Find articles with rating greater than or equal to 5
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        rating: {
+            $gte: 5,
+        },
+    },
+});
+```
+
+##### `$between` - Between two values
+
+Filters documents where the attribute is between two specified values (inclusive).
+
+```javascript
+// Find articles with rating between 1 and 20 (inclusive)
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        rating: {
+            $between: [1, 20],
+        },
+    },
+});
+```
+
+#### [STRAPI-SERVICE-API-3.2.3] Array Operators
+
+##### `$in` - In array
+
+Filters documents where the attribute value is included in the specified array.
+
+```javascript
+// Find articles with title matching any in the specified array
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $in: ['Hello', 'Hola', 'Bonjour'],
+        },
+    },
+});
+
+// Simplified syntax (omitting $in)
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: ['Hello', 'Hola', 'Bonjour'],
+    },
+});
+```
+
+##### `$notIn` - Not in array
+
+Filters documents where the attribute value is not included in the specified array.
+
+```javascript
+// Find articles with title not matching any in the specified array
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $notIn: ['Hello', 'Hola', 'Bonjour'],
+        },
+    },
+});
+```
+
+#### [STRAPI-SERVICE-API-3.2.4] String Operators
+
+##### `$contains` - Contains
+
+Filters documents where the attribute contains the specified value (case-sensitive).
+
+```javascript
+// Find articles with title containing "Hello"
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $contains: 'Hello',
+        },
+    },
+});
+```
+
+##### `$notContains` - Does not contain
+
+Filters documents where the attribute does not contain the specified value (case-sensitive).
+
+```javascript
+// Find articles with title not containing "Hello"
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $notContains: 'Hello',
+        },
+    },
+});
+```
+
+##### `$containsi` - Contains (case-insensitive)
+
+Filters documents where the attribute contains the specified value, ignoring case.
+
+```javascript
+// Find articles with title containing "hello" (case-insensitive)
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $containsi: 'hello',
+        },
+    },
+});
+```
+
+##### `$notContainsi` - Does not contain (case-insensitive)
+
+Filters documents where the attribute does not contain the specified value, ignoring case.
+
+```javascript
+// Find articles with title not containing "hello" (case-insensitive)
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $notContainsi: 'hello',
+        },
+    },
+});
+```
+
+##### `$startsWith` - Starts with
+
+Filters documents where the attribute starts with the specified value (case-sensitive).
+
+```javascript
+// Find articles with title starting with "ABCD"
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $startsWith: 'ABCD',
+        },
+    },
+});
+```
+
+##### `$startsWithi` - Starts with (case-insensitive)
+
+Filters documents where the attribute starts with the specified value, ignoring case.
+
+```javascript
+// Find articles with title starting with "abcd" (case-insensitive)
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $startsWithi: 'ABCD', // same as 'abcd'
+        },
+    },
+});
+```
+
+##### `$endsWith` - Ends with
+
+Filters documents where the attribute ends with the specified value (case-sensitive).
+
+```javascript
+// Find articles with title ending with "ABCD"
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $endsWith: 'ABCD',
+        },
+    },
+});
+```
+
+##### `$endsWithi` - Ends with (case-insensitive)
+
+Filters documents where the attribute ends with the specified value, ignoring case.
+
+```javascript
+// Find articles with title ending with "abcd" (case-insensitive)
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $endsWithi: 'ABCD', // same as 'abcd'
+        },
+    },
+});
+```
+
+#### [STRAPI-SERVICE-API-3.2.5] Null Operators
+
+##### `$null` - Is null
+
+Filters documents where the attribute is `null` .
+
+```javascript
+// Find articles with null title
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $null: true,
+        },
+    },
+});
+```
+
+##### `$notNull` - Is not null
+
+Filters documents where the attribute is not `null` .
+
+```javascript
+// Find articles with non-null title
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $notNull: true,
+        },
+    },
+});
+```
+
+### [STRAPI-SERVICE-API-3.3] Logical Operators
+
+Logical operators allow combining multiple conditions for more complex filtering.
+
+#### [STRAPI-SERVICE-API-3.3.1] `$and` - Logical AND
+
+Filters documents where all specified conditions are true.
+
+```javascript
+// Find articles with title "Hello World" AND created after a specific date
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        $and: [{
+                title: 'Hello World',
+            },
+            {
+                createdAt: {
+                    $gt: '2021-11-17T14:28:25.843Z'
+                },
+            },
+        ],
+    },
+});
+
+// Simplified syntax (omitting $and)
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: 'Hello World',
+        createdAt: {
+            $gt: '2021-11-17T14:28:25.843Z'
+        },
+    },
+});
+```
+
+#### [STRAPI-SERVICE-API-3.3.2] `$or` - Logical OR
+
+Filters documents where at least one of the specified conditions is true.
+
+```javascript
+// Find articles with title "Hello World" OR created after a specific date
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        $or: [{
+                title: 'Hello World',
+            },
+            {
+                createdAt: {
+                    $gt: '2021-11-17T14:28:25.843Z'
+                },
+            },
+        ],
+    },
+});
+```
+
+#### [STRAPI-SERVICE-API-3.3.3] `$not` - Logical NOT
+
+Negates the specified condition or group of conditions.
+
+```javascript
+// Find articles with title NOT "Hello World"
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        $not: {
+            title: 'Hello World',
+        },
+    },
+});
+
+// Can also be used as an attribute operator
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        title: {
+            $not: {
+                $contains: 'Hello World',
+            },
+        },
+    },
+});
+```
+
+### [STRAPI-SERVICE-API-3.4] Advanced Filter Combinations
+
+Filters can be combined to create complex queries. Logical operators can be nested inside other logical operators for highly specific queries.
+
+```javascript
+// Complex filter combining multiple conditions
+const articles = await strapi.documents('api::article.article').findMany({
+    filters: {
+        $or: [{
+                title: {
+                    $containsi: 'tutorial',
+                },
+                category: {
+                    name: 'Technology',
+                },
+            },
+            {
+                $and: [{
+                        title: {
+                            $containsi: 'guide',
+                        },
+                    },
+                    {
+                        rating: {
+                            $gte: 4,
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+    sort: {
+        createdAt: 'desc'
+    },
+    pagination: {
+        page: 1,
+        pageSize: 10
+    },
+});
+```
+
+### [STRAPI-SERVICE-API-3.5] Filtering Best Practices
+
+1. **Use specific filters**: Target exactly what you need to reduce database load and improve performance
+2. **Consider indexing**: For frequently filtered fields, consider adding database indexes
+3. **Pagination with filters**: Always use pagination when filtering large datasets
+4. **Limit nesting depth**: Extremely deep nested filter conditions can impact performance
+5. **Case sensitivity**: Be mindful of case-sensitive vs. case-insensitive filters
+6. **Combine with fields selection**: Use both `filters` and `fields` to optimize query performance
+
+## [STRAPI-SERVICE-API-4] Working with Locales
+
+### [STRAPI-SERVICE-API-4.1] Locale Parameter Overview
+
+By default, the Document Service API returns the default locale version of documents (typically 'en' for English, unless another default locale has been configured). The `locale` parameter allows you to specify which locale version of documents to retrieve or manipulate.
+
+This is particularly useful when your Strapi application has the Internationalization (i18n) feature enabled, allowing you to work with content in multiple languages.
+
+### [STRAPI-SERVICE-API-4.2] Using `locale` with Search Methods
+
+#### [STRAPI-SERVICE-API-4.2.1] With `findOne()`
+
+To retrieve a document in a specific locale:
+
+```javascript
+// Get the French version of a document
+const restaurant = await strapi.documents('api::restaurant.restaurant').findOne({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: 'fr',
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   name: "Biscotte Restaurant",
+//   publishedAt: null, // draft version (default)
+//   locale: "fr", // as requested in the parameters
+//   // …
+// }
+```
+
+If no `status` parameter is provided, the draft version is returned by default.
+
+#### [STRAPI-SERVICE-API-4.2.2] With `findFirst()`
+
+To find the first document in a specific locale:
+
+```javascript
+// Get the first document in French
+const article = await strapi.documents('api::article.article').findFirst({
+    locale: 'fr',
+});
+
+// Response
+// {
+//   "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//   "title": "Test Article"
+//   // …
+// }
+```
+
+If no `status` parameter is provided, the draft version is returned by default.
+
+#### [STRAPI-SERVICE-API-4.2.3] With `findMany()`
+
+To retrieve multiple documents in a specific locale:
+
+```javascript
+// Get all documents available in French
+const restaurants = await strapi.documents('api::restaurant.restaurant').findMany({
+    locale: 'fr'
+});
+
+// Response
+// [
+//   {
+//     documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+//     name: 'Restaurant Biscotte',
+//     publishedAt: null,
+//     locale: 'fr',
+//     // …
+//   },
+//   // …
+// ];
+```
+
+When using `findMany()` with a specific locale, only documents that have that locale available will be returned. For example, if your content collection contains:
+
+* Document A: available in 'en', 'fr', 'it'
+* Document B: available in 'en', 'it'
+* Document C: available in 'fr'
+* Document D: available in 'fr', 'it'
+
+Then `findMany({ locale: 'fr' })` would return documents A, C, and D (all documents available in French).
+
+### [STRAPI-SERVICE-API-4.3] Using `locale` with Manipulation Methods
+
+#### [STRAPI-SERVICE-API-4.3.1] With `create()`
+
+To create a document in a specific locale:
+
+```javascript
+// Create a document in Spanish
+const restaurant = await strapi.documents('api::restaurant.restaurant').create({
+    locale: 'es', // if not specified, the default locale is used
+    data: {
+        name: 'Restaurante B'
+    }
+});
+
+// Response
+// {
+//   documentId: "pw2s0nh5ub1zmnk0d80vgqrh",
+//   name: "Restaurante B",
+//   publishedAt: null,
+//   locale: "es"
+//   // …
+// }
+```
+
+#### [STRAPI-SERVICE-API-4.3.2] With `update()`
+
+To update a document in a specific locale:
+
+```javascript
+// Update the Spanish version of a document
+const restaurant = await strapi.documents('api::restaurant.restaurant').update({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: 'es',
+    data: {
+        name: 'Nuevo nombre del restaurante'
+    },
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   name: "Nuevo nombre del restaurante",
+//   locale: "es",
+//   publishedAt: null,
+//   // …
+// }
+```
+
+#### [STRAPI-SERVICE-API-4.3.3] With `delete()`
+
+You can use the `locale` parameter with the `delete()` method to remove specific locale versions of a document.
+
+##### Delete a single locale version
+
+```javascript
+// Delete only the Spanish version of a document
+const result = await strapi.documents('api::restaurant.restaurant').delete({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: 'es',
+});
+```
+
+##### Delete all locale versions
+
+The wildcard `'*'` can be used to delete all locale versions:
+
+```javascript
+// Delete all locale versions of a document
+const result = await strapi.documents('api::restaurant.restaurant').delete({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: '*',
+});
+
+// Response
+// {
+//   "documentId": "a1b2c3d4e5f6g7h8i9j0klm",
+//   // All of the deleted locale versions are returned
+//   "versions": [
+//     {
+//       "title": "Test Article"
+//     }
+//   ]
+// }
+```
+
+### [STRAPI-SERVICE-API-4.4] Using `locale` with Publication Methods
+
+#### [STRAPI-SERVICE-API-4.4.1] With `publish()`
+
+You can publish specific locale versions of a document:
+
+##### Publish a single locale version
+
+```javascript
+// Publish only the French version of a document
+const result = await strapi.documents('api::restaurant.restaurant').publish({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: 'fr',
+});
+
+// Response
+// {
+//   versions: [
+//     {
+//       documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+//       name: 'Restaurant Biscotte',
+//       publishedAt: '2024-03-14T18:38:05.674Z',
+//       locale: 'fr',
+//       // …
+//     },
+//   ];
+// }
+```
+
+##### Publish all locale versions
+
+The wildcard `'*'` can be used to publish all locale versions:
+
+```javascript
+// Publish all locale versions of a document
+const result = await strapi.documents('api::restaurant.restaurant').publish({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: '*'
+});
+
+// Response
+// {
+//   "versions": [
+//     {
+//       "documentId": "a1b2c3d4e5f6g7h8i9j0klm",
+//       "publishedAt": "2024-03-14T18:45:21.857Z",
+//       "locale": "en"
+//       // …
+//     },
+//     {
+//       "documentId": "a1b2c3d4e5f6g7h8i9j0klm",
+//       "publishedAt": "2024-03-14T18:45:21.857Z",
+//       "locale": "es"
+//       // …
+//     },
+//     {
+//       "documentId": "a1b2c3d4e5f6g7h8i9j0klm",
+//       "publishedAt": "2024-03-14T18:45:21.857Z",
+//       "locale": "fr"
+//       // …
+//     }
+//   ]
+// }
+```
+
+#### [STRAPI-SERVICE-API-4.4.2] With `unpublish()`
+
+Similar to `publish()` , you can unpublish specific locale versions:
+
+##### Unpublish a single locale version
+
+```javascript
+// Unpublish only the French version of a document
+const result = await strapi.documents('api::restaurant.restaurant').unpublish({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: 'fr'
+});
+
+// Response
+// {
+//   versions: 1
+// }
+```
+
+##### Unpublish all locale versions
+
+```javascript
+// Unpublish all locale versions of a document
+const result = await strapi.documents('api::restaurant.restaurant').unpublish({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: '*'
+});
+
+// Response
+// {
+//   versions: 3
+// }
+```
+
+#### [STRAPI-SERVICE-API-4.4.3] With `discardDraft()`
+
+The `locale` parameter can also be used with `discardDraft()` to specify which locales to discard the draft versions for:
+
+##### Discard draft for a single locale
+
+```javascript
+// Discard draft for only the French version of a document
+const result = await strapi.documents('api::restaurant.restaurant').discardDraft({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: 'fr'
+});
+
+// Response
+// {
+//   versions: [
+//     {
+//       documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+//       name: 'Restaurant Biscotte',
+//       publishedAt: null,
+//       locale: 'fr',
+//       // …
+//     },
+//   ];
+// }
+```
+
+##### Discard drafts for all locales
+
+```javascript
+// Discard drafts for all locale versions of a document
+const result = await strapi.documents('api::restaurant.restaurant').discardDraft({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    locale: '*'
+});
+
+// Response
+// {
+//   versions: [
+//     {
+//       documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+//       name: 'Biscotte Restaurant',
+//       publishedAt: null,
+//       locale: 'en',
+//       // …
+//     },
+//     {
+//       documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+//       name: 'Restaurant Biscotte',
+//       publishedAt: null,
+//       locale: 'fr',
+//       // …
+//     },
+//     {
+//       documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+//       name: 'Biscotte Restaurante',
+//       publishedAt: null,
+//       locale: 'es',
+//       // …
+//     },
+//   ];
+// }
+```
+
+### [STRAPI-SERVICE-API-4.5] Using `locale` with `count()`
+
+You can count documents for a specific locale:
+
+```javascript
+// Count documents available in French
+const count = await strapi.documents('api::restaurant.restaurant').count({
+    locale: 'fr'
+});
+```
+
+If no `status` parameter is provided, draft documents are counted. Since even published documents have a draft version, this effectively counts all documents available in the specified locale.
+
+### [STRAPI-SERVICE-API-4.6] Best Practices for Working with Locales
+
+1. **Default locale behavior**: Remember that if no `locale` is specified, operations apply to the default locale (usually 'en').
+2. **Use the wildcard wisely**: The `'*'` wildcard is powerful for batch operations but should be used carefully.
+3. **Filter by locale**: When searching for documents, always specify the locale to ensure you're working with the correct language version.
+4. **Create all locales**: When creating content for multiple locales, ensure you create all required locale versions to maintain consistent content across languages.
+5. **Management efficiency**: Use the locale parameter to efficiently manage content across different languages without affecting other locale versions.
+
+## [STRAPI-SERVICE-API-5] Document Service Middlewares
+
+### [STRAPI-SERVICE-API-5.1] Middlewares Overview
+
+Document Service middlewares allow you to extend the behavior of the Document Service API by performing actions before and/or after a method runs. This provides a powerful way to implement custom logic, validation, and transformations for all document operations.
+
+![Document Service Middlewares](mdc:https:/docs.strapi.io/img/diagram.jpg)
+
+### [STRAPI-SERVICE-API-5.2] Registering Middlewares
+
+Middlewares are registered using the global `strapi.documents.use()` method.
+
+Syntax: `strapi.documents.use(middleware)`
+
+#### [STRAPI-SERVICE-API-5.2.1] Middleware Function Structure
+
+A middleware is a function that receives a context and a next function.
+
+```javascript
+(context, next) => ReturnType < typeof next >
+```
+
+| Parameter | Description                           | Type     |
+|-----------|---------------------------------------|----------|
+| context   | Middleware context                    | Context  |
+| next      | Call the next middleware in the stack | function |
+
+The `context` object contains:
+
+| Parameter   | Description                                                         | Type        |
+|-------------|---------------------------------------------------------------------|-------------|
+| action      | The method that is running (e.g., 'findOne', 'create', 'update')    | string      |
+| params      | The method parameters                                               | Object      |
+| uid         | Content type unique identifier                                      | string      |
+| contentType | Content type details                                                | ContentType |
+
+#### [STRAPI-SERVICE-API-5.2.2] Where to Register Middlewares
+
+Middlewares should be registered during the Strapi registration phase.
+
+For regular users:
+
+```javascript
+// /src/index.js|ts
+module.exports = {
+    register({
+        strapi
+    }) {
+        strapi.documents.use((context, next) => {
+            // your logic
+            return next();
+        });
+    },
+};
+```
+
+For plugin developers:
+
+```javascript
+// /(plugin-root-folder)/strapi-server.js|ts
+module.exports = {
+    register({
+        strapi
+    }) {
+        strapi.documents.use((context, next) => {
+            // your logic
+            return next();
+        });
+    },
+};
+```
+
+### [STRAPI-SERVICE-API-5.3] Implementing Middlewares
+
+When implementing a middleware, always return the response from `next()` . Failing to do this will break the Strapi application.
+
+#### [STRAPI-SERVICE-API-5.3.1] Basic Middleware Pattern
+
+```javascript
+strapi.documents.use(async (context, next) => {
+    // Code executed before the method runs
+    console.log(`Running ${context.action} on ${context.uid}`);
+
+    // Call the next middleware in the stack
+    const result = await next();
+
+    // Code executed after the method runs
+    console.log(`Completed ${context.action} on ${context.uid}`);
+
+    // Always return the result
+    return result;
+});
+```
+
+#### [STRAPI-SERVICE-API-5.3.2] Filtering by Content Type
+
+```javascript
+const applyTo = ['api::article.article'];
+
+strapi.documents.use((context, next) => {
+    // Only run for certain content types
+    if (!applyTo.includes(context.uid)) {
+        return next();
+    }
+
+    // Your logic for specific content types
+    console.log(`Executing middleware for ${context.uid}`);
+
+    return next();
+});
+```
+
+#### [STRAPI-SERVICE-API-5.3.3] Filtering by Action
+
+```javascript
+strapi.documents.use((context, next) => {
+    // Only run for certain actions
+    if (['create', 'update'].includes(context.action)) {
+        // Add additional data to the document
+        context.params.data.fullName = `${context.params.data.firstName} ${context.params.data.lastName}`;
+    }
+
+    return next();
+});
+```
+
+#### [STRAPI-SERVICE-API-5.3.4] Data Transformation Example
+
+```javascript
+strapi.documents.use(async (context, next) => {
+    // Only apply to restaurant content type
+    if (context.uid !== 'api::restaurant.restaurant') {
+        return next();
+    }
+
+    // Transform data before operations
+    if (['create', 'update'].includes(context.action) && context.params.data) {
+        // Format the restaurant name to title case
+        if (context.params.data.name) {
+            context.params.data.name = context.params.data.name
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+        }
+    }
+
+    // Call the next middleware
+    const result = await next();
+
+    // Transform response after operations
+    if (['findOne', 'findMany', 'findFirst'].includes(context.action) && result) {
+        // Add a computed field to the response
+        if (Array.isArray(result)) {
+            result.forEach(item => {
+                item.formattedCreatedAt = new Date(item.createdAt).toLocaleDateString();
+            });
+        } else {
+            result.formattedCreatedAt = new Date(result.createdAt).toLocaleDateString();
+        }
+    }
+
+    return result;
+});
+```
+
+#### [STRAPI-SERVICE-API-5.3.5] Validation Example
+
+```javascript
+strapi.documents.use(async (context, next) => {
+    // Validate data before create/update operations
+    if (['create', 'update'].includes(context.action) &&
+        context.uid === 'api::article.article' &&
+        context.params.data) {
+
+        const {
+            title,
+            content
+        } = context.params.data;
+
+        // Validate required fields
+        if (!title) {
+            throw new Error('Title is required for articles');
+        }
+
+        // Validate field length
+        if (title && title.length < 5) {
+            throw new Error('Title must be at least 5 characters long');
+        }
+
+        if (content && content.length < 50) {
+            throw new Error('Content must be at least 50 characters long');
+        }
+    }
+
+    return next();
+});
+```
+
+### [STRAPI-SERVICE-API-5.4] Middleware Best Practices
+
+1. **Always return the result**: Always return the value from `next()` to ensure the middleware chain works correctly.
+2. **Error handling**: Implement proper error handling to prevent the application from crashing.
+3. **Performance considerations**: Keep middleware functions light and efficient, especially for frequently used methods.
+4. **Selective execution**: Filter middleware execution based on content types or actions to optimize performance.
+5. **Maintainability**: Split complex middleware logic into smaller, reusable functions.
+6. **Middleware order**: Be aware that middlewares are executed in the order they are registered.
+7. **Asynchronous operations**: Use `async/await` consistently when performing asynchronous operations.
+
+### [STRAPI-SERVICE-API-5.5] Common Use Cases
+
+1. **Logging**: Record all document operations for auditing purposes.
+2. **Data transformation**: Format or transform data before it's saved or after it's retrieved.
+3. **Validation**: Implement custom validation rules beyond Strapi's built-in validations.
+4. **Access control**: Add additional permission checks for sensitive operations.
+5. **Computed fields**: Add computed or derived fields to the response.
+6. **Cross-cutting concerns**: Implement logic that applies across different content types.
+7. **Integration with external services**: Trigger external service calls when documents change.
+
+## [STRAPI-SERVICE-API-6] Populating Fields
+
+### [STRAPI-SERVICE-API-6.1] Populate Parameter Overview
+
+By default, the Document Service API does not populate any relations, media fields, components, or dynamic zones. The `populate` parameter allows you to include these related data in your query results.
+
+> **Note**: If the Users & Permissions plugin is installed, the `find` permission must be enabled for the content-types that are being populated. If a role doesn't have access to a content-type, it will not be populated.
+
+> **Tip**: You can combine the `populate` parameter with the `fields` parameter to optimize your queries by specifying which fields to return and which relations to include.
+
+### [STRAPI-SERVICE-API-6.2] Working with Relations and Media Fields
+
+There are several ways to populate relation and media fields, depending on how deeply you need to retrieve related data.
+
+#### [STRAPI-SERVICE-API-6.2.1] Populate All Relations (One Level)
+
+To populate all relations one level deep, use the wildcard `*` :
+
+```javascript
+// Populate all relations one level deep
+const articles = await strapi.documents("api::article.article").findMany({
+    populate: "*",
+});
+
+// Response
+// [
+//   {
+//     "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//     "title": "Test Article",
+//     "slug": "test-article",
+//     "body": "Test 1",
+//     // ...
+//     "headerImage": {
+//       "id": 1,
+//       "name": "17520.jpg",
+//       "alternativeText": "17520.jpg",
+//       "formats": {
+//         // ...
+//       }
+//       // ...
+//     },
+//     "author": {
+//       // ...
+//     },
+//     "categories": {
+//       // ...
+//     }
+//   }
+//   // ...
+// ]
+```
+
+#### [STRAPI-SERVICE-API-6.2.2] Populate Specific Relations (One Level)
+
+To populate only specific relations one level deep, pass the relation names in an array:
+
+```javascript
+// Populate only the headerImage relation
+const articles = await strapi.documents("api::article.article").findMany({
+    populate: ["headerImage"],
+});
+
+// Response
+// [
+//   {
+//     "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//     "title": "Test Article",
+//     "slug": "test-article",
+//     "body": "Test 1",
+//     // ...
+//     "headerImage": {
+//       "id": 2,
+//       "name": "17520.jpg"
+//       // ...
+//     }
+//   }
+//   // ...
+// ]
+```
+
+#### [STRAPI-SERVICE-API-6.2.3] Populate Nested Relations (Multiple Levels)
+
+To populate relations several levels deep, use an object format:
+
+```javascript
+// Populate categories and their related articles
+const articles = await strapi.documents("api::article.article").findMany({
+    populate: {
+        categories: {
+            populate: ["articles"],
+        },
+    },
+});
+
+// Response
+// [
+//   {
+//     "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//     "title": "Test Article",
+//     "slug": "test-article",
+//     "body": "Test 1",
+//     // ...
+//     "categories": {
+//       "id": 1,
+//       "name": "Test Category",
+//       "slug": "test-category",
+//       "description": "Test 1"
+//       // ...
+//       "articles": [
+//         {
+//           "id": 1,
+//           "title": "Test Article",
+//           "slug": "test-article",
+//           "body": "Test 1",
+//           // ...
+//         }
+//         // ...
+//       ]
+//     }
+//   }
+//   // ...
+// ]
+```
+
+### [STRAPI-SERVICE-API-6.3] Working with Components and Dynamic Zones
+
+Strapi supports two types of complex fields: Components and Dynamic Zones. Both can be populated using the `populate` parameter, but with slightly different approaches.
+
+#### [STRAPI-SERVICE-API-6.3.1] Populating Components
+
+Components are populated similar to relations:
+
+```javascript
+// Populate a component field
+const articles = await strapi.documents("api::article.article").findMany({
+    populate: ["testComp"],
+});
+
+// Response
+// [
+//   {
+//     "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//     "title": "Test Article",
+//     "slug": "test-article",
+//     "body": "Test 1",
+//     // ...
+//     "testComp": {
+//       "id": 1,
+//       "name": "Test Component"
+//       // ...
+//     }
+//   }
+//   // ...
+// ]
+```
+
+#### [STRAPI-SERVICE-API-6.3.2] Populating Dynamic Zones
+
+Dynamic zones require a more specific approach using the `on` property to define the population rules for each component type:
+
+```javascript
+// Populate a dynamic zone with specific component configuration
+const articles = await strapi.documents("api::article.article").findMany({
+    populate: {
+        testDZ: {
+            on: {
+                "test.test-compo": {
+                    fields: ["testString"],
+                    populate: ["testNestedCompo"],
+                },
+            },
+        },
+    },
+});
+
+// Response
+// [
+//   {
+//     "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//     "title": "Test Article",
+//     "slug": "test-article",
+//     "body": "Test 1",
+//     // ...
+//     "testDZ": [
+//       {
+//         "id": 3,
+//         "__component": "test.test-compo",
+//         "testString": "test1",
+//         "testNestedCompo": {
+//           "id": 3,
+//           "testNestedString": "testNested1"
+//         }
+//       }
+//     ]
+//   }
+//   // ...
+// ]
+```
+
+### [STRAPI-SERVICE-API-6.4] Using Populate with Manipulation Methods
+
+The `populate` parameter can also be used with manipulation methods like `create()` , `update()` , and the publication methods.
+
+#### [STRAPI-SERVICE-API-6.4.1] With `create()`
+
+```javascript
+// Create a document and populate the headerImage relation
+const article = await strapi.documents("api::article.article").create({
+    data: {
+        title: "Test Article",
+        slug: "test-article",
+        body: "Test 1",
+        headerImage: 2, // Reference to a media ID
+    },
+    populate: ["headerImage"],
+});
+
+// Response
+// {
+//   "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//   "title": "Test Article",
+//   "slug": "test-article",
+//   "body": "Test 1",
+//   "headerImage": {
+//     "id": 2,
+//     "name": "17520.jpg"
+//     // ...
+//   }
+// }
+```
+
+#### [STRAPI-SERVICE-API-6.4.2] With `update()`
+
+```javascript
+// Update a document and populate the headerImage relation
+const article = await strapi.documents("api::article.article").update({
+    documentId: "cjld2cjxh0000qzrmn831i7rn",
+    data: {
+        title: "Test Article Update",
+    },
+    populate: ["headerImage"],
+});
+
+// Response
+// {
+//   "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//   "title": "Test Article Update",
+//   "slug": "test-article",
+//   "body": "Test 1",
+//   "headerImage": {
+//     "id": 2,
+//     "name": "17520.jpg"
+//     // ...
+//   }
+// }
+```
+
+#### [STRAPI-SERVICE-API-6.4.3] With Publication Methods
+
+The `populate` parameter can be used with `publish()` , `unpublish()` , and `discardDraft()` methods:
+
+```javascript
+// Publish a document and populate the headerImage relation
+const result = await strapi.documents("api::article.article").publish({
+    documentId: "cjld2cjxh0000qzrmn831i7rn",
+    populate: ["headerImage"],
+});
+
+// Response
+// {
+//   "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//   "entries": [
+//     {
+//       "documentId": "cjld2cjxh0001qzrm1q1i7rn",
+//       "locale": "en",
+//       // ...
+//       "headerImage": {
+//         "id": 2,
+//         "name": "17520.jpg"
+//         // ...
+//       }
+//     }
+//   ]
+// }
+```
+
+### [STRAPI-SERVICE-API-6.5] Best Practices for Populating
+
+1. **Be specific with population**: Only populate the relations you need to minimize database load and response size.
+2. **Consider query performance**: Deeply nested populate operations can impact performance; limit depth when possible.
+3. **Combine with fields selection**: Use both `populate` and `fields` parameters to optimize query responses.
+4. **Check permissions**: Ensure the proper permissions are set for the content types being populated.
+5. **Use pagination with populated queries**: When retrieving many records with populated relations, use pagination to improve performance.
+6. **Consider component structure**: For complex component and dynamic zone structures, design your populate queries carefully.
+
+## [STRAPI-SERVICE-API-7] Sorting and Pagination
+
+### [STRAPI-SERVICE-API-7.1] Sorting Results
+
+The Document Service API offers the ability to sort query results through the `sort` parameter. Sorting is particularly useful when you need to present data in a specific order or when implementing features like "sort by newest first" or "sort alphabetically".
+
+#### [STRAPI-SERVICE-API-7.1.1] Sorting on a Single Field
+
+To sort results based on a single field, you can use a string format like "fieldName:direction" or an object format:
+
+```javascript
+// String format
+const articles = await strapi.documents("api::article.article").findMany({
+    sort: "title:asc",
+});
+
+// Object format
+const articles = await strapi.documents("api::article.article").findMany({
+    sort: {
+        title: 'asc'
+    },
+});
+
+// Response
+// [
+//   {
+//     "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//     "title": "Test Article",
+//     "slug": "test-article",
+//     "body": "Test 1"
+//     // ...
+//   },
+//   {
+//     "documentId": "cjld2cjxh0001qzrm5q1j5q7m",
+//     "title": "Test Article 2",
+//     "slug": "test-article-2",
+//     "body": "Test 2"
+//     // ...
+//   }
+//   // ...
+// ]
+```
+
+The available sort directions are:
+* `asc`: Ascending order (A to Z, 1 to 9)
+* `desc`: Descending order (Z to A, 9 to 1)
+
+#### [STRAPI-SERVICE-API-7.1.2] Sorting on Multiple Fields
+
+To sort on multiple fields, you can pass them all in an array:
+
+```javascript
+// Array of objects format
+const articles = await strapi.documents("api::article.article").findMany({
+    sort: [{
+            title: 'asc'
+        },
+        {
+            createdAt: 'desc'
+        }
+    ],
+});
+
+// Alternative array of strings format
+const articles = await strapi.documents("api::article.article").findMany({
+    sort: ["title:asc", "createdAt:desc"],
+});
+
+// Response
+// [
+//   {
+//     "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//     "title": "Test Article",
+//     "slug": "test-article",
+//     "body": "Test 1",
+//     "createdAt": "2023-06-15T12:30:00.000Z"
+//     // ...
+//   },
+//   {
+//     "documentId": "cjld2cjxh0001qzrm5q1j5q7m",
+//     "title": "Test Article",
+//     "slug": "test-article-2",
+//     "body": "Test 2",
+//     "createdAt": "2023-06-14T10:15:00.000Z"
+//     // ...
+//   }
+//   // ...
+// ]
+```
+
+In this example, articles are first sorted by title in ascending order. If multiple articles have the same title, they will then be sorted by creation date in descending order (newest first).
+
+### [STRAPI-SERVICE-API-7.2] Paginating Results
+
+Pagination is essential when dealing with large datasets. The Document Service API supports pagination through the `pagination` parameter, allowing you to retrieve results in manageable chunks.
+
+#### [STRAPI-SERVICE-API-7.2.1] Basic Pagination
+
+The basic pagination syntax uses `page` and `pageSize` parameters:
+
+```javascript
+// Get the first page with 10 items per page
+const articles = await strapi.documents("api::article.article").findMany({
+    pagination: {
+        page: 1,
+        pageSize: 10,
+    },
+});
+
+// Response
+// [
+//   {
+//     "documentId": "cjld2cjxh0000qzrmn831i7rn",
+//     "title": "Test Article",
+//     // ...
+//   },
+//   // ... (9 more items)
+// ]
+```
+
+#### [STRAPI-SERVICE-API-7.2.2] Alternative Pagination with Start and Limit
+
+You can also use the `start` and `limit` approach for pagination:
+
+```javascript
+// Skip the first 10 documents and get the next 10
+const articles = await strapi.documents("api::article.article").findMany({
+    pagination: {
+        start: 10,
+        limit: 10,
+    },
+});
+
+// Response
+// [
+//   {
+//     "documentId": "cjld2cjxh0010qzrm5q1j5q7m",
+//     "title": "Test Article 11",
+//     // ...
+//   },
+//   // ... (9 more items)
+// ]
+```
+
+In this example, the query skips the first 10 documents and returns the next 10.
+
+### [STRAPI-SERVICE-API-7.3] Combining Sorting and Pagination
+
+Sorting and pagination are often used together to create paginated, ordered lists of content:
+
+```javascript
+// Get the second page of restaurant records, sorted by name
+const restaurants = await strapi.documents("api::restaurant.restaurant").findMany({
+    sort: {
+        name: 'asc'
+    },
+    pagination: {
+        page: 2,
+        pageSize: 5,
+    },
+});
+
+// Response
+// [
+//   {
+//     "documentId": "cjld2cjxh0006qzrmn831i7rn",
+//     "name": "Fancy Bistro",
+//     // ...
+//   },
+//   // ... (4 more items)
+// ]
+```
+
+### [STRAPI-SERVICE-API-7.4] Best Practices for Sorting and Pagination
+
+1. **Use indexing**: Ensure that fields used for sorting are properly indexed in your database to improve query performance.
+2. **Consistent sorting**: Maintain consistent sorting across pages to prevent items from appearing multiple times or being skipped when paginating.
+3. **Reasonable page sizes**: Choose an appropriate `pageSize` value that balances performance with usability. Very large page sizes can impact performance.
+4. **Combine with field selection**: Use pagination with the `fields` parameter to minimize the data transfer size.
+5. **Count total records**: When implementing pagination in a UI, use the `count()` method to get the total number of records for displaying page indicators.
+6. **Sort stability**: Include a unique identifier like `id` or `createdAt` as a secondary sort field to ensure stable sort order.
+
+```javascript
+// Example of a complete query with pagination, sorting, and field selection
+const restaurants = await strapi.documents("api::restaurant.restaurant").findMany({
+    fields: ["name", "address", "rating"],
+    filters: {
+        rating: {
+            $gte: 4
+        }
+    },
+    sort: [{
+            rating: 'desc'
+        },
+        {
+            name: 'asc'
+        }
+    ],
+    pagination: {
+        page: 1,
+        pageSize: 20
+    }
+});
+```
+
+## [STRAPI-SERVICE-API-8] Working with Draft & Publish Status
+
+### [STRAPI-SERVICE-API-8.1] Status Parameter Overview
+
+When the Draft & Publish feature is enabled on a content type, the Document Service API returns the draft version of a document by default. The `status` parameter allows you to control whether to retrieve draft or published versions of documents.
+
+> **Note**: Passing `{ status: 'draft' }` to a Document Service API query returns the same results as not passing any `status` parameter.
+
+### [STRAPI-SERVICE-API-8.2] Using Status with Search Methods
+
+#### [STRAPI-SERVICE-API-8.2.1] With `findOne()`
+
+To retrieve the published version of a specific document:
+
+```javascript
+// Get the published version of a document
+const restaurant = await strapi.documents('api::restaurant.restaurant').findOne({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    status: 'published'
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   name: "Biscotte Restaurant",
+//   publishedAt: "2024-03-14T15:40:45.330Z",
+//   locale: "en", // default locale
+//   // …
+// }
+```
+
+#### [STRAPI-SERVICE-API-8.2.2] With `findFirst()`
+
+To retrieve the published version of the first matching document:
+
+```javascript
+// Get the published version of the first document
+const restaurant = await strapi.documents("api::restaurant.restaurant").findFirst({
+    status: 'published',
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   name: "Biscotte Restaurant",
+//   publishedAt: "2024-03-14T15:40:45.330Z",
+//   locale: "en", // default locale
+//   // …
+// }
+```
+
+#### [STRAPI-SERVICE-API-8.2.3] With `findMany()`
+
+To retrieve the published versions of multiple documents:
+
+```javascript
+// Get the published versions of all documents
+const restaurants = await strapi.documents("api::restaurant.restaurant").findMany({
+    status: 'published'
+});
+
+// Response
+// [
+//   {
+//     documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//     name: "Biscotte Restaurant",
+//     publishedAt: "2024-03-14T15:40:45.330Z",
+//     locale: "en", // default locale
+//     // …
+//   },
+//   // ... more published documents
+// ]
+```
+
+### [STRAPI-SERVICE-API-8.3] Using Status with `count()`
+
+The `status` parameter can be used with the `count()` method to count only draft or published documents:
+
+```javascript
+// Count draft documents (also includes published documents)
+const draftsCount = await strapi.documents("api::restaurant.restaurant").count({
+    status: 'draft'
+});
+
+// Count only published documents
+const publishedCount = await strapi.documents("api::restaurant.restaurant").count({
+    status: 'published'
+});
+```
+
+> **Important Note**: Since published documents necessarily also have a draft counterpart, a published document is still counted as having a draft version. This means that counting with the `status: 'draft'` parameter still returns the total number of documents matching other parameters, even if some documents have already been published and are no longer displayed as "draft" or "modified" in the Content Manager. There currently is no way to prevent already published documents from being counted with `status: 'draft'` .
+
+### [STRAPI-SERVICE-API-8.4] Creating and Publishing in One Step
+
+The `status` parameter can be used with the `create()` method to automatically publish a document while creating it:
+
+```javascript
+// Create and immediately publish a document
+const restaurant = await strapi.documents('api::restaurant.restaurant').create({
+    data: {
+        name: "New Restaurant",
+    },
+    status: 'published',
+});
+
+// Response
+// {
+//   documentId: "d41r46wac4xix5vpba7561at",
+//   name: "New Restaurant",
+//   publishedAt: "2024-03-14T17:29:03.399Z",
+//   locale: "en" // default locale
+//   // …
+// }
+```
+
+### [STRAPI-SERVICE-API-8.5] Updating and Publishing in One Step
+
+Similarly, the `status` parameter can be used with the `update()` method to automatically publish changes while updating a document:
+
+```javascript
+// Update and immediately publish a document
+const restaurant = await strapi.documents('api::restaurant.restaurant').update({
+    documentId: 'a1b2c3d4e5f6g7h8i9j0klm',
+    data: {
+        name: "Biscotte Restaurant (closed)",
+    },
+    status: 'published',
+});
+
+// Response
+// {
+//   documentId: "a1b2c3d4e5f6g7h8i9j0klm",
+//   name: "Biscotte Restaurant (closed)",
+//   publishedAt: "2024-03-14T17:29:03.399Z",
+//   locale: "en" // default locale
+//   // …
+// }
+```
+
+### [STRAPI-SERVICE-API-8.6] Best Practices for Working with Status
+
+1. **Be consistent**: Choose a consistent approach for handling draft and published content in your application.
+2. **Document API behavior**: Make sure to document whether your API endpoints return draft or published content.
+3. **Consider permissions**: Remember that published versions might be accessible to more users than draft versions.
+4. **Use appropriate status**: Only use the `published` status when you're sure the content is ready for public viewing.
+5. **Combine with other parameters**: The `status` parameter can be combined with other parameters like `locale`,  `populate`, and `fields` for more specific queries.
+
+```javascript
+// Example of combining status with other parameters
+const restaurants = await strapi.documents("api::restaurant.restaurant").findMany({
+    status: 'published',
+    locale: 'fr',
+    populate: ['categories', 'mainImage'],
+    fields: ['name', 'description', 'address'],
+    filters: {
+        featured: true
+    }
+});
+```

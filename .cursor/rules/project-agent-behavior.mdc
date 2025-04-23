@@ -1,0 +1,67 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# PROJECT AGENT BEHAVIOR RULES [PAB]
+
+## Introduction to Documentation Structure
+
+This document contains the critical rules that MUST be followed when working on the RBX CRM Next project. Follow these guidelines:
+
+1. **Documentation Consultation Guidelines:**
+   - This file contains the most critical rules that must ALWAYS be followed
+   - Only consult [PTD](mdc:.cursor/rules/project-tech-docs.mdc) when you need specific details about a referenced section
+   - When consulting PTD, use the specific section identifier (e.g., [PTD-1.2](mdc:.cursor/rules/project-tech-docs.mdc#ptd-1.2-json-structure-template)) to go directly to the relevant information
+   - Avoid loading the entire technical documentation file unless absolutely necessary
+   - Search for the specific identifier or keyword rather than reading the entire document
+   - ⚠️ [CRITICAL] Always prioritize project-specific guidelines over general knowledge. First rely on your memory of these project rules, and only consult referenced files if you don't recall the specific project guidelines. NEVER substitute project-specific practices with general industry practices you were trained on.
+
+2. **Documentation Reference Conventions:**
+   - [PAB](mdc:.cursor/rules/project-agent-behavior.mdc) = This document ( `project-agent-behavior.mdc` )
+   - [PTD](mdc:.cursor/rules/project-tech-docs.mdc) = Technical documentation ( `project-tech-docs.mdc` )
+
+3. **Rule Criticality Levels:**
+   - Rules marked with ⚠️ [CRITICAL] are non-negotiable and must always be followed
+   - Rules marked with 🔍 [IMPORTANT] should be carefully considered in most cases
+   - Unmarked rules are general guidelines that apply where appropriate
+
+4. **Project Structure Reference:**
+   - Only load Project Structure when you need specific information about project organization
+   - Consult [PTD-1](mdc:.cursor/rules/project-tech-docs.mdc#ptd-1-project-structure) for detailed project structure information
+
+## Language & Documentation
+
+* ⚠️ [CRITICAL] Code comments and variable names must be in English ONLY
+* ⚠️ [CRITICAL] Code comments only when it is really necessary
+* 🔍 [IMPORTANT] JSDoc comments must follow proper format
+* Document complex algorithms
+* Documentation should be clear and concise
+
+## Naming Conventions
+
+* ⚠️ [CRITICAL] All filenames must be a maximum of 25 characters, including the extension
+* ⚠️ [CRITICAL] Files should use kebab-case (e.g.: `user-profile-card.tsx`)
+
+## Code Structure
+
+* ⚠️ [CRITICAL] One logical concept per file
+* ⚠️ [CRITICAL] Use TypeScript for type safety
+* ⚠️ [CRITICAL] Use proper error handling with user-friendly messages
+* 🔍 [IMPORTANT] Group related functionality
+* 🔍 [IMPORTANT] Separate concerns appropriately
+* 🔍 [IMPORTANT] Keep files under 300 lines when possible
+* 🔍 [IMPORTANT] Keep functions under 50 lines when possible
+* 🔍 [IMPORTANT] Write unit tests for critical functions
+* 🔍 [IMPORTANT] Use early returns to reduce nesting
+
+## Import Structure
+
+* ⚠️ [CRITICAL] No index barrel imports allowed
+* ⚠️ [CRITICAL] No unused imports allowed
+* 🔍 [IMPORTANT] Use specific imports rather than importing entire modules
+
+## Business Domain Considerations
+
+* For complete business context information, refer to [PTD-5](mdc:.cursor/rules/project-tech-docs.mdc#ptd-17-business-context-references) Business Context References

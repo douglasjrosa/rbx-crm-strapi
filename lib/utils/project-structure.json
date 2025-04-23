@@ -1,0 +1,1111 @@
+{
+	"name": "rbx-crm-strapi",
+	"type": "directory",
+	"context": "Strapi backend for RBX CRM system",
+	"children": [
+		{
+			"name": "src",
+			"type": "directory",
+			"context": "Main source code directory",
+			"children": [
+				{
+					"name": "api",
+					"type": "directory",
+					"context": "API definitions and controllers for data models",
+					"children": [
+						{
+							"name": "contact",
+							"type": "directory",
+							"context": "Contact management API",
+							"children": [
+								{
+									"name": "content-types",
+									"type": "directory",
+									"children": [
+										{
+											"name": "contact",
+											"type": "directory",
+											"children": [
+												{
+													"name": "schema.json",
+													"type": "file",
+													"context": "Contact data model schema",
+													"exports": [
+														{
+															"name": "kind",
+															"type": "const",
+															"context": "Type of content (collectionType)"
+														},
+														{
+															"name": "collectionName",
+															"type": "const",
+															"context": "Database collection name"
+														},
+														{
+															"name": "info",
+															"type": "object",
+															"context": "Content type metadata"
+														},
+														{
+															"name": "options",
+															"type": "object",
+															"context": "Content type options"
+														},
+														{
+															"name": "attributes",
+															"type": "object",
+															"context": "Field definitions for the content type"
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "controllers",
+									"type": "directory",
+									"context": "Contact API controllers",
+									"children": [
+										{
+											"name": "contact.ts",
+											"type": "file",
+											"context": "Controller for contact endpoints",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core controller for contact API created using factories.createCoreController"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "routes",
+									"type": "directory",
+									"context": "Contact API route definitions",
+									"children": [
+										{
+											"name": "contact.ts",
+											"type": "file",
+											"context": "Routes configuration for contact",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core router for contact API created using factories.createCoreRouter"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "services",
+									"type": "directory",
+									"context": "Contact business logic services",
+									"children": [
+										{
+											"name": "contact.ts",
+											"type": "file",
+											"context": "Service implementation for contact",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core service for contact API created using factories.createCoreService"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "documentation",
+									"type": "directory",
+									"context": "API documentation for contact endpoints"
+								}
+							]
+						},
+						{
+							"name": "company",
+							"type": "directory",
+							"context": "Company management API",
+							"children": [
+								{
+									"name": "content-types",
+									"type": "directory",
+									"children": [
+										{
+											"name": "company",
+											"type": "directory",
+											"children": [
+												{
+													"name": "schema.json",
+													"type": "file",
+													"context": "Company data model schema",
+													"exports": [
+														{
+															"name": "kind",
+															"type": "const",
+															"context": "Type of content (collectionType)"
+														},
+														{
+															"name": "collectionName",
+															"type": "const",
+															"context": "Database collection name"
+														},
+														{
+															"name": "info",
+															"type": "object",
+															"context": "Content type metadata"
+														},
+														{
+															"name": "options",
+															"type": "object",
+															"context": "Content type options"
+														},
+														{
+															"name": "attributes",
+															"type": "object",
+															"context": "Field definitions for the content type"
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "controllers",
+									"type": "directory",
+									"context": "Company API controllers",
+									"children": [
+										{
+											"name": "company.ts",
+											"type": "file",
+											"context": "Controller for company endpoints",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core controller for company API created using factories.createCoreController"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "routes",
+									"type": "directory",
+									"context": "Company API route definitions",
+									"children": [
+										{
+											"name": "company.ts",
+											"type": "file",
+											"context": "Routes configuration for company",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core router for company API created using factories.createCoreRouter"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "services",
+									"type": "directory",
+									"context": "Company business logic services",
+									"children": [
+										{
+											"name": "company.ts",
+											"type": "file",
+											"context": "Service implementation for company",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core service for company API created using factories.createCoreService"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "documentation",
+									"type": "directory",
+									"context": "API documentation for company endpoints"
+								}
+							]
+						},
+						{
+							"name": "deal",
+							"type": "directory",
+							"context": "Deal/Opportunity management API",
+							"children": [
+								{
+									"name": "content-types",
+									"type": "directory",
+									"children": [
+										{
+											"name": "deal",
+											"type": "directory",
+											"children": [
+												{
+													"name": "schema.json",
+													"type": "file",
+													"context": "Deal data model schema",
+													"exports": [
+														{
+															"name": "kind",
+															"type": "const",
+															"context": "Type of content (collectionType)"
+														},
+														{
+															"name": "collectionName",
+															"type": "const",
+															"context": "Database collection name"
+														},
+														{
+															"name": "info",
+															"type": "object",
+															"context": "Content type metadata"
+														},
+														{
+															"name": "options",
+															"type": "object",
+															"context": "Content type options"
+														},
+														{
+															"name": "attributes",
+															"type": "object",
+															"context": "Field definitions for the content type"
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "controllers",
+									"type": "directory",
+									"context": "Deal API controllers",
+									"children": [
+										{
+											"name": "deal.ts",
+											"type": "file",
+											"context": "Controller for deal endpoints",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core controller for deal API created using factories.createCoreController"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "routes",
+									"type": "directory",
+									"context": "Deal API route definitions",
+									"children": [
+										{
+											"name": "deal.ts",
+											"type": "file",
+											"context": "Routes configuration for deal",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core router for deal API created using factories.createCoreRouter"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "services",
+									"type": "directory",
+									"context": "Deal business logic services",
+									"children": [
+										{
+											"name": "deal.ts",
+											"type": "file",
+											"context": "Service implementation for deal",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core service for deal API created using factories.createCoreService"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "documentation",
+									"type": "directory",
+									"context": "API documentation for deal endpoints"
+								}
+							]
+						},
+						{
+							"name": "interaction",
+							"type": "directory",
+							"context": "Customer interaction tracking API",
+							"children": [
+								{
+									"name": "content-types",
+									"type": "directory",
+									"children": [
+										{
+											"name": "interaction",
+											"type": "directory",
+											"children": [
+												{
+													"name": "schema.json",
+													"type": "file",
+													"context": "Interaction data model schema"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "controllers",
+									"type": "directory",
+									"context": "Interaction API controllers",
+									"children": [
+										{
+											"name": "interaction.ts",
+											"type": "file",
+											"context": "Controller for interaction endpoints",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core controller for interaction API created using factories.createCoreController"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "routes",
+									"type": "directory",
+									"context": "Interaction API route definitions",
+									"children": [
+										{
+											"name": "interaction.ts",
+											"type": "file",
+											"context": "Routes configuration for interaction",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core router for interaction API created using factories.createCoreRouter"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "services",
+									"type": "directory",
+									"context": "Interaction business logic services",
+									"children": [
+										{
+											"name": "interaction.ts",
+											"type": "file",
+											"context": "Service implementation for interaction",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core service for interaction API created using factories.createCoreService"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "documentation",
+									"type": "directory",
+									"context": "API documentation for interaction endpoints"
+								}
+							]
+						},
+						{
+							"name": "issuer",
+							"type": "directory",
+							"context": "Document issuer management API",
+							"children": [
+								{
+									"name": "content-types",
+									"type": "directory",
+									"children": [
+										{
+											"name": "issuer",
+											"type": "directory",
+											"children": [
+												{
+													"name": "schema.json",
+													"type": "file",
+													"context": "Issuer data model schema"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "controllers",
+									"type": "directory",
+									"context": "Issuer API controllers",
+									"children": [
+										{
+											"name": "issuer.ts",
+											"type": "file",
+											"context": "Controller for issuer endpoints",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core controller for issuer API created using factories.createCoreController"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "routes",
+									"type": "directory",
+									"context": "Issuer API route definitions",
+									"children": [
+										{
+											"name": "issuer.ts",
+											"type": "file",
+											"context": "Routes configuration for issuer",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core router for issuer API created using factories.createCoreRouter"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "services",
+									"type": "directory",
+									"context": "Issuer business logic services",
+									"children": [
+										{
+											"name": "issuer.ts",
+											"type": "file",
+											"context": "Service implementation for issuer",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core service for issuer API created using factories.createCoreService"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "documentation",
+									"type": "directory",
+									"context": "API documentation for issuer endpoints"
+								}
+							]
+						},
+						{
+							"name": "order",
+							"type": "directory",
+							"context": "Order management API",
+							"children": [
+								{
+									"name": "content-types",
+									"type": "directory",
+									"children": [
+										{
+											"name": "order",
+											"type": "directory",
+											"children": [
+												{
+													"name": "schema.json",
+													"type": "file",
+													"context": "Order data model schema"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "controllers",
+									"type": "directory",
+									"context": "Order API controllers",
+									"children": [
+										{
+											"name": "order.ts",
+											"type": "file",
+											"context": "Controller for order endpoints",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core controller for order API created using factories.createCoreController"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "routes",
+									"type": "directory",
+									"context": "Order API route definitions",
+									"children": [
+										{
+											"name": "order.ts",
+											"type": "file",
+											"context": "Routes configuration for order",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core router for order API created using factories.createCoreRouter"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "services",
+									"type": "directory",
+									"context": "Order business logic services",
+									"children": [
+										{
+											"name": "order.ts",
+											"type": "file",
+											"context": "Service implementation for order",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core service for order API created using factories.createCoreService"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "documentation",
+									"type": "directory",
+									"context": "API documentation for order endpoints"
+								}
+							]
+						},
+						{
+							"name": "payment-method",
+							"type": "directory",
+							"context": "Payment method configuration API",
+							"children": [
+								{
+									"name": "content-types",
+									"type": "directory",
+									"children": [
+										{
+											"name": "payment-method",
+											"type": "directory",
+											"children": [
+												{
+													"name": "schema.json",
+													"type": "file",
+													"context": "Payment method data model schema"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "controllers",
+									"type": "directory",
+									"context": "Payment method API controllers",
+									"children": [
+										{
+											"name": "payment-method.ts",
+											"type": "file",
+											"context": "Controller for payment method endpoints",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core controller for payment method API created using factories.createCoreController"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "routes",
+									"type": "directory",
+									"context": "Payment method API route definitions",
+									"children": [
+										{
+											"name": "payment-method.ts",
+											"type": "file",
+											"context": "Routes configuration for payment method",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core router for payment method API created using factories.createCoreRouter"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "services",
+									"type": "directory",
+									"context": "Payment method business logic services",
+									"children": [
+										{
+											"name": "payment-method.ts",
+											"type": "file",
+											"context": "Service implementation for payment method",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core service for payment method API created using factories.createCoreService"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "documentation",
+									"type": "directory",
+									"context": "API documentation for payment method endpoints"
+								}
+							]
+						},
+						{
+							"name": ".gitkeep",
+							"type": "file"
+						}
+					]
+				},
+				{
+					"name": "components",
+					"type": "directory",
+					"context": "Reusable Strapi components",
+					"children": [
+						{
+							"name": "order-components",
+							"type": "directory",
+							"context": "Components for order management",
+							"children": [
+								{
+									"name": "items.json",
+									"type": "file",
+									"context": "Definition of order items component",
+									"exports": [
+										{
+											"name": "collectionName",
+											"type": "const",
+											"context": "Component collection name in database"
+										},
+										{
+											"name": "info",
+											"type": "object",
+											"context": "Component metadata"
+										},
+										{
+											"name": "options",
+											"type": "object",
+											"context": "Component options"
+										},
+										{
+											"name": "attributes",
+											"type": "object",
+											"context": "Field definitions for the component"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "extensions",
+					"type": "directory",
+					"context": "Custom extensions to Strapi core functionality"
+				},
+				{
+					"name": "admin",
+					"type": "directory",
+					"context": "Admin panel customizations"
+				},
+				{
+					"name": "index.ts",
+					"type": "file",
+					"context": "Main entry point for Strapi application",
+					"exports": [
+						{
+							"name": "default",
+							"type": "object",
+							"context": "Main Strapi application object with lifecycle hooks"
+						},
+						{
+							"name": "register",
+							"type": "function",
+							"context": "Asynchronous register function that runs before application initialization"
+						},
+						{
+							"name": "bootstrap",
+							"type": "function",
+							"context": "Asynchronous bootstrap function that runs before application starts"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "config",
+			"type": "directory",
+			"context": "Configuration files for Strapi",
+			"children": [
+				{
+					"name": "admin.ts",
+					"type": "file",
+					"context": "Admin panel configuration",
+					"exports": [
+						{
+							"name": "default",
+							"type": "function",
+							"context": "Admin panel configuration function"
+						}
+					]
+				},
+				{
+					"name": "api.ts",
+					"type": "file",
+					"context": "API configuration",
+					"exports": [
+						{
+							"name": "default",
+							"type": "function",
+							"context": "API configuration function"
+						}
+					]
+				},
+				{
+					"name": "database.ts",
+					"type": "file",
+					"context": "Database connection configuration",
+					"exports": [
+						{
+							"name": "default",
+							"type": "function",
+							"context": "Database connection configuration function"
+						}
+					]
+				},
+				{
+					"name": "middlewares.ts",
+					"type": "file",
+					"context": "Middleware configuration",
+					"exports": [
+						{
+							"name": "default",
+							"type": "function",
+							"context": "Middleware configuration function"
+						}
+					]
+				},
+				{
+					"name": "plugins.ts",
+					"type": "file",
+					"context": "Plugin configuration",
+					"exports": [
+						{
+							"name": "module.exports",
+							"type": "object",
+							"context": "Plugin configuration object"
+						},
+						{
+							"name": "graphql",
+							"type": "object",
+							"context": "GraphQL plugin configuration"
+						}
+					]
+				},
+				{
+					"name": "server.ts",
+					"type": "file",
+					"context": "Server configuration",
+					"exports": [
+						{
+							"name": "default",
+							"type": "function",
+							"context": "Server configuration function with host, port and app settings"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "lib",
+			"type": "directory",
+			"context": "Library code and utilities",
+			"children": [
+				{
+					"name": "utils",
+					"type": "directory",
+					"context": "Utility functions and helpers",
+					"children": [
+						{
+							"name": "project-structure.json",
+							"type": "file",
+							"context": "JSON documentation of project structure",
+							"exports": [
+								{
+									"name": "name",
+									"type": "string",
+									"context": "Project name"
+								},
+								{
+									"name": "type",
+									"type": "string",
+									"context": "Type of node (directory)"
+								},
+								{
+									"name": "context",
+									"type": "string",
+									"context": "Description of project"
+								},
+								{
+									"name": "children",
+									"type": "array",
+									"context": "Array of child nodes representing project structure"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "types",
+			"type": "directory",
+			"context": "TypeScript type definitions",
+			"children": [
+				{
+					"name": "generated",
+					"type": "directory",
+					"context": "Automatically generated TypeScript type definitions",
+					"children": [
+						{
+							"name": "components.d.ts",
+							"type": "file",
+							"context": "Type definitions for Strapi components",
+							"exports": [
+								{
+									"name": "OrderComponentsItems",
+									"type": "interface",
+									"context": "Type definition for order items component"
+								},
+								{
+									"name": "Components",
+									"type": "interface",
+									"context": "Components namespace extension for Strapi types"
+								}
+							]
+						},
+						{
+							"name": "contentTypes.d.ts",
+							"type": "file",
+							"context": "Type definitions for content types",
+							"exports": [
+								{
+									"name": "ApiCompanyCompany",
+									"type": "interface",
+									"context": "Type definition for company content type"
+								},
+								{
+									"name": "ApiContactContact",
+									"type": "interface",
+									"context": "Type definition for contact content type"
+								},
+								{
+									"name": "ApiDealDeal",
+									"type": "interface",
+									"context": "Type definition for deal content type"
+								},
+								{
+									"name": "ApiInteractionInteraction",
+									"type": "interface",
+									"context": "Type definition for interaction content type"
+								},
+								{
+									"name": "ApiIssuerIssuer",
+									"type": "interface",
+									"context": "Type definition for issuer content type"
+								},
+								{
+									"name": "ApiOrderOrder",
+									"type": "interface",
+									"context": "Type definition for order content type"
+								},
+								{
+									"name": "ApiPaymentMethodPaymentMethod",
+									"type": "interface",
+									"context": "Type definition for payment method content type"
+								},
+								{
+									"name": "Schemas",
+									"type": "interface",
+									"context": "Schema namespace extension for Strapi types"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "public",
+			"type": "directory",
+			"context": "Publicly accessible assets"
+		},
+		{
+			"name": "database",
+			"type": "directory",
+			"context": "Database configuration and migrations",
+			"children": [
+				{
+					"name": "migrations",
+					"type": "directory",
+					"context": "Database migration scripts",
+					"children": [
+						{
+							"name": ".gitkeep",
+							"type": "file"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": ".strapi",
+			"type": "directory",
+			"context": "Strapi runtime files and cache"
+		},
+		{
+			"name": "dist",
+			"type": "directory",
+			"context": "Compiled distribution files"
+		},
+		{
+			"name": "package.json",
+			"type": "file",
+			"context": "NPM package configuration and dependencies",
+			"exports": [
+				{
+					"name": "name",
+					"type": "const",
+					"context": "Package name"
+				},
+				{
+					"name": "version",
+					"type": "const",
+					"context": "Package version"
+				},
+				{
+					"name": "description",
+					"type": "const",
+					"context": "Package description"
+				},
+				{
+					"name": "scripts",
+					"type": "object",
+					"context": "NPM scripts"
+				},
+				{
+					"name": "dependencies",
+					"type": "object",
+					"context": "Package dependencies"
+				},
+				{
+					"name": "engines",
+					"type": "object",
+					"context": "Node.js version requirements"
+				}
+			]
+		},
+		{
+			"name": "package-lock.json",
+			"type": "file",
+			"context": "Locked dependencies for reproducible installations"
+		},
+		{
+			"name": "tsconfig.json",
+			"type": "file",
+			"context": "TypeScript compiler configuration",
+			"exports": [
+				{
+					"name": "compilerOptions",
+					"type": "object",
+					"context": "TypeScript compiler options"
+				},
+				{
+					"name": "include",
+					"type": "array",
+					"context": "Files to include in compilation"
+				}
+			]
+		},
+		{
+			"name": ".env",
+			"type": "file",
+			"context": "Environment variables configuration"
+		},
+		{
+			"name": ".env.example",
+			"type": "file",
+			"context": "Example environment configuration template"
+		},
+		{
+			"name": "README.md",
+			"type": "file",
+			"context": "Project documentation and setup instructions"
+		},
+		{
+			"name": ".gitignore",
+			"type": "file",
+			"context": "Git ignore rules"
+		},
+		{
+			"name": ".editorconfig",
+			"type": "file",
+			"context": "Editor configuration for code style consistency"
+		},
+		{
+			"name": ".strapi-updater.json",
+			"type": "file",
+			"context": "Strapi updater configuration"
+		},
+		{
+			"name": "favicon.png",
+			"type": "file",
+			"context": "Application favicon"
+		}
+	]
+}

@@ -2,6 +2,6 @@
  * company service
  */
 
-import { factories } from '@strapi/strapi';
+import { factories } from '@strapi/strapi'
 
-export default factories.createCoreService('api::company.company');
+export default factories.createCoreService( 'api::company.company' )

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "company",
     "pluralName": "companies",
-    "displayName": "company",
+    "displayName": "Company",
     "description": ""
   },
   "options": {
@@ -24,11 +24,6 @@
       },
       "type": "boolean",
       "default": true
-    },
-    "seller": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::user-setting.user-setting"
     },
     "creditLimit": {
       "pluginOptions": {
@@ -233,6 +228,19 @@
         }
       },
       "type": "date"
+    },
+    "logoUrl": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "seller": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

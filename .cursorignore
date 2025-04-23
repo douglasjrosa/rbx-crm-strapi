@@ -1,0 +1,77 @@
+# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+.yarn/
+
+# Build outputs
+.next/
+.next/cache/
+.next/server/
+.next/static/
+out/
+build/
+dist/
+coverage/
+
+# Cache
+.cache/
+.swc/
+.turbo/
+UsersDouglasAppDataRoamingnpm-cache/
+**/*.tsbuildinfo
+
+# Large binary files and media
+**/*.{png,jpg,jpeg,gif,webp,woff,woff2,ttf,otf,eot,mp4,mov,webm,pdf}
+public/*.{png,jpg,jpeg,gif,webp}
+
+# Version control
+.git/
+.github/
+.gitlab/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment and config
+.env
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Package management
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Test data and mocks
+tests/__mocks__/
+tests/fixtures/
+cypress/fixtures/
+cypress/screenshots/
+cypress/videos/
+**/*test-results*
+
+# IDE specific
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+*.swo
+.cursor/
+
+# Misc
+.DS_Store
+**/Thumbs.db
+
+# Large generated files
+**/trace
+**/*.trace

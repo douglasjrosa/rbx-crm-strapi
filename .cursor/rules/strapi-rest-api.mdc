@@ -1,0 +1,1724 @@
+---
+description: [STRAPI-REST-API] @Strapi Rest API - Comprehensive documentation of Strapi CMS APIs based on the official Strapi documentation
+globs: 
+alwaysApply: false
+---
+
+# Strapi CMS REST API Technical Documentation [STRAPI-REST-API]
+
+## Documentation Consultation Guidelines
+
+For AI Agent consumption:
+
+1. **Only use this document when specific Strapi API implementation details are needed**
+2. **Use direct section references**: When referencing sections of this document, use section identifiers (e.g., [STRAPI-REST-API-8.4]) to locate specific information
+3. **Avoid scanning entire document**: Target only the specific sections you need information from
+
+## Quick Reference Index
+
+* [STRAPI-REST-API-1] [API Overview](mdc:#strapi-rest-api-1-api-overview)
+* [STRAPI-REST-API-2] [REST API](mdc:#strapi-rest-api-2-rest-api)
+  + [STRAPI-REST-API-2.1] [Purpose and Usage](mdc:#strapi-rest-api-2-1-purpose-and-usage)
+  + [STRAPI-REST-API-2.2] [Key Features](mdc:#strapi-rest-api-2-2-key-features)
+* [STRAPI-REST-API-3] [GraphQL API](mdc:#strapi-rest-api-3-graphql-api)
+  + [STRAPI-REST-API-3.1] [Purpose and Usage](mdc:#strapi-rest-api-3-1-purpose-and-usage)
+  + [STRAPI-REST-API-3.2] [Key Features](mdc:#strapi-rest-api-3-2-key-features)
+* [STRAPI-REST-API-4] [Strapi Client](mdc:#strapi-rest-api-4-strapi-rest-api-client)
+  + [STRAPI-REST-API-4.1] [Purpose and Usage](mdc:#strapi-rest-api-4-1-purpose-and-usage)
+  + [STRAPI-REST-API-4.2] [Key Features](mdc:#strapi-rest-api-4-2-key-features)
+* [STRAPI-REST-API-5] [Document Service API](mdc:#strapi-rest-api-5-document-service-api)
+  + [STRAPI-REST-API-5.1] [Purpose and Usage](mdc:#strapi-rest-api-5-1-purpose-and-usage)
+  + [STRAPI-REST-API-5.2] [Key Features](mdc:#strapi-rest-api-5-2-key-features)
+* [STRAPI-REST-API-6] [API Hierarchy](mdc:#strapi-rest-api-6-api-hierarchy)
+* [STRAPI-REST-API-7] [Document Concept](mdc:#strapi-rest-api-7-document-concept)
+  + [STRAPI-REST-API-7.1] [Definition and Context](mdc:#strapi-rest-api-7-1-definition-and-context)
+  + [STRAPI-REST-API-7.2] [Content Variations](mdc:#strapi-rest-api-7-2-content-variations)
+  + [STRAPI-REST-API-7.3] [API Interactions with Documents](mdc:#strapi-rest-api-7-3-api-interactions-with-documents)
+* [STRAPI-REST-API-8] [REST API Endpoints](mdc:#strapi-rest-api-8-rest-api-endpoints)
+  + [STRAPI-REST-API-8.1] [Endpoint Structure](mdc:#strapi-rest-api-8-1-endpoint-structure)
+  + [STRAPI-REST-API-8.2] [API IDs in Endpoints](mdc:#strapi-rest-api-8-2-api-ids-in-endpoints)
+  + [STRAPI-REST-API-8.3] [Response Format](mdc:#strapi-rest-api-8-3-response-format)
+  + [STRAPI-REST-API-8.4] [CRUD Operations](mdc:#strapi-rest-api-8-4-crud-operations)
+  + [STRAPI-REST-API-8.5] [Important Notes](mdc:#strapi-rest-api-8-5-important-notes)
+* [STRAPI-REST-API-9] [REST API Filters](mdc:#strapi-rest-api-9-rest-api-filters)
+  + [STRAPI-REST-API-9.1] [Filter Syntax](mdc:#strapi-rest-api-9-1-filter-syntax)
+  + [STRAPI-REST-API-9.2] [Available Filter Operators](mdc:#strapi-rest-api-9-2-available-filter-operators)
+  + [STRAPI-REST-API-9.3] [Basic Filtering Examples](mdc:#strapi-rest-api-9-3-basic-filtering-examples)
+  + [STRAPI-REST-API-9.4] [Complex Filtering](mdc:#strapi-rest-api-9-4-complex-filtering)
+  + [STRAPI-REST-API-9.5] [Deep Filtering](mdc:#strapi-rest-api-9-5-deep-filtering)
+  + [STRAPI-REST-API-9.6] [Important Notes on Filtering](mdc:#strapi-rest-api-9-6-important-notes-on-filtering)
+* [STRAPI-REST-API-10] [REST API Locale Parameter](mdc:#strapi-rest-api-10-rest-api-locale-parameter)
+  + [STRAPI-REST-API-10.1] [Overview](mdc:#strapi-rest-api-10-1-overview)
+  + [STRAPI-REST-API-10.2] [Locale Parameter Usage](mdc:#strapi-rest-api-10-2-locale-parameter-usage)
+  + [STRAPI-REST-API-10.3] [Examples](mdc:#strapi-rest-api-10-3-examples)
+  + [STRAPI-REST-API-10.4] [Important Notes](mdc:#strapi-rest-api-10-4-important-notes)
+* [STRAPI-REST-API-11] [REST API Status Parameter](mdc:#strapi-rest-api-11-rest-api-status-parameter)
+  + [STRAPI-REST-API-11.1] [Overview](mdc:#strapi-rest-api-11-1-overview)
+  + [STRAPI-REST-API-11.2] [Status Parameter Usage](mdc:#strapi-rest-api-11-2-status-parameter-usage)
+  + [STRAPI-REST-API-11.3] [Example Response](mdc:#strapi-rest-api-11-3-example-response)
+  + [STRAPI-REST-API-11.4] [Important Notes](mdc:#strapi-rest-api-11-4-important-notes)
+* [STRAPI-REST-API-12] [REST API Populate & Select](mdc:#strapi-rest-api-12-rest-api-populate--select)
+  + [STRAPI-REST-API-12.1] [Field Selection](mdc:#strapi-rest-api-12-1-field-selection)
+  + [STRAPI-REST-API-12.2] [Population](mdc:#strapi-rest-api-12-2-population)
+  + [STRAPI-REST-API-12.3] [Combining Population with Other Operators](mdc:#strapi-rest-api-12-3-combining-population-with-other-operators)
+* [STRAPI-REST-API-13] [Managing Relations](mdc:#strapi-rest-api-13-managing-relations)
+  + [STRAPI-REST-API-13.1] [Overview](mdc:#strapi-rest-api-13-1-overview)
+  + [STRAPI-REST-API-13.2] [Connect Parameter](mdc:#strapi-rest-api-13-2-connect-parameter)
+  + [STRAPI-REST-API-13.3] [Disconnect Parameter](mdc:#strapi-rest-api-13-3-disconnect-parameter)
+  + [STRAPI-REST-API-13.4] [Set Parameter](mdc:#strapi-rest-api-13-4-set-parameter)
+  + [STRAPI-REST-API-13.5] [Important Notes](mdc:#strapi-rest-api-13-5-important-notes)
+* [STRAPI-REST-API-14] [Sort & Pagination](mdc:#strapi-rest-api-14-sort--pagination)
+  + [STRAPI-REST-API-14.1] [Sorting](mdc:#strapi-rest-api-14-1-sorting)
+  + [STRAPI-REST-API-14.2] [Pagination](mdc:#strapi-rest-api-14-2-pagination)
+  + [STRAPI-REST-API-14.3] [Important Notes](mdc:#strapi-rest-api-14-3-important-notes)
+* [STRAPI-REST-API-15] [File Upload](mdc:#strapi-rest-api-15-file-upload)
+  + [STRAPI-REST-API-15.1] [Media Library API Endpoints](mdc:#strapi-rest-api-15-1-media-library-api-endpoints)
+  + [STRAPI-REST-API-15.2] [Basic File Upload](mdc:#strapi-rest-api-15-2-basic-file-upload)
+  + [STRAPI-REST-API-15.3] [Upload Files Linked to Entries](mdc:#strapi-rest-api-15-3-upload-files-linked-to-entries)
+  + [STRAPI-REST-API-15.4] [Update File Information](mdc:#strapi-rest-api-15-4-update-file-information)
+  + [STRAPI-REST-API-15.5] [Defining Media Fields in Content Types](mdc:#strapi-rest-api-15-5-defining-media-fields-in-content-types)
+  + [STRAPI-REST-API-15.6] [Important Notes](mdc:#strapi-rest-api-15-6-important-notes)
+* [STRAPI-REST-API-16] [Interactive Query Builder](mdc:#strapi-rest-api-16-interactive-query-builder)
+  + [STRAPI-REST-API-16.1] [Overview](mdc:#strapi-rest-api-16-1-overview)
+  + [STRAPI-REST-API-16.2] [Using the Query Builder](mdc:#strapi-rest-api-16-2-using-the-query-builder)
+  + [STRAPI-REST-API-16.3] [Benefits of Using the Query Builder](mdc:#strapi-rest-api-16-3-benefits-of-using-the-query-builder)
+  + [STRAPI-REST-API-16.4] [Using the `qs` Library Directly](mdc:#strapi-rest-api-16-4-using-the-qs-library-directly)
+  + [STRAPI-REST-API-16.5] [Important Notes](mdc:#strapi-rest-api-16-5-important-notes)
+
+## [STRAPI-REST-API-1] API Overview
+
+Strapi provides multiple APIs to access and manipulate content created in the Strapi CMS:
+
+1. **Content API**: Exposed through:
+   - REST API (available by default)
+   - GraphQL API (available through a plugin)
+
+2. **Lower-Level APIs**:
+   - Document Service API - For interacting with the database within the backend server or through plugins
+   - Query Engine API - Lower-level database access (not recommended for most use cases)
+
+These APIs provide different ways to access content depending on your needs and implementation context.
+
+## [STRAPI-REST-API-2] REST API
+
+### [STRAPI-REST-API-2.1] Purpose and Usage
+
+The REST API is the default method to access content from external applications. It provides:
+
+* Standard RESTful endpoints for all content types
+* Authentication mechanisms
+* CRUD operations for content
+* Filtering, pagination, and sorting capabilities
+
+### [STRAPI-REST-API-2.2] Key Features
+
+* Automatically generated endpoints for each content type
+* JSON response format
+* Support for complex filters
+* Field selection for optimized responses
+* Population of related fields
+* Standardized error responses
+
+## [STRAPI-REST-API-3] GraphQL API
+
+### [STRAPI-REST-API-3.1] Purpose and Usage
+
+The GraphQL API is available through a built-in plugin and provides:
+
+* Flexible querying capabilities
+* Precise field selection
+* Ability to retrieve related content in a single query
+* Strongly typed schema
+
+### [STRAPI-REST-API-3.2] Key Features
+
+* Query-based data retrieval
+* Mutations for data manipulation
+* Schema introspection
+* Reduced over-fetching and under-fetching of data
+
+## [STRAPI-REST-API-4] Strapi Client
+
+### [STRAPI-REST-API-4.1] Purpose and Usage
+
+The Strapi Client is a library that simplifies interaction with the REST API:
+
+* Provides a convenient JavaScript/TypeScript interface
+* Handles authentication and requests
+* Simplifies data operations
+
+### [STRAPI-REST-API-4.2] Key Features
+
+* Streamlined API calls
+* Type safety (with TypeScript)
+* Authentication management
+* Error handling
+
+## [STRAPI-REST-API-5] Document Service API
+
+### [STRAPI-REST-API-5.1] Purpose and Usage
+
+The Document Service API is the recommended internal API for:
+
+* Interacting with the database within the backend server
+* Plugin development
+* Custom server-side logic
+
+### [STRAPI-REST-API-5.2] Key Features
+
+* Handles complex content structures like components and dynamic zones
+* Supports Strapi's advanced features (Draft & Publish, Internationalization, etc.)
+* Provides structured document manipulation
+
+## [STRAPI-REST-API-6] API Hierarchy
+
+Strapi's APIs are organized hierarchically:
+
+1. **Front-end Access**:
+   - REST API - Default, RESTful endpoints
+   - GraphQL API - Query-based, flexible data retrieval
+   - Strapi Client - Library for simplified REST API access
+
+2. **Back-end Access**:
+   - Document Service API - Recommended for internal operations
+   - Query Engine API - Low-level database access (use with caution)
+
+The choice of API depends on the context:
+* External applications typically use REST or GraphQL
+* Internal server logic should use the Document Service API
+* The Query Engine should generally be avoided in favor of the Document Service API
+
+## [STRAPI-REST-API-7] Document Concept
+
+### [STRAPI-REST-API-7.1] Definition and Context
+
+A **document** in Strapi is an API-level concept that represents all the different variations of content for a given entry of a content-type:
+
+* A single type contains a unique document
+* A collection type can contain multiple documents
+* The document concept is invisible to end users in the admin panel, who work with "entries" instead
+
+### [STRAPI-REST-API-7.2] Content Variations
+
+A document functions as a container that can include multiple variations of content depending on enabled features:
+
+1. **When Internationalization (i18n) is enabled:**
+   - A document can have multiple "document locales" (e.g., English, French)
+   - Each locale can have its own content version
+
+2. **When Draft & Publish is enabled:**
+   - A document can have both "published" and "draft" versions
+   - These versions can exist independently
+
+3. **When both features are enabled:**
+   - The document contains all combinations (e.g., English draft, English published, French draft, French published)
+
+### [STRAPI-REST-API-7.3] API Interactions with Documents
+
+Different APIs interact with documents in specific ways:
+
+1. **Backend Access (from controllers, services, plugins):**
+   - Use the Document Service API
+   - Returns the draft version by default
+
+2. **Frontend Access (from client applications):**
+   - Use the REST API or GraphQL API
+   - Returns the published version by default
+
+This distinction is important when developing both backend and frontend components that interact with Strapi content.
+
+## [STRAPI-REST-API-8] REST API Endpoints
+
+### [STRAPI-REST-API-8.1] Endpoint Structure
+
+Strapi automatically generates API endpoints for each content-type. The endpoint structure depends on whether the content-type is a collection type or a single type.
+
+#### Collection Types
+
+| Method | URL                           | Description                        |
+| ------ | ----------------------------- | ---------------------------------- |
+| GET    | /api/:pluralApiId             | Get a list of documents            |
+| POST   | /api/:pluralApiId             | Create a document                  |
+| GET    | /api/:pluralApiId/:documentId | Get a specific document            |
+| PUT    | /api/:pluralApiId/:documentId | Update a document                  |
+| DELETE | /api/:pluralApiId/:documentId | Delete a document                  |
+
+#### Single Types
+
+| Method | URL                 | Description                       |
+| ------ | ------------------- | --------------------------------- |
+| GET    | /api/:singularApiId | Get the document                  |
+| PUT    | /api/:singularApiId | Update/Create the document        |
+| DELETE | /api/:singularApiId | Delete the document               |
+
+### [STRAPI-REST-API-8.2] API IDs in Endpoints
+
+In the endpoint URLs:
+* `:pluralApiId` refers to the "API ID (Plural)" field of the content-type
+* `:singularApiId` refers to the "API ID (Singular)" field of the content-type
+
+For example, for an "Article" content-type:
+* `:singularApiId` would be `article`
+* `:pluralApiId` would be `articles`
+
+### [STRAPI-REST-API-8.3] Response Format
+
+Responses from the REST API typically include:
+
+1. **`data`**: The response data, which could be:
+   - A single document object
+   - An array of document objects
+   - A custom response
+
+2. **`meta`**: Information about pagination, publication state, available locales, etc.
+
+3. **`error`** (optional): Information about any errors that occurred
+
+Document objects in the `data` field include:
+* `id`: Numeric ID
+* `documentId`: Unique string identifier used for querying
+* Content type attributes
+* `createdAt`,                   `updatedAt`, and other standard fields
+
+### [STRAPI-REST-API-8.4] CRUD Operations
+
+#### Get Documents (List)
+
+```
+GET /api/:pluralApiId
+```
+
+Response example:
+
+```json
+{
+  "data": [
+    {
+      "id": 2,
+      "documentId": "hgv1vny5cebq2l3czil1rpb3",
+      "Name": "BMK Paris Bamako",
+      "Description": null,
+      "createdAt": "2024-03-06T13:42:05.098Z",
+      "updatedAt": "2024-03-06T13:42:05.098Z",
+      "publishedAt": "2024-03-06T13:42:05.103Z",
+      "locale": "en"
+    },
+    {
+      "id": 4,
+      "documentId": "znrlzntu9ei5onjvwfaalu2v",
+      "Name": "Biscotte Restaurant",
+      "Description": [...],
+      "createdAt": "2024-03-06T13:43:30.172Z",
+      "updatedAt": "2024-03-06T13:43:30.172Z",
+      "publishedAt": "2024-03-06T13:43:30.175Z",
+      "locale": "en"
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 2
+    }
+  }
+}
+```
+
+#### Get Document (Single)
+
+```
+GET /api/:pluralApiId/:documentId
+```
+
+Response example:
+
+```json
+{
+  "data": {
+    "id": 6,
+    "documentId": "znrlzntu9ei5onjvwfaalu2v",
+    "Name": "Biscotte Restaurant",
+    "Description": [...],
+    "createdAt": "2024-02-27T10:19:04.953Z",
+    "updatedAt": "2024-03-05T15:52:05.591Z",
+    "publishedAt": "2024-03-05T15:52:05.600Z",
+    "locale": "en"
+  },
+  "meta": {}
+}
+```
+
+#### Create Document
+
+```
+POST /api/:pluralApiId
+```
+
+Request body:
+
+```json
+{ 
+  "data": {
+    "Name": "Restaurant D",
+    "Description": [
+      {
+        "type": "paragraph",
+        "children": [
+          {
+            "type": "text",
+            "text": "A very short description goes here."
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Response example:
+
+```json
+{
+  "data": {
+    "documentId": "bw64dnu97i56nq85106yt4du",
+    "Name": "Restaurant D",
+    "Description": [...],
+    "createdAt": "2024-03-05T16:44:47.689Z",
+    "updatedAt": "2024-03-05T16:44:47.689Z",
+    "publishedAt": "2024-03-05T16:44:47.687Z",
+    "locale": "en"
+  },
+  "meta": {}
+}
+```
+
+#### Update Document
+
+```
+PUT /api/:pluralApiId/:documentId
+```
+
+Request body:
+
+```json
+{ 
+  "data": {
+    "Name": "BMK Paris Bamako",
+    "Description": [
+      {
+        "type": "paragraph",
+        "children": [
+          {
+            "type": "text",
+            "text": "A very short description goes here."
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Response example:
+
+```json
+{
+  "data": {
+    "id": 9,
+    "documentId": "hgv1vny5cebq2l3czil1rpb3",
+    "Name": "BMK Paris Bamako",
+    "Description": [...],
+    "createdAt": "2024-03-06T13:42:05.098Z",
+    "updatedAt": "2024-03-06T14:16:56.883Z",
+    "publishedAt": "2024-03-06T14:16:56.895Z",
+    "locale": "en"
+  },
+  "meta": {}
+}
+```
+
+#### Delete Document
+
+```
+DELETE /api/:pluralApiId/:documentId
+```
+
+Returns a 204 HTTP status code on success with no response body.
+
+### [STRAPI-REST-API-8.5] Important Notes
+
+1. **Content API Access Control**:
+   - All content types are private by default
+   - Content must be made public or queries must be authenticated with proper permissions
+
+2. **Relations and Media**:
+   - By default, responses only include top-level fields
+   - Use the `populate` parameter to include relations, media fields, components, or dynamic zones
+
+3. **Strapi 5 vs. Strapi 4 Differences**:
+   - Response format has been flattened (attributes are directly in the `data` object)
+   - Documents are accessed by `documentId` instead of numeric ID
+   - A backward compatibility header is available during migration
+
+## [STRAPI-REST-API-9] REST API Filters
+
+### [STRAPI-REST-API-9.1] Filter Syntax
+
+The REST API allows filtering results using the `filters` parameter with the following syntax:
+
+```
+GET /api/:pluralApiId?filters[field][operator]=value
+```
+
+Additional features can provide more filtering options:
+* Internationalization (i18n) plugin enables filtering by locale
+* Draft & Publish feature enables filtering by publication status
+
+### [STRAPI-REST-API-9.2] Available Filter Operators
+
+| Operator      | Description                              |
+| ------------- | ---------------------------------------- |
+| $eq           | Equal                                    |
+| $eqi          | Equal (case-insensitive)                 |
+| $ne           | Not equal                                |
+| $nei          | Not equal (case-insensitive)             |
+| $lt           | Less than                                |
+| $lte          | Less than or equal to                    |
+| $gt           | Greater than                             |
+| $gte          | Greater than or equal to                 |
+| $in           | Included in an array                     |
+| $notIn        | Not included in an array                 |
+| $contains     | Contains                                 |
+| $notContains  | Does not contain                         |
+| $containsi    | Contains (case-insensitive)              |
+| $notContainsi | Does not contain (case-insensitive)      |
+| $null         | Is null                                  |
+| $notNull      | Is not null                              |
+| $between      | Is between                               |
+| $startsWith   | Starts with                              |
+| $startsWithi  | Starts with (case-insensitive)           |
+| $endsWith     | Ends with                                |
+| $endsWithi    | Ends with (case-insensitive)             |
+| $or           | Joins the filters in an "or" expression  |
+| $and          | Joins the filters in an "and" expression |
+| $not          | Joins the filters in an "not" expression |
+
+### [STRAPI-REST-API-9.3] Basic Filtering Examples
+
+#### Example 1: Exact Match
+
+To find users with username "John":
+
+```
+GET /api/users?filters[username][$eq]=John
+```
+
+Using the `qs` library to build the query:
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    filters: {
+        username: {
+            $eq: 'John',
+        },
+    },
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/users?${query}`);
+```
+
+#### Example 2: Using `$in` Operator
+
+To find multiple restaurants with specific IDs:
+
+```
+GET /api/restaurants?filters[id][$in][0]=6&filters[id][$in][1]=8
+```
+
+Using the `qs` library:
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    filters: {
+        id: {
+            $in: [3, 6, 8],
+        },
+    },
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/restaurants?${query}`);
+```
+
+### [STRAPI-REST-API-9.4] Complex Filtering
+
+Complex filtering combines multiple filters using operators like `$and` and `$or` to create advanced queries.
+
+Example: Find books with specific dates and author:
+
+```
+GET /api/books?filters[$or][0][date][$eq]=2020-01-01&filters[$or][1][date][$eq]=2020-01-02&filters[author][name][$eq]=Kai%20doe
+```
+
+Using the `qs` library:
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    filters: {
+        $or: [{
+                date: {
+                    $eq: '2020-01-01',
+                },
+            },
+            {
+                date: {
+                    $eq: '2020-01-02',
+                },
+            },
+        ],
+        author: {
+            name: {
+                $eq: 'Kai doe',
+            },
+        },
+    },
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/books?${query}`);
+```
+
+### [STRAPI-REST-API-9.5] Deep Filtering
+
+Deep filtering allows filtering on relation fields, enabling more specific queries.
+
+Example: Find restaurants owned by a chef who belongs to a 5-star restaurant:
+
+```
+GET /api/restaurants?filters[chef][restaurants][stars][$eq]=5
+```
+
+Using the `qs` library:
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    filters: {
+        chef: {
+            restaurants: {
+                stars: {
+                    $eq: 5,
+                },
+            },
+        },
+    },
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/restaurants?${query}`);
+```
+
+### [STRAPI-REST-API-9.6] Important Notes on Filtering
+
+1. **Performance Considerations**:
+   - Deep filtering can cause performance issues
+   - For slow deep filtering queries, consider creating a custom route with an optimized query
+
+2. **Filtering Limitations**:
+   - By default, filters can only be used from `find` endpoints
+   - Cannot filter polymorphic content structures (media fields, dynamic zones)
+
+3. **Relation Population**:
+   - Relations, media fields, components, and dynamic zones are not populated by default
+   - Use the `populate` parameter alongside filters to include related content
+
+4. **Query Builder**:
+   - Using the `qs` library is recommended for building complex queries
+   - Strapi also provides an interactive query builder tool
+
+## [STRAPI-REST-API-10] REST API Locale Parameter
+
+### [STRAPI-REST-API-10.1] Overview
+
+The Internationalization (i18n) plugin adds locale management capabilities to the REST API, allowing you to work with documents in specific locales.
+
+The `locale` parameter takes a locale code as a value (e.g., `en` , `fr` , `es` ) and determines which version of a document to retrieve, create, update, or delete.
+
+Key points:
+* If the `locale` parameter is not specified, the default locale is used (usually `en`)
+* A locale must be added in the admin panel before it can be used in the API
+* The `locale` parameter can be used in different ways depending on the request type
+
+### [STRAPI-REST-API-10.2] Locale Parameter Usage
+
+#### Collection Types
+
+| Operation | URL Format | Description |
+| --- | --- | --- |
+| Get all documents in a locale | `GET /api/:pluralApiId?locale=:localeCode` | Returns all documents in the specified locale |
+| Get a document in a locale | `GET /api/:pluralApiId/:documentId?locale=:localeCode` | Returns a specific document in the specified locale |
+| Create a document in default locale | `POST /api/:pluralApiId` | Creates a new document in the default locale |
+| Create a document in specific locale | `POST /api/:pluralApiId` with locale in body | Creates a new document in the specified locale |
+| Create/update a locale version | `PUT /api/:pluralApiId/:documentId?locale=:localeCode` | Creates/updates a locale version of an existing document |
+| Delete a locale version | `DELETE /api/:pluralApiId/:documentId?locale=:localeCode` | Deletes a specific locale version of a document |
+
+#### Single Types
+
+| Operation | URL Format | Description |
+| --- | --- | --- |
+| Get a document in a locale | `GET /api/:singularApiId?locale=:localeCode` | Returns the document in the specified locale |
+| Create/update a locale version | `PUT /api/:singularApiId?locale=:localeCode` | Creates/updates a locale version of the document |
+| Delete a locale version | `DELETE /api/:singularApiId?locale=:localeCode` | Deletes a specific locale version of the document |
+
+### [STRAPI-REST-API-10.3] Examples
+
+#### Get Documents in a Specific Locale
+
+```
+GET /api/restaurants?locale=fr
+```
+
+Response:
+
+```json
+{
+  "data": [
+    {
+      "id": 5,
+      "documentId": "h90lgohlzfpjf3bvan72mzll",
+      "Title": "Meilleures pizzas",
+      "Body": [...],
+      "createdAt": "2024-03-06T22:08:59.643Z",
+      "updatedAt": "2024-03-06T22:10:21.127Z",
+      "publishedAt": "2024-03-06T22:10:21.130Z",
+      "locale": "fr"
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 1
+    }
+  }
+}
+```
+
+#### Get a Single Document in a Specific Locale
+
+```
+GET /api/restaurants/lr5wju2og49bf820kj9kz8c3?locale=fr
+```
+
+Response:
+
+```json
+{
+  "data": {
+    "id": 22,
+    "documentId": "lr5wju2og49bf820kj9kz8c3",
+    "Name": "Biscotte Restaurant",
+    "Description": [...],
+    "locale": "fr"
+  },
+  "meta": {}
+}
+```
+
+#### Create a Document in a Specific Locale
+
+```
+POST /api/restaurants
+```
+
+Request body:
+
+```json
+{
+  "data": {
+    "Name": "She's Cake",
+    "locale": "fr"
+  }
+}
+```
+
+#### Create a New Locale Version for an Existing Document
+
+```
+PUT /api/restaurants/lr5wju2og49bf820kj9kz8c3?locale=fr
+```
+
+Request body:
+
+```json
+{
+  "data": {
+    "Name": "She's Cake in French"
+  }
+}
+```
+
+### [STRAPI-REST-API-10.4] Important Notes
+
+1. **Creating Localized Documents**:
+   - When creating a localization for existing documents, the request body can only accept localized fields
+   - The content type needs `createLocalization` permission enabled
+
+2. **Locale Restrictions**:
+   - It is not possible to change the locale of an existing localized entry
+   - When updating a localized entry, any `locale` attribute in the request body will be ignored
+
+3. **Permission Requirements**:
+   - The content type should have appropriate permissions configured for localization operations
+
+## [STRAPI-REST-API-11] REST API Status Parameter
+
+### [STRAPI-REST-API-11.1] Overview
+
+The REST API offers the ability to filter documents based on their publication status when the Draft & Publish feature is enabled.
+
+The `status` parameter allows you to specify whether to retrieve published or draft versions of documents:
+* `published`: Returns only the published version of documents (default)
+* `draft`: Returns only the draft version of documents
+
+Key points:
+* The Draft & Publish feature must be enabled to use this parameter
+* Draft documents have a `publishedAt` field with a value of `null`
+* If no status parameter is specified, published versions are returned by default
+
+### [STRAPI-REST-API-11.2] Status Parameter Usage
+
+```
+GET /api/:pluralApiId?status=draft
+```
+
+Using the `qs` library to build the query:
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    status: 'draft',
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/articles?${query}`);
+```
+
+### [STRAPI-REST-API-11.3] Example Response
+
+```json
+{
+  "data": [
+    {
+      "id": 5,
+      "documentId": "znrlzntu9ei5onjvwfaalu2v",
+      "Name": "Biscotte Restaurant",
+      "Description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "This is the draft version."
+            }
+          ]
+        }
+      ],
+      "createdAt": "2024-03-06T13:43:30.172Z",
+      "updatedAt": "2024-03-06T21:38:46.353Z",
+      "publishedAt": null,
+      "locale": "en"
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 4
+    }
+  }
+}
+```
+
+### [STRAPI-REST-API-11.4] Important Notes
+
+1. **Draft Identification**:
+   - Draft documents have `publishedAt: null` in their data structure
+   - Published documents have a timestamp in the `publishedAt` field
+
+2. **Parameter Usage**:
+   - The `status` parameter can be combined with other parameters like `filters` , `populate` , and `sort`
+
+   - This is useful for retrieving specific draft or published content with additional constraints
+
+## [STRAPI-REST-API-12] REST API Populate & Select
+
+### [STRAPI-REST-API-12.1] Field Selection
+
+The REST API allows selecting specific fields to return in the response using the `fields` parameter. This helps reduce the response size by returning only the needed data.
+
+By default, the following field types are returned without explicit selection:
+* String types: string, text, richtext, enumeration, email, password, and uid
+* Date types: date, time, datetime, and timestamp
+* Number types: integer, biginteger, float, and decimal
+* Generic types: boolean, array, and JSON
+
+#### Usage Examples
+
+| Use case               | Syntax                                   |
+| ---------------------- | ---------------------------------------- |
+| Select a single field  | `fields=name` |
+| Select multiple fields | `fields[0]=name&fields[1]=description` |
+
+Example request using the `qs` library:
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    fields: ['name', 'description'],
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/restaurants?${query}`);
+```
+
+Example response:
+
+```json
+{
+  "data": [
+    {
+      "id": 4,
+      "Name": "Pizzeria Arrivederci",
+      "Description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Specialized in pizza, we invite you to rediscover our classics, such as 4 Formaggi or Calzone, and our original creations such as Do Luigi or Nduja."
+            }
+          ]
+        }
+      ],
+      "documentId": "lr5wju2og49bf820kj9kz8c3"
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 4
+    }
+  }
+}
+```
+
+#### Important Notes on Field Selection
+
+1. **Limitations**:
+   - Field selection does not work on relational, media, component, or dynamic zone fields
+   - To include these field types, use the `populate` parameter
+
+2. **Response Optimization**:
+   - Use field selection to minimize API response size when only specific fields are needed
+   - This can significantly improve performance for large data sets
+
+### [STRAPI-REST-API-12.2] Population
+
+By default, the REST API does not populate any relations, media fields, components, or dynamic zones. The `populate` parameter enables the inclusion of these fields in the response.
+
+#### Population Levels
+
+| Use case                                               | Syntax                                                   |
+| ------------------------------------------------------ | -------------------------------------------------------- |
+| Populate all fields, 1 level deep                      | `populate=*` |
+| Populate a specific relation                           | `populate=relation-name` |
+| Populate multiple relations                            | `populate[0]=relation1&populate[1]=relation2` |
+| Populate nested relations                              | `populate[relation1][populate][0]=nested-relation` |
+| Populate a component                                   | `populate[0]=component-name` |
+| Populate a component with nested components            | `populate[0]=component&populate[1]=component.nested` |
+| Populate a dynamic zone                                | `populate[0]=dynamic-zone-name` |
+
+#### Permission Requirements
+
+* The `find` permission must be enabled for content-types being populated
+* If a role doesn't have access to a content-type, it will not be populated in the response
+
+#### Population Examples
+
+Example: Populate a media field with specific field selection
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    fields: ['title', 'slug'],
+    populate: {
+        headerImage: {
+            fields: ['name', 'url'],
+        },
+    },
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/articles?${query}`);
+```
+
+Response:
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "documentId": "h90lgohlzfpjf3bvan72mzll",
+      "title": "Test Article",
+      "slug": "test-article",
+      "headerImage": {
+        "id": 1,
+        "documentId": "cf07g1dbusqr8mzmlbqvlegx",
+        "name": "17520.jpg",
+        "url": "/uploads/17520_73c601c014.jpg"
+      }
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 1
+    }
+  }
+}
+```
+
+### [STRAPI-REST-API-12.3] Combining Population with Other Operators
+
+The `populate` parameter can be combined with other operators to create more complex queries.
+
+#### Combining Population with Filters
+
+Example: Populate only categories with name "Cars" and sort them alphabetically
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    populate: {
+        categories: {
+            sort: ['name:asc'],
+            filters: {
+                name: {
+                    $eq: 'Cars',
+                },
+            },
+        },
+    },
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/articles?${query}`);
+```
+
+Response:
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "documentId": "a1b2c3d4e5d6f7g8h9i0jkl",
+      "title": "Test Article",
+      "categories": {
+        "data": [
+          {
+            "id": 2,
+            "documentId": "jKd8djla9ndalk98hflj3",
+            "name": "Cars"
+          }
+        ]
+      }
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 1
+    }
+  }
+}
+```
+
+#### Important Notes on Combined Operations
+
+1. **Operator Compatibility**:
+   - Population can be combined with field selection, filters, and sorting
+   - Population cannot be combined with pagination when targeting the same relation
+
+2. **Query Building**:
+   - Using the `qs` library is recommended for building complex queries
+   - Strapi also provides an interactive query builder tool for easier query creation
+
+3. **Performance Considerations**:
+   - Complex population queries can impact API performance
+   - For optimal performance, only populate what is necessary
+   - Consider using multiple targeted API calls for complex data requirements
+
+## [STRAPI-REST-API-13] Managing Relations
+
+### [STRAPI-REST-API-13.1] Overview
+
+Strapi provides several methods to manage relations between content-types through the REST API. Relations can be connected, disconnected, or set completely through specific parameters in API requests:
+
+| Parameter | Description | Update Type |
+| --------- | ----------- | ----------- |
+| `connect` | Connects new entities to the relation | Partial |
+| `disconnect` | Disconnects entities from the relation | Partial |
+| `set` | Sets entities to a specific set, replacing all existing connections | Full |
+
+### [STRAPI-REST-API-13.2] Connect Parameter
+
+The `connect` parameter performs a partial update by adding new relations without removing existing ones.
+
+#### Syntax Options
+
+| Syntax Type | Example |
+| ----------- | ------- |
+| Shorthand | `connect: ['z0y2x4w6v8u1t3s5r7q9onm', 'j9k8l7m6n5o4p3q2r1s0tuv']` |
+| Longhand | `connect: [{ documentId: 'z0y2x4w6v8u1t3s5r7q9onm' }, { documentId: 'j9k8l7m6n5o4p3q2r1s0tuv' }]` |
+
+#### Example Request
+
+```
+PUT http://localhost:1337/api/restaurants/a1b2c3d4e5f6g7h8i9j0klm
+
+{
+  "data": {
+    "categories": {
+      "connect": ["z0y2x4w6v8u1t3s5r7q9onm", "j9k8l7m6n5o4p3q2r1s0tuv"]
+    }
+  }
+}
+```
+
+#### Edge Cases with Enabled Features
+
+When using relations with content-types that have different feature configurations:
+
+1. **When connecting to a content-type with Internationalization enabled**:
+   
+
+```json
+   {
+     "data": {
+       "categories": {
+         "connect": [
+           { "documentId": "z0y2x4w6v8u1t3s5r7q9onm", "locale": "en" },
+           { "documentId": "z0y2x4w6v8u1t3s5r7q9onm", "locale": "fr" }
+         ]
+       }
+     }
+   }
+   ```
+
+2. **When connecting to a content-type with Draft & Publish enabled**:
+   
+
+```json
+   {
+     "data": {
+       "categories": {
+         "connect": [
+           { "documentId": "z0y2x4w6v8u1t3s5r7q9onm", "status": "draft" },
+           { "documentId": "z0y2x4w6v8u1t3s5r7q9onm", "status": "published" }
+         ]
+       }
+     }
+   }
+   ```
+
+### [STRAPI-REST-API-13.3] Disconnect Parameter
+
+The `disconnect` parameter performs a partial update by removing specified relations without affecting others.
+
+#### Syntax Options
+
+| Syntax Type | Example |
+| ----------- | ------- |
+| Shorthand | `disconnect: ['z0y2x4w6v8u1t3s5r7q9onm', 'j9k8l7m6n5o4p3q2r1s0tuv']` |
+| Longhand | `disconnect: [{ documentId: 'z0y2x4w6v8u1t3s5r7q9onm' }, { documentId: 'j9k8l7m6n5o4p3q2r1s0tuv' }]` |
+
+#### Example Request
+
+```
+PUT http://localhost:1337/api/restaurants/a1b2c3d4e5f6g7h8i9j0klm
+
+{
+  "data": {
+    "categories": {
+      "disconnect": ["z0y2x4w6v8u1t3s5r7q9onm", "j9k8l7m6n5o4p3q2r1s0tuv"]
+    }
+  }
+}
+```
+
+### [STRAPI-REST-API-13.4] Set Parameter
+
+The `set` parameter performs a full update by replacing all existing relations with the specified ones.
+
+#### Syntax Options
+
+| Syntax Type | Example |
+| ----------- | ------- |
+| Shorthand | `set: ['z0y2x4w6v8u1t3s5r7q9onm', 'j9k8l7m6n5o4p3q2r1s0tuv']` |
+| Longhand | `set: [{ documentId: 'z0y2x4w6v8u1t3s5r7q9onm' }, { documentId: 'j9k8l7m6n5o4p3q2r1s0tuv' }]` |
+| Implicit | `categories: ['z0y2x4w6v8u1t3s5r7q9onm', 'j9k8l7m6n5o4p3q2r1s0tuv']` |
+
+#### Example Request
+
+```
+PUT http://localhost:1337/api/restaurants/a1b2c3d4e5f6g7h8i9j0klm
+
+{
+  "data": {
+    "categories": {
+      "set": ["z0y2x4w6v8u1t3s5r7q9onm", "j9k8l7m6n5o4p3q2r1s0tuv"]
+    }
+  }
+}
+```
+
+### [STRAPI-REST-API-13.5] Important Notes
+
+1. **Parameter Combinations**:
+   - `connect` and `disconnect` can be used together in the same request
+   - `set` should not be used with other parameters as it replaces all relations
+
+2. **Implicit Set**:
+   - Omitting the relation parameter name (e.g., using `categories: [...]` instead of `categories: { set: [...] }` ) is equivalent to using `set`
+
+3. **Internationalization**:
+   - When i18n is enabled, you can pass a `locale` parameter to manage relations for a specific locale
+
+## [STRAPI-REST-API-14] Sort & Pagination
+
+### [STRAPI-REST-API-14.1] Sorting
+
+The REST API allows sorting entries based on one or multiple fields. Sorting can be applied using the `sort` parameter in the query string.
+
+#### Syntax Options
+
+| Use Case | Syntax |
+| -------- | ------ |
+| Sort by one field | `sort=fieldName` |
+| Sort by multiple fields | `sort[0]=field1&sort[1]=field2` |
+| Ascending order (default) | `sort=fieldName:asc` or `sort=fieldName` |
+| Descending order | `sort=fieldName:desc` |
+
+#### Example: Sorting by Multiple Fields
+
+```
+GET /api/restaurants?sort[0]=Description&sort[1]=Name
+```
+
+Using the `qs` library:
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    sort: ['Description', 'Name'],
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/restaurants?${query}`);
+```
+
+Response:
+
+```json
+{
+  "data": [
+    {
+      "id": 9,
+      "documentId": "hgv1vny5cebq2l3czil1rpb3",
+      "Name": "BMK Paris Bamako",
+      "Description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "A very short description goes here."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "documentId": "flzc8qrarj19ee0luix8knxn",
+      "Name": "Restaurant D",
+      "Description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "A very short description goes here."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 2
+    }
+  }
+}
+```
+
+#### Example: Sorting with Specific Order
+
+To sort by multiple fields and specify the order for each field:
+
+```
+GET /api/restaurants?sort[0]=Description:asc&sort[1]=Name:desc
+```
+
+Using the `qs` library:
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    sort: ['Description:asc', 'Name:desc'],
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/restaurants?${query}`);
+```
+
+### [STRAPI-REST-API-14.2] Pagination
+
+The REST API supports two methods of pagination:
+1. Pagination by page (page number and page size)
+2. Pagination by offset (start position and limit)
+
+These methods cannot be mixed in the same query. You must use either page-based or offset-based pagination.
+
+#### Pagination by Page
+
+| Parameter | Type | Description | Default |
+| --------- | ---- | ----------- | ------- |
+| `pagination[page]` | Integer | Page number | 1 |
+| `pagination[pageSize]` | Integer | Number of entries per page | 25 |
+| `pagination[withCount]` | Boolean | Include total count in response | true |
+
+Example:
+
+```
+GET /api/articles?pagination[page]=1&pagination[pageSize]=10
+```
+
+Using the `qs` library:
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    pagination: {
+        page: 1,
+        pageSize: 10,
+    },
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/articles?${query}`);
+```
+
+Response:
+
+```json
+{
+  "data": [
+    // ... entries
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 10,
+      "pageCount": 5,
+      "total": 48
+    }
+  }
+}
+```
+
+#### Pagination by Offset
+
+| Parameter | Type | Description | Default |
+| --------- | ---- | ----------- | ------- |
+| `pagination[start]` | Integer | Starting position (zero-based) | 0 |
+| `pagination[limit]` | Integer | Number of entries to return | 25 |
+| `pagination[withCount]` | Boolean | Include total count in response | true |
+
+Example:
+
+```
+GET /api/articles?pagination[start]=0&pagination[limit]=10
+```
+
+Using the `qs` library:
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    pagination: {
+        start: 0,
+        limit: 10,
+    },
+}, {
+    encodeValuesOnly: true,
+});
+
+await request(`/api/articles?${query}`);
+```
+
+Response:
+
+```json
+{
+  "data": [
+    // ... entries
+  ],
+  "meta": {
+    "pagination": {
+      "start": 0,
+      "limit": 10,
+      "total": 42
+    }
+  }
+}
+```
+
+### [STRAPI-REST-API-14.3] Important Notes
+
+1. **Pagination Configuration**:
+   - The default and maximum values for `pagination[limit]` can be configured in the `./config/api.js` file with `api.rest.defaultLimit` and `api.rest.maxLimit` settings
+
+2. **Sorting and Pagination Together**:
+   - Sorting and pagination can be combined in the same query
+   - Pagination parameters should be used consistently (use either page-based or offset-based, not both)
+
+3. **Performance Considerations**:
+   - For large datasets, consider using pagination to limit the amount of data transferred
+   - Sorting on non-indexed fields may impact performance on large collections
+
+## [STRAPI-REST-API-15] File Upload
+
+### [STRAPI-REST-API-15.1] Media Library API Endpoints
+
+The Media Library in Strapi is powered by the `upload` package, which exposes the following REST API endpoints:
+
+| Method | Path                  | Description         |
+| ------ | --------------------- | ------------------- |
+| GET    | /api/upload/files     | Get a list of files |
+| GET    | /api/upload/files/:id | Get a specific file |
+| POST   | /api/upload           | Upload files        |
+| POST   | /api/upload?id=x      | Update fileInfo     |
+| DELETE | /api/upload/files/:id | Delete a file       |
+
+Important notes:
+* Files uploaded through the REST API are placed in the "API Uploads" folder
+* The GraphQL API does not support direct file uploads (use REST API instead)
+* Folders are an admin panel-only feature and not part of the REST API
+
+### [STRAPI-REST-API-15.2] Basic File Upload
+
+To upload one or more files to Strapi, use the `/api/upload` endpoint with a FormData object containing the files.
+
+#### Browser Example
+
+```javascript
+const form = document.querySelector('form');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    await fetch('/api/upload', {
+        method: 'post',
+        body: new FormData(e.target)
+    });
+});
+```
+
+HTML Form:
+
+```html
+<form>
+    <!-- Can be multiple files -->
+    <input type="file" name="files" />
+    <input type="submit" value="Submit" />
+</form>
+```
+
+#### Node.js Example
+
+```javascript
+import {
+    FormData
+} from 'formdata-node';
+import fetch, {
+    blobFrom
+} from 'node-fetch';
+
+const file = await blobFrom('./1.png', 'image/png');
+const form = new FormData();
+
+form.append('files', file, "1.png");
+
+const response = await fetch('http://localhost:1337/api/upload', {
+    method: 'post',
+    body: form,
+});
+```
+
+### [STRAPI-REST-API-15.3] Upload Files Linked to Entries
+
+To upload files that are linked to a specific entry, use the `/api/upload` endpoint with additional parameters.
+
+#### Required Parameters
+
+| Parameter | Description |
+| --------- | ----------- |
+| files     | The file(s) to upload (Buffer or Stream) |
+| refId     | ID of the entry to link the file(s) to |
+| ref       | Unique ID (uid) of the model (e.g., "api::restaurant.restaurant") |
+| field     | The field name to link the file(s) to |
+
+#### Optional Parameters
+
+| Parameter | Description |
+| --------- | ----------- |
+| path      | Upload folder path (only for AWS S3 provider) |
+| source    | Name of the plugin where the model is located |
+
+#### Example Form
+
+```html
+<form>
+    <input type="file" name="files" />
+    <input type="text" name="ref" value="api::restaurant.restaurant" />
+    <input type="text" name="refId" value="5c126648c7415f0c0ef1bccd" />
+    <input type="text" name="field" value="cover" />
+    <input type="submit" value="Submit" />
+</form>
+```
+
+JavaScript:
+
+```javascript
+const form = document.querySelector('form');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    await fetch('/api/upload', {
+        method: 'post',
+        body: new FormData(e.target)
+    });
+});
+```
+
+### [STRAPI-REST-API-15.4] Update File Information
+
+To update a file's metadata, use the `/api/upload` endpoint with an ID query parameter and the updated information.
+
+```javascript
+import {
+    FormData
+} from 'formdata-node';
+import fetch from 'node-fetch';
+
+const fileId = 50;
+const newFileData = {
+    alternativeText: 'My new alternative text for this image!',
+};
+
+const form = new FormData();
+form.append('fileInfo', JSON.stringify(newFileData));
+
+const response = await fetch(`http://localhost:1337/api/upload?id=${fileId}`, {
+    method: 'post',
+    body: form,
+});
+```
+
+### [STRAPI-REST-API-15.5] Defining Media Fields in Content Types
+
+To add file capabilities to a content type, define attributes with the type `media` in the schema.
+
+#### Single File Example
+
+```json
+{
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
+```
+
+#### Multiple Files Example
+
+```json
+{
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "covers": {
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
+```
+
+### [STRAPI-REST-API-15.6] Important Notes
+
+1. **FormData Requirement**:
+   - All upload requests must use FormData in the request body
+
+2. **Multiple vs. Single File Uploads**:
+   - For single file fields, set `"multiple": false` in the schema
+   - For multiple file fields, set `"multiple": true` in the schema
+
+3. **Security Considerations**:
+   - Ensure proper authorization checks for file uploads
+   - Configure file size limits and acceptable file types in your Strapi settings
+
+## [STRAPI-REST-API-16] Interactive Query Builder
+
+### [STRAPI-REST-API-16.1] Overview
+
+The Strapi REST API supports a wide range of parameters that can be combined to create powerful queries. However, this can result in complex query URLs that are difficult to construct manually. To address this, Strapi provides an Interactive Query Builder tool that helps generate query URLs automatically.
+
+The Interactive Query Builder leverages the `qs` library, which is used internally by Strapi to parse and stringify nested JavaScript objects into query strings.
+
+### [STRAPI-REST-API-16.2] Using the Query Builder
+
+The Interactive Query Builder is available on the [official Strapi documentation](mdc:https:/docs.strapi.io/cms/api/rest/interactive-query-builder) and allows you to:
+
+1. Specify an endpoint (e.g., `/api/books`)
+2. Define query parameters as a JavaScript object
+3. Automatically generate the corresponding query URL
+4. Copy the generated URL to clipboard
+
+Example query parameters object:
+
+```javascript
+{
+    sort: ['title:asc'],
+    filters: {
+        title: {
+            $eq: 'hello',
+        },
+    },
+    populate: {
+        author: {
+            fields: ['firstName', 'lastName']
+        }
+    },
+    fields: ['title'],
+    pagination: {
+        pageSize: 10,
+        page: 1,
+    },
+    status: 'published',
+    locale: ['en'],
+}
+```
+
+### [STRAPI-REST-API-16.3] Benefits of Using the Query Builder
+
+1. **Error Reduction**: Minimizes syntax errors in complex queries
+2. **Readability**: Makes complex queries more readable by using a structured JavaScript object
+3. **Consistency**: Ensures query parameters are formatted correctly for Strapi's parser
+4. **Efficiency**: Saves time when constructing complex queries with multiple parameters
+
+### [STRAPI-REST-API-16.4] Using the `qs` Library Directly
+
+For programmatic query building in your application, you can use the `qs` library directly:
+
+```javascript
+const qs = require('qs');
+const query = qs.stringify({
+    sort: ['title:asc'],
+    filters: {
+        title: {
+            $eq: 'hello',
+        },
+    },
+    populate: {
+        author: {
+            fields: ['firstName', 'lastName']
+        }
+    },
+    fields: ['title'],
+    pagination: {
+        pageSize: 10,
+        page: 1,
+    },
+}, {
+    encodeValuesOnly: true, // prettify URL
+});
+
+// Result: /api/books?sort[0]=title%3Aasc&filters[title][$eq]=hello&populate[author][fields][0]=firstName&populate[author][fields][1]=lastName&fields[0]=title&pagination[pageSize]=10&pagination[page]=1
+const response = await fetch(`/api/books?${query}`);
+```
+
+### [STRAPI-REST-API-16.5] Important Notes
+
+1. **API Prefix**: The default endpoint path is prefixed with `/api/` unless configured differently in your project
+
+2. **Limitations**:
+   - The query builder might not detect all syntax errors
+   - It's not aware of the specific parameters and values available in your Strapi project
+   - It does not provide autocomplete features
+
+3. **Best Practices**:
+   - Reference the REST API parameters documentation for correct usage
+   - Test generated queries against your API to ensure they return expected results
+   - For very complex queries, consider using multiple simpler queries instead

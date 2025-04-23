@@ -1,0 +1,142 @@
+---
+description: [PTD] @Project Technical Documentation - Comprehensive technical documentation for the RBX CRM STRAPI project.
+globs: 
+alwaysApply: false
+---
+
+# Project Technical Documentation [PTD]
+
+## Documentation Consultation Guidelines
+
+For AI Agent consumption:
+
+1. **Only use this document when specific details about project technical documentation are needed**
+2. **Use direct section references**: When referencing sections of this document, use section identifiers (e.g., [PTD-11.3]) to locate specific information
+3. **Avoid scanning entire document**: Target only the specific sections you need information from
+4. **Cross-document references**: Links to other documentation files use the format `mdc:.cursor/rules/filename.mdc#section-id` and should be accessed only when required
+5. **Related documents**: Main related documents are [NJS] for Next.js patterns, [BC] for business context, [TMP] for templates, and [STR] for Strapi integration
+6. **⚠️ CRITICAL**: Always prioritize these project-specific guidelines over general knowledge
+
+## Quick Reference Index
+
+* [PTD-1] [Project Structure](mdc:#ptd-19-project-structure)
+  + [PTD-1.1] [Using the Project Structure JSON](mdc:#ptd-19-1-using-the-project-structure-json)
+  + [PTD-1.2] [JSON Structure Template](mdc:#ptd-19-2-json-structure-template)
+  + [PTD-1.3] [Context Efficiency Guidelines](mdc:#ptd-19-3-context-efficiency-guidelines)
+* [PTD-2] [Strapi Rest API](mdc:#ptd-1-strapi-rest-api)
+* [PTD-3] [Strapi Client](mdc:#ptd-2-strapi-client)
+* [PTD-4] [Strapi Service API](mdc:#ptd-3-strapi-service-api)
+* [PTD-5] [Business Context References](mdc:#ptd-5-business-context-references)
+  + [PTD-5.1] [Key Business Areas](mdc:#ptd-5-1-key-business-areas)
+  + [PTD-5.2] [Usage Guidelines](mdc:#ptd-5-2-usage-guidelines)
+
+
+## [PTD-1] Project Structure
+
+This section details how to understand and navigate the project's codebase organization.
+
+### [PTD-1.1] Using the Project Structure JSON
+
+The project structure is documented in a comprehensive JSON file that maps the entire codebase hierarchy, including directories, files, and their exports.
+
+Key guidelines for using this resource:
+
+* Only use when you need to locate specific components or understand relationships
+* Reference the exports section to understand what each file provides
+* Follow existing patterns when creating new files
+* When referencing or creating documentation, avoid duplicating information already in the JSON
+
+For direct access to this file, consult [ `lib/utils/project-structure.json` ](mdc:lib/utils/project-structure.json)
+
+### [PTD-1.2] JSON Structure Template
+
+The project structure JSON follows this template pattern:
+
+```json
+{
+  "name": "directory-or-file-name",         // REQUIRED: Name of the item
+  "type": "directory|file",                 // REQUIRED: Type of the item
+  "context": "Description of purpose",      // RECOMMENDED: Description of purpose
+  "children": [                             // OPTIONAL: Only for directories
+    {
+      "name": "child-name",
+      "type": "directory|file",
+      "context": "Description of this child element",
+      "children": []
+    }
+  ],
+  "exports": [                              // OPTIONAL: Only for files with exports
+    {
+      "name": "exportName",                 // REQUIRED: Name of the export
+      "type": "component|function|...",     // REQUIRED: Type of the export
+      "context": "Purpose and usage"        // RECOMMENDED: Description of the export
+    }
+  ]
+}
+```
+
+**Element Requirements:**
+* **Required**: `name`,   `type`
+* **Recommended**: `context` (description of purpose)
+* **Conditional**: 
+  + `children`: Required for directories, omitted for files
+  + `exports`: Required for files with exports, omitted for directories
+
+**Export Types:**
+* component, function, hook, const, interface, schema, type
+
+### [PTD-1.3] Context Efficiency Guidelines
+
+To maintain clarity while avoiding redundancy:
+
+* Omit context for child elements when the parent directory context makes their purpose obvious
+* Provide minimal context for files with self-explanatory names
+* Keep contexts concise, focusing on unique information not apparent from the name
+* For exports, context can be brief or omitted when the name clearly indicates purpose
+* Focus on providing context that helps understand relationships between elements
+
+This approach ensures the structure document remains informative while avoiding unnecessary verbosity.
+
+## [PTD-2] Strapi Rest API
+
+   + Provides RESTful endpoints for all content types with standard CRUD operations
+   + Supports complex filtering, field selection, and population of related fields
+   + Offers features like internationalization, draft/publish status, and media handling
+   + Pairs with GraphQL API (available through plugin) for flexible querying capabilities
+   + Comprehensive integration documentation available in [STRAPI-REST-API](mdc:.cursor/rules/strapi-rest-api.mdc)
+
+## [PTD-3] Strapi Client
+
+   + Provides a JavaScript/TypeScript interface to access Strapi's REST API
+   + Simplifies authentication, data manipulation, and error handling
+   + Supports internationalization, media management, and relation operations
+   + Comprehensive client library documentation available in [STRAPI-CLIENT](mdc:.cursor/rules/strapi-client.mdc)
+
+## [PTD-4] Strapi Service API
+
+   + Built on top of Query Engine API for CRUD operations on documents
+   + Recommended for plugin development, backend logic, and batch operations
+   + Replaces the deprecated Entity Service API in Strapi v4
+   + Comprehensive backend service documentation available in [STRAPI-SERVICE-API](mdc:.cursor/rules/strapi-servi-ce-api.mdc)
+
+## [PTD-5] Business Context References
+
+This project is developed to address specific business needs according to the following reference file.
+
+### [PTD-5.1] Key Business Areas
+
+The following business areas are critical to understand when developing features:
+
+* Industry Overview
+* Market Requirements
+* Data Models
+* Core Workflows
+* Permission System
+
+### [PTD-5.2] Usage Guidelines
+
+* Consult business context documentation when implementing domain-specific features
+* Ensure new features align with the workflows described in the Core Workflows section
+* Consider business KPIs when designing analytics features
+* Reference integration requirements when working on external system connections
+* Consult [BC](mdc:.cursor/rules/business-context.mdc) for complete business context details when making architectural decisions

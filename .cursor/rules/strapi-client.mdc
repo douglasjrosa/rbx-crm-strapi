@@ -1,0 +1,730 @@
+---
+description: [STRAPI-CLIENT] @Strapi Client - Comprehensive documentation on Strapi Client and its functionalities, including installation, configuration, data access methods, and practical examples based on Strapi's official documentation
+globs: 
+alwaysApply: false
+---
+
+# Strapi Client - Technical Documentation [STRAPI-CLIENT]
+
+## Documentation Consultation Guidelines
+
+For AI Agent consumption:
+
+1. **Only use this document when specific implementation details of the Strapi Client are needed**
+2. **Use direct section references**: When referencing sections of this document, use section identifiers (e.g., [STRAPI-CLIENT-2.4]) to locate specific information
+3. **Avoid scanning the entire document**: Target only the specific sections you need
+
+## Quick Reference Index
+
+* [STRAPI-CLIENT-1] [Strapi Client Overview](mdc:#strapi-client-1-strapi-client-overview)
+  + [STRAPI-CLIENT-1.1] [Concept and Purpose](mdc:#strapi-client-1.1-concept-and-purpose)
+  + [STRAPI-CLIENT-1.2] [Advantages over Direct HTTP Requests](mdc:#strapi-client-1.2-advantages-over-direct-http-requests)
+* [STRAPI-CLIENT-2] [Installation and Configuration](mdc:#strapi-client-2-installation-and-configuration)
+  + [STRAPI-CLIENT-2.1] [Prerequisites](mdc:#strapi-client-2.1-prerequisites)
+  + [STRAPI-CLIENT-2.2] [Installation](mdc:#strapi-client-2.2-installation)
+  + [STRAPI-CLIENT-2.3] [Basic Configuration](mdc:#strapi-client-2.3-basic-configuration)
+  + [STRAPI-CLIENT-2.4] [Configuration Options](mdc:#strapi-client-2.4-configuration-options)
+* [STRAPI-CLIENT-3] [Main Methods](mdc:#strapi-client-3-main-methods)
+  + [STRAPI-CLIENT-3.1] [High-Level Methods](mdc:#strapi-client-3.1-high-level-methods)
+  + [STRAPI-CLIENT-3.2] [Generic Fetch Method](mdc:#strapi-client-3.2-generic-fetch-method)
+  + [STRAPI-CLIENT-3.3] [Common Parameters](mdc:#strapi-client-3.3-common-parameters)
+* [STRAPI-CLIENT-4] [Working with Collection Types](mdc:#strapi-client-4-working-with-collection-types)
+  + [STRAPI-CLIENT-4.1] [Introduction to Collection Types](mdc:#strapi-client-4.1-introduction-to-collection-types)
+  + [STRAPI-CLIENT-4.2] [Available Methods](mdc:#strapi-client-4.2-available-methods)
+  + [STRAPI-CLIENT-4.3] [Searching for Multiple Documents](mdc:#strapi-client-4.3-searching-for-multiple-documents)
+  + [STRAPI-CLIENT-4.4] [Searching for a Specific Document](mdc:#strapi-client-4.4-searching-for-a-specific-document)
+  + [STRAPI-CLIENT-4.5] [Creating Documents](mdc:#strapi-client-4.5-creating-documents)
+  + [STRAPI-CLIENT-4.6] [Updating Documents](mdc:#strapi-client-4.6-updating-documents)
+  + [STRAPI-CLIENT-4.7] [Deleting Documents](mdc:#strapi-client-4.7-deleting-documents)
+* [STRAPI-CLIENT-5] [Working with Single Types](mdc:#strapi-client-5-working-with-single-types)
+  + [STRAPI-CLIENT-5.1] [Introduction to Single Types](mdc:#strapi-client-5.1-introduction-to-single-types)
+  + [STRAPI-CLIENT-5.2] [Available Methods](mdc:#strapi-client-5.2-available-methods)
+  + [STRAPI-CLIENT-5.3] [Retrieving a Single Type](mdc:#strapi-client-5.3-retrieving-a-single-type)
+  + [STRAPI-CLIENT-5.4] [Updating a Single Type](mdc:#strapi-client-5.4-updating-a-single-type)
+  + [STRAPI-CLIENT-5.5] [Deleting a Single Type](mdc:#strapi-client-5.5-deleting-a-single-type)
+* [STRAPI-CLIENT-6] [Managing Files](mdc:#strapi-client-6-managing-files)
+  + [STRAPI-CLIENT-6.1] [Access to the Media Library](mdc:#strapi-client-6.1-access-to-the-media-library)
+  + [STRAPI-CLIENT-6.2] [Available Methods](mdc:#strapi-client-6.2-available-methods)
+  + [STRAPI-CLIENT-6.3] [Listing Files](mdc:#strapi-client-6.3-listing-files)
+  + [STRAPI-CLIENT-6.4] [Retrieving a Specific File](mdc:#strapi-client-6.4-retrieving-a-specific-file)
+  + [STRAPI-CLIENT-6.5] [Updating File Metadata](mdc:#strapi-client-6.5-updating-file-metadata)
+  + [STRAPI-CLIENT-6.6] [Deleting Files](mdc:#strapi-client-6.6-deleting-files)
+* [STRAPI-CLIENT-7] [Authentication and Security](mdc:#strapi-client-7-authentication-and-security)
+  + [STRAPI-CLIENT-7.1] [Authentication Configuration](mdc:#strapi-client-7.1-authentication-configuration)
+  + [STRAPI-CLIENT-7.2] [Permission Management](mdc:#strapi-client-7.2-permission-management)
+  + [STRAPI-CLIENT-7.3] [Security Best Practices](mdc:#strapi-client-7.3-security-best-practices)
+* [STRAPI-CLIENT-8] [Advanced Usage Examples](mdc:#strapi-client-8-advanced-usage-examples)
+  + [STRAPI-CLIENT-8.1] [Working with Internationalization (i18n)](mdc:#strapi-client-8.1-working-with-internationalization-i18n)
+  + [STRAPI-CLIENT-8.2] [Managing Draft and Published Versions](mdc:#strapi-client-8.2-managing-draft-and-published-versions)
+  + [STRAPI-CLIENT-8.3] [Managing Relations](mdc:#strapi-client-8.3-managing-relations)
+  + [STRAPI-CLIENT-8.4] [Combining Complex Parameters](mdc:#strapi-client-8.4-combining-complex-parameters)
+  + [STRAPI-CLIENT-8.5] [Error Handling](mdc:#strapi-client-8.5-error-handling)
+
+## [STRAPI-CLIENT-1] Strapi Client Overview
+
+### [STRAPI-CLIENT-1.1] Concept and Purpose
+
+The Strapi Client is an official library that simplifies interaction with the Strapi backend:
+
+* Provides a JavaScript/TypeScript interface to access the Strapi REST API
+* Facilitates CRUD operations (Create, Read, Update, Delete) on content managed by Strapi
+* Replaces the need to manually configure HTTP requests to the Strapi API
+* Offers support for advanced features like internationalization, draft/publish, and media uploads
+
+### [STRAPI-CLIENT-1.2] Advantages over Direct HTTP Requests
+
+* **Consistent interface**: Standardized methods for different content types
+* **Authentication management**: Simplified API token configuration
+* **Parameter handling**: Automatic construction of complex queries
+* **Error handling**: Standardized and more informative error response
+* **TypeScript support**: Typing for greater safety during development
+
+## [STRAPI-CLIENT-2] Installation and Configuration
+
+### [STRAPI-CLIENT-2.1] Prerequisites
+
+Before using the Strapi Client, make sure that:
+
+* A Strapi project has been created and is running
+* You know the Content API URL of your Strapi instance (e.g.: `http://localhost:1337/api`)
+* The development environment has access to a package manager (npm, yarn, or pnpm)
+
+### [STRAPI-CLIENT-2.2] Installation
+
+Install the Strapi Client as a dependency using your preferred package manager:
+
+```bash
+# Using npm
+npm install @strapi/client
+
+# Using yarn
+yarn add @strapi/client
+
+# Using pnpm
+pnpm add @strapi/client
+```
+
+### [STRAPI-CLIENT-2.3] Basic Configuration
+
+To start interacting with the Strapi backend, initialize the client with the base URL of the API:
+
+```javascript
+import {
+    strapi
+} from '@strapi/client';
+
+const client = strapi({
+    baseURL: 'http://localhost:1337/api'
+});
+```
+
+In browser environments, you can include the Strapi Client using a `<script>` tag:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@strapi/client"></script>
+
+<script>
+    const client = strapi.strapi({
+        baseURL: 'http://localhost:1337/api'
+    });
+</script>
+```
+
+### [STRAPI-CLIENT-2.4] Configuration Options
+
+The initialization method `strapi()` accepts a configuration object with the following options:
+
+| Parameter   | Type   | Description                                | Required |
+|-------------|--------|--------------------------------------------|----------|
+| baseURL     | string | Base URL for the Strapi API                | Yes      |
+| auth        | string | API token for authentication               | No       |
+| prefix      | string | Custom prefix for API routes               | No       |
+| axiosOptions| object | Options passed to the Axios instance       | No       |
+
+Example with additional options:
+
+```javascript
+const client = strapi({
+    baseURL: 'http://localhost:1337/api',
+    auth: 'your-api-token-here',
+    axiosOptions: {
+        timeout: 5000,
+        headers: {
+            'Custom-Header': 'value'
+        }
+    }
+});
+```
+
+## [STRAPI-CLIENT-3] Main Methods
+
+### [STRAPI-CLIENT-3.1] High-Level Methods
+
+The Strapi Client provides the following main methods and properties:
+
+| Method/Property | Description                                                         |
+|-----------------|---------------------------------------------------------------------|
+| fetch()         | Utility method for generic API requests (similar to native fetch)   |
+| collection()    | Manages collection type resources (e.g., blog posts, products)      |
+| single()        | Manages single type resources (e.g., homepage settings)             |
+| files           | Access to the Media Library to manage files                         |
+
+### [STRAPI-CLIENT-3.2] Generic Fetch Method
+
+The `fetch()` method allows making direct requests to the API, always relative to the base URL provided during client initialization:
+
+```javascript
+// Make a GET request to /api/articles
+const result = await client.fetch('articles', {
+    method: 'GET'
+});
+
+// Make a POST request to /api/articles
+const newArticle = await client.fetch('articles', {
+    method: 'POST',
+    data: {
+        title: 'New Article',
+        content: 'Article content...'
+    }
+});
+```
+
+### [STRAPI-CLIENT-3.3] Common Parameters
+
+These parameters are compatible with all search methods:
+
+| Parameter  | Description                                                         |
+|------------|---------------------------------------------------------------------|
+| fields     | Specifies which fields should be returned in the response           |
+| filters    | Filters results based on conditions                                 |
+| populate   | Includes relations, media fields, components, or dynamic zones      |
+| sort       | Sorts results by one or more fields                                 |
+| pagination | Controls pagination of results                                      |
+| locale     | Specifies the locale for internationalized content                  |
+| status     | Filters by status (published/draft) when Draft & Publish is enabled |
+
+## [STRAPI-CLIENT-4] Working with Collection Types
+
+### [STRAPI-CLIENT-4.1] Introduction to Collection Types
+
+Collection Types in Strapi are entities that can have multiple entries (e.g., a blog with multiple posts). The Strapi Client provides the `collection()` method to interact with these resources.
+
+Initialization example:
+
+```javascript
+const articles = client.collection('articles');
+```
+
+### [STRAPI-CLIENT-4.2] Available Methods
+
+| Method                               | Description                                                                     |
+|--------------------------------------|---------------------------------------------------------------------------------|
+| find(queryParams?)                   | Searches for multiple documents with optional filtering, sorting, or pagination |
+| findOne(documentID, queryParams?)    | Retrieves a single document by its ID                                           |
+| create(data, queryParams?)           | Creates a new document in the collection                                        |
+| update(documentID, data, queryParams?)| Updates an existing document                                                   |
+| delete(documentID, queryParams?)     | Deletes an existing document                                                    |
+
+### [STRAPI-CLIENT-4.3] Searching for Multiple Documents
+
+The `find()` method allows searching for a list of documents with various filter parameters:
+
+```javascript
+// Search for all articles in English sorted by title
+const allArticles = await articles.find({
+    locale: 'en',
+    sort: 'title',
+});
+
+// Search for articles with filters
+const filteredArticles = await articles.find({
+    filters: {
+        title: {
+            $contains: 'Tutorial',
+        },
+        category: {
+            name: {
+                $eq: 'Technology',
+            },
+        },
+    },
+    pagination: {
+        page: 1,
+        pageSize: 10,
+    },
+});
+```
+
+### [STRAPI-CLIENT-4.4] Searching for a Specific Document
+
+The `findOne()` method retrieves a single document by its ID:
+
+```javascript
+// Search for a single article
+const singleArticle = await articles.findOne('article-document-id');
+
+// Search for an article with its relations populated
+const articleWithRelations = await articles.findOne('article-document-id', {
+    populate: {
+        author: {
+            fields: ['name', 'email'],
+        },
+        categories: true,
+    },
+});
+```
+
+### [STRAPI-CLIENT-4.5] Creating Documents
+
+The `create()` method allows adding new documents to the collection:
+
+```javascript
+// Create a new article
+const newArticle = await articles.create({
+    title: 'New Article',
+    content: 'Article content...',
+    categories: {
+        connect: ['category-document-id-1', 'category-document-id-2'],
+    },
+});
+
+// Create an article in a specific locale
+const frenchArticle = await articles.create({
+    title: 'Nouvel Article',
+    content: 'Contenu de l\'article...',
+}, {
+    locale: 'fr',
+});
+```
+
+### [STRAPI-CLIENT-4.6] Updating Documents
+
+The `update()` method modifies existing documents:
+
+```javascript
+// Update an existing article
+const updatedArticle = await articles.update('article-document-id', {
+    title: 'Updated Title',
+    publishedAt: new Date().toISOString(),
+});
+
+// Update an article in a specific locale
+const updatedFrenchArticle = await articles.update(
+    'article-document-id', {
+        title: 'Titre Mis à Jour'
+    }, {
+        locale: 'fr'
+    }
+);
+```
+
+### [STRAPI-CLIENT-4.7] Deleting Documents
+
+The `delete()` method removes documents from the collection:
+
+```javascript
+// Delete an article
+await articles.delete('article-document-id');
+
+// Delete an article in a specific locale
+await articles.delete('article-document-id', {
+    locale: 'fr'
+});
+```
+
+## [STRAPI-CLIENT-5] Working with Single Types
+
+### [STRAPI-CLIENT-5.1] Introduction to Single Types
+
+Single Types in Strapi represent unique content entries that exist only once (e.g., homepage settings or global site settings). The Strapi Client provides the `single()` method to interact with these resources.
+
+Initialization example:
+
+```javascript
+const homepage = client.single('homepage');
+```
+
+### [STRAPI-CLIENT-5.2] Available Methods
+
+| Method                    | Description                    |
+|---------------------------|--------------------------------|
+| find(queryParams?)        | Retrieves the document         |
+| update(data, queryParams?)| Updates the document           |
+| delete(queryParams?)      | Removes the document           |
+
+### [STRAPI-CLIENT-5.3] Retrieving a Single Type
+
+The `find()` method retrieves the content of the single type:
+
+```javascript
+// Retrieve the default homepage content
+const defaultHomepage = await homepage.find();
+
+// Retrieve the Spanish version of the homepage
+const spanishHomepage = await homepage.find({
+    locale: 'es'
+});
+
+// Retrieve the homepage with specific fields and relations
+const homepageWithRelations = await homepage.find({
+    fields: ['title', 'subtitle'],
+    populate: {
+        seo: true,
+        featuredImage: {
+            fields: ['url', 'alternativeText'],
+        },
+    },
+});
+```
+
+### [STRAPI-CLIENT-5.4] Updating a Single Type
+
+The `update()` method modifies the content of the single type:
+
+```javascript
+// Update the homepage
+const updatedHomepage = await homepage.update({
+    title: 'Updated Homepage Title',
+    subtitle: 'New subtitle for the homepage',
+});
+
+// Update the Spanish version of the homepage
+const updatedSpanishHomepage = await homepage.update({
+    title: 'Título Actualizado de la Página Principal',
+    subtitle: 'Nuevo subtítulo para la página principal',
+}, {
+    locale: 'es'
+});
+
+// Update the draft version of the homepage
+const draftHomepage = await homepage.update({
+    title: 'New Homepage (Draft)'
+}, {
+    status: 'draft'
+});
+```
+
+### [STRAPI-CLIENT-5.5] Deleting a Single Type
+
+The `delete()` method removes the content of the single type:
+
+```javascript
+// Delete the homepage content
+await homepage.delete();
+
+// Delete the Spanish version of the homepage
+await homepage.delete({
+    locale: 'es'
+});
+```
+
+## [STRAPI-CLIENT-6] Managing Files
+
+### [STRAPI-CLIENT-6.1] Access to the Media Library
+
+The Strapi Client provides access to the Media Library through the `files` property. This allows retrieving and managing file metadata without directly interacting with the REST API.
+
+### [STRAPI-CLIENT-6.2] Available Methods
+
+| Method                   | Description                                                         |
+|--------------------------|---------------------------------------------------------------------|
+| find(params?)            | Retrieves a list of file metadata based on optional parameters      |
+| findOne(fileId)          | Retrieves the metadata of a single file by its ID                   |
+| update(fileId, fileInfo) | Updates metadata of an existing file                                |
+| delete(fileId)           | Deletes a file by its ID                                            |
+
+### [STRAPI-CLIENT-6.3] Listing Files
+
+To list all files or filter by certain conditions:
+
+```javascript
+// List all files
+const allFiles = await client.files.find();
+
+// Filter files by type and name
+const imageFiles = await client.files.find({
+    filters: {
+        mime: {
+            $contains: 'image'
+        }, // Only image files
+        name: {
+            $contains: 'avatar'
+        }, // Only files with 'avatar' in the name
+    },
+    sort: ['name:asc'], // Sort by name in ascending order
+});
+
+// List files with pagination
+const paginatedFiles = await client.files.find({
+    pagination: {
+        page: 1,
+        pageSize: 10,
+    },
+});
+```
+
+### [STRAPI-CLIENT-6.4] Retrieving a Specific File
+
+To fetch the metadata of a specific file:
+
+```javascript
+// Fetch file metadata by ID
+const file = await client.files.findOne(1);
+console.log(file.name); // File name
+console.log(file.url); // File URL
+console.log(file.mime); // File MIME type
+```
+
+### [STRAPI-CLIENT-6.5] Updating File Metadata
+
+To update the metadata of an existing file:
+
+```javascript
+// Update file metadata
+const updatedFile = await client.files.update(1, {
+    name: 'New file name',
+    alternativeText: 'Descriptive alternative text for accessibility',
+    caption: 'A caption for the file',
+});
+```
+
+### [STRAPI-CLIENT-6.6] Deleting Files
+
+To delete a file from the media library:
+
+```javascript
+// Delete a file by ID
+const deletedFile = await client.files.delete(1);
+console.log('File successfully deleted');
+console.log('Deleted file ID:', deletedFile.id);
+console.log('Deleted file name:', deletedFile.name);
+```
+
+## [STRAPI-CLIENT-7] Authentication and Security
+
+### [STRAPI-CLIENT-7.1] Authentication Configuration
+
+The Strapi Client supports different authentication strategies to access protected resources in the Strapi backend:
+
+#### Authentication with API Token
+
+```javascript
+const client = strapi({
+    baseURL: 'http://localhost:1337/api',
+    auth: 'your-api-token-here',
+});
+```
+
+This allows your requests to automatically include the necessary authentication credentials.
+
+### [STRAPI-CLIENT-7.2] Permission Management
+
+When using the Strapi Client, it's important to understand that permissions are controlled on the server side:
+
+* Permissions are defined in the Strapi administration panel
+* The Strapi Client only transmits authentication credentials
+* If a user doesn't have permission for a resource, the API will return a 403 Forbidden error
+
+### [STRAPI-CLIENT-7.3] Security Best Practices
+
+When implementing the Strapi Client in your applications:
+
+1. **Never expose API tokens in front-end code**:
+   * Use environment variables to store tokens
+   * In front-end applications, implement a proxy on your server
+
+2. **Implement input validation**:
+   * Validate data before sending it to the API
+   * Properly handle errors returned by Strapi
+
+3. **Use tokens with minimal permissions**:
+   * Create API tokens with only the necessary permissions
+   * Limit the scope of tokens to specific APIs when possible
+
+## [STRAPI-CLIENT-8] Advanced Usage Examples
+
+### [STRAPI-CLIENT-8.1] Working with Internationalization (i18n)
+
+When the internationalization plugin is enabled, you can access and manage different localized versions:
+
+```javascript
+// Search for articles in different locales
+const englishArticles = await articles.find({
+    locale: 'en'
+});
+const frenchArticles = await articles.find({
+    locale: 'fr'
+});
+
+// Search for all localizations of a specific article
+const allLocalesArticle = await articles.find({
+    filters: {
+        documentId: {
+            $eq: 'article-document-id'
+        },
+    },
+    locale: 'all',
+});
+
+// Create an article in a specific locale
+const spanishArticle = await articles.create({
+    title: 'Nuevo Artículo',
+    content: 'Contenido del artículo...',
+}, {
+    locale: 'es'
+});
+
+// Update an article in multiple locales
+await articles.update('article-document-id', {
+    title: 'Updated Title'
+}, {
+    locale: 'en'
+});
+await articles.update('article-document-id', {
+    title: 'Titre Mis à Jour'
+}, {
+    locale: 'fr'
+});
+```
+
+### [STRAPI-CLIENT-8.2] Managing Draft and Published Versions
+
+When the Draft & Publish feature is enabled, you can work with different publication states:
+
+```javascript
+// Search for only published articles (default behavior)
+const publishedArticles = await articles.find();
+
+// Search for only drafts
+const draftArticles = await articles.find({
+    status: 'draft'
+});
+
+// Create an article as draft
+const draftArticle = await articles.create({
+    title: 'Draft Article',
+    content: 'Draft content...',
+}, {
+    status: 'draft'
+});
+
+// Publish a draft (setting publishedAt to the current date)
+await articles.update('draft-article-id', {
+    publishedAt: new Date().toISOString(),
+});
+
+// Convert a published article to draft
+await articles.update('published-article-id', {
+    publishedAt: null,
+});
+```
+
+### [STRAPI-CLIENT-8.3] Managing Relations
+
+The Strapi Client allows managing relations between different content types:
+
+```javascript
+// Create an article with related categories
+const articleWithCategories = await articles.create({
+    title: 'Article with Categories',
+    content: 'Article content...',
+    categories: {
+        connect: ['category-id-1', 'category-id-2'],
+    },
+});
+
+// Update existing relations
+await articles.update('article-id', {
+    categories: {
+        connect: ['new-category-id'], // Add a new category
+        disconnect: ['old-category-id'], // Remove an existing category
+    },
+});
+
+// Replace all relations
+await articles.update('article-id', {
+    categories: {
+        set: ['category-id-1', 'category-id-3'], // Replaces all existing categories
+    },
+});
+```
+
+### [STRAPI-CLIENT-8.4] Combining Complex Parameters
+
+The Strapi Client allows combining multiple parameters for advanced queries:
+
+```javascript
+// Advanced search with multiple parameters
+const result = await articles.find({
+    filters: {
+        $or: [{
+                title: {
+                    $contains: 'Strapi'
+                }
+            },
+            {
+                content: {
+                    $contains: 'Strapi'
+                }
+            },
+        ],
+        publishedAt: {
+            $gte: '2023-01-01',
+        },
+        category: {
+            name: {
+                $eq: 'Technology'
+            },
+        },
+    },
+    sort: ['publishedAt:desc'],
+    populate: {
+        author: {
+            fields: ['name', 'avatar'],
+        },
+        categories: {
+            fields: ['name', 'slug'],
+        },
+    },
+    pagination: {
+        page: 1,
+        pageSize: 10,
+    },
+    locale: 'en',
+});
+```
+
+### [STRAPI-CLIENT-8.5] Error Handling
+
+Implement proper error handling when using the Strapi Client:
+
+```javascript
+try {
+    const articles = client.collection('articles');
+    const result = await articles.find();
+    // Process result
+} catch (error) {
+    if (error.response) {
+        // The server responded with an error status
+        console.error('Response error:', error.response.status, error.response.data);
+
+        // Specific handling based on error code
+        if (error.response.status === 401) {
+            // Authentication problem
+            console.error('Authentication failed. Check your API token.');
+        } else if (error.response.status === 403) {
+            // Permission problem
+            console.error('No permission to access this resource.');
+        } else if (error.response.status === 404) {
+            // Resource not found
+            console.error('The requested resource does not exist.');
+        }
+    } else if (error.request) {
+        // The request was made but no response was received
+        console.error('No response from server:', error.request);
+    } else {
+        // Error during request setup
+        console.error('Error configuring request:', error.message);
+    }
+}
+```

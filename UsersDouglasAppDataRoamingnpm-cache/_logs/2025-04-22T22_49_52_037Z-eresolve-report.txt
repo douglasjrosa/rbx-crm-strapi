@@ -1,0 +1,22 @@
+'Log files:
+C:\projetos\rbx-crm\rbx-crm-strapi\UsersDouglasAppDataRoamingnpm-cache\_logs\2025-04-22T22_49_52_037Z-debug-0.log
+
+# npm resolution error report
+
+While resolving: rbx-crm-strapi@4.25.22
+Found: @strapi/plugin-cloud@4.25.22
+node_modules/@strapi/plugin-cloud
+  @strapi/plugin-cloud@"5.12.5" from the root project
+
+Could not resolve dependency:
+@strapi/plugin-cloud@"5.12.5" from the root project
+
+Conflicting peer dependency: @strapi/strapi@5.12.5
+node_modules/@strapi/strapi
+  peer @strapi/strapi@"^5.0.0" from @strapi/plugin-cloud@5.12.5
+  node_modules/@strapi/plugin-cloud
+    @strapi/plugin-cloud@"5.12.5" from the root project
+
+Fix the upstream dependency conflict, or retry
+this command with --force or --legacy-peer-deps
+to accept an incorrect (and potentially broken) dependency resolution.

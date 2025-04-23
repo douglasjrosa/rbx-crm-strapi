@@ -65,11 +65,22 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "settings": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::user-setting.user-setting",
-      "mappedBy": "user"
+    "jwt": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "dark",
+        "light"
+      ],
+      "default": "light"
     }
   }
 }

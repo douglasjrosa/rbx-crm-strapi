@@ -1,7 +1,7 @@
 {
 	"name": "rbx-crm-strapi",
 	"private": true,
-	"version": "4.25.2",
+	"version": "5.12.5",
 	"description": "A Strapi application",
 	"scripts": {
 		"dev": "strapi develop",
@@ -12,16 +12,18 @@
 		"deploy": "strapi deploy"
 	},
 	"dependencies": {
-		"@strapi/plugin-cloud": "4.25.2",
-		"@strapi/plugin-documentation": "^4.25.2",
-		"@strapi/plugin-i18n": "4.25.2",
-		"@strapi/plugin-users-permissions": "4.25.2",
-		"@strapi/strapi": "4.25.2",
+		"@reduxjs/toolkit": "1.9.7",
+		"@strapi/plugin-cloud": "5.12.5",
+		"@strapi/plugin-documentation": "5.12.5",
+		"@strapi/plugin-users-permissions": "5.12.5",
+		"@strapi/strapi": "5.12.5",
+		"better-sqlite3": "^11.9.1",
 		"pg": "8.8.0",
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
-		"react-router-dom": "5.3.4",
-		"styled-components": "5.3.3"
+		"react-redux": "8.1.3",
+		"react-router-dom": "^6.0.0",
+		"styled-components": "^6.0.0"
 	},
 	"author": {
 		"name": "A Strapi developer"
@@ -33,5 +35,9 @@
 		"node": ">=18.0.0 <=20.x.x",
 		"npm": ">=6.0.0"
 	},
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {
+		"@types/estree": "^1.0.7",
+		"@types/node": "^22.14.1"
+	}
 }

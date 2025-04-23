@@ -29,11 +29,6 @@
       "relation": "manyToOne",
       "target": "api::contact.contact",
       "inversedBy": "interactions"
-    },
-    "seller": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::user-setting.user-setting"
     }
   }
 }
