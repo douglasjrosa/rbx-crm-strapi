@@ -1,5 +1,5 @@
 ---
-description: Detailed business context of the current project. This content must to be considered whenever some architectural decision has to be made.
+description: [BC] @Business Context – Detailed business context of the current project. This content must to be considered whenever some architectural decision has to be made.
 globs: 
 alwaysApply: false
 ---
