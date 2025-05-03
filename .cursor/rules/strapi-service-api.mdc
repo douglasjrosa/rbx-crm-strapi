@@ -3,7 +3,6 @@ description: [STRAPI-SERVICE-API] @Strapi Document Service API - Comprehensive d
 globs: 
 alwaysApply: false
 ---
-
 # Strapi Document Service API - Technical Documentation [STRAPI-SERVICE-API]
 
 ## Documentation Consultation Guidelines

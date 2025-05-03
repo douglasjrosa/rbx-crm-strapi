@@ -1,0 +1,120 @@
+{
+	"kind": "collectionType",
+	"collectionName": "products",
+	"info": {
+		"singularName": "product",
+		"pluralName": "products",
+		"displayName": "Product",
+		"description": "Products available for sale"
+	},
+	"options": {
+		"draftAndPublish": true
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"description": {
+			"type": "string",
+			"required": true
+		},
+		"contentName": {
+			"type": "string"
+		},
+		"customerCode": {
+			"type": "string"
+		},
+		"internalCode": {
+			"type": "string",
+			"unique": true
+		},
+		"externalLength": {
+			"type": "decimal"
+		},
+		"externalWidth": {
+			"type": "decimal"
+		},
+		"externalHeight": {
+			"type": "decimal"
+		},
+		"internalLength": {
+			"type": "decimal"
+		},
+		"internalWidth": {
+			"type": "decimal"
+		},
+		"internalHeight": {
+			"type": "decimal"
+		},
+		"dimensionsUnit": {
+			"type": "enumeration",
+			"enum": [
+				"mm",
+				"cm",
+				"m"
+			],
+			"default": "cm"
+		},
+		"salesUnit": {
+			"type": "enumeration",
+			"enum": [
+				"unit",
+				"kg",
+				"m",
+				"m2",
+				"m3",
+				"L"
+			],
+			"default": "unit"
+		},
+		"itemType": {
+			"type": "enumeration",
+			"enum": [
+				"finished",
+				"rawMaterial",
+				"accessory",
+				"service"
+			],
+			"default": "finished"
+		},
+		"materials": {
+			"type": "json"
+		},
+		"weight": {
+			"type": "decimal"
+		},
+		"rawMaterialCost": {
+			"type": "decimal"
+		},
+		"comissionTable": {
+			"type": "json"
+		},
+		"currentComissionMargin": {
+			"type": "decimal"
+		},
+		"currentComission": {
+			"type": "decimal"
+		},
+		"fixedCostMargin": {
+			"type": "decimal"
+		},
+		"averageTaxRate": {
+			"type": "decimal"
+		},
+		"price": {
+			"type": "decimal",
+			"required": true
+		},
+		"isPriceOutdated": {
+			"type": "boolean",
+			"default": false
+		},
+		"isActive": {
+			"type": "boolean",
+			"default": true
+		},
+		"company": {
+			"type": "relation",
+			"relation": "oneToOne",
+			"target": "api::company.company"
+		}
+	}
+}

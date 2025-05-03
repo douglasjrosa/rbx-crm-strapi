@@ -72,6 +72,12 @@
     },
     "migrationId": {
       "type": "integer"
+    },
+    "orderTotalRawMaterialCost": {
+      "type": "decimal"
+    },
+    "orderTotalContributionMargin": {
+      "type": "decimal"
     }
   }
 }

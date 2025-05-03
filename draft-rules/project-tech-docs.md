@@ -1,8 +1,3 @@
----
-description: [PTD] @Project Technical Documentation - Comprehensive technical documentation for the RBX CRM STRAPI project.
-globs: 
-alwaysApply: false
----
 # Project Technical Documentation [PTD]
 
 ## Documentation Consultation Guidelines

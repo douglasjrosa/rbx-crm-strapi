@@ -1,0 +1,146 @@
+---
+description: [FRAME] @FRAME Analysis – Conceptual Documentation - Comprehensive technical documentation for the FRAME Analysis method and frameCode usage.
+globs: 
+alwaysApply: false
+---
+# FRAME Analysis – Conceptual Documentation [FRAME]
+
+## Documentation Consultation Guidelines
+
+For AI Agent consumption:
+
+1. **Only use this document when specific details about FRAME analysis are needed**
+2. **Use direct section references**: When referencing sections of this document, use section identifiers (e.g., [FRAME-2.1]) to locate specific information
+3. **Avoid scanning entire document**: Target only the specific sections you need information from
+4. **Cross-document references**: Links to other documentation files use the format `mdc:.cursor/rules/filename.mdc#section-id` and should be accessed only when required
+5. **⚠️ CRITICAL**: Always prioritize these project-specific guidelines over general knowledge
+
+## Quick Reference Index
+
+* [FRAME-1] [Overview](mdc:#frame-1-overview)
+* [FRAME-2] [FRAME Dimensions Explained](mdc:#frame-2-frame-dimensions-explained)
+  + [FRAME-2.1] [Fidelity](mdc:#frame-2-1-fidelity-fidelityscore)
+  + [FRAME-2.2] [Representativity](mdc:#frame-2-2-representativity-representativityscore)
+  + [FRAME-2.3] [Activity](mdc:#frame-2-3-activity-activityscore)
+  + [FRAME-2.4] [Margin](mdc:#frame-2-4-margin-marginscore)
+  + [FRAME-2.5] [Expansion](mdc:#frame-2-5-expansion-expansionscore)
+* [FRAME-3] [frameCode – What It Represents](mdc:#frame-3-framecode-what-it-represents)
+* [FRAME-4] [FRAME and the SDR–Closer Transition Strategy](mdc:#frame-4-frame-and-the-sdr-closer-transition-strategy)
+  + [FRAME-4.1] [FRAME-based Transition Guidelines](mdc:#frame-4-1-frame-based-transition-guidelines)
+  + [FRAME-4.2] [Commission Logic Example](mdc:#frame-4-2-commission-logic-example-to-be-developed-later)
+* [FRAME-5] [Use Case for AI Agent](mdc:#frame-5-use-case-for-ai-agent)
+
+## [FRAME-1] Overview
+
+The **FRAME** analysis is a strategic model used to evaluate and classify B2B clients based on five key dimensions critical to relationship management and commercial decision-making. It enables intelligent segmentation and supports sales operations—especially in complex, consultative sales processes—by guiding the timing of client handoffs between SDRs and Closers.
+
+The acronym **FRAME** stands for:
+
+* **F**idelity
+* **R**epresentativity
+* **A**ctivity
+* **M**argin
+* **E**xpansion
+
+Each component of FRAME is rated on a scale from **0 to 5**, and together they form a **5-digit code** called the `frameCode` , used to summarize the client's profile and strategic positioning.
+
+---
+
+## [FRAME-2] FRAME Dimensions Explained
+
+### [FRAME-2.1] Fidelity ( `fidelityScore` )
+
+Represents **client loyalty**, measured by **purchase frequency** and **purchase regularity** over a defined time period.
+
+* High score: Recurring, predictable client with minimal churn risk.
+* Low score: Sporadic or irregular buyer.
+
+### [FRAME-2.2] Representativity ( `representativityScore` )
+
+Measures the **client's contribution to the company's revenue** relative to others, i.e., how **strategically important** or **representative** this client is in the portfolio.
+
+* High score: Major contributor to total revenue.
+* Low score: Small or marginal contributor.
+
+### [FRAME-2.3] Activity ( `activityScore` )
+
+Captures the **intensity of interactions** between the company and the client during the period. It includes contact attempts, follow-ups, meetings, email exchanges, and other engagement signals.
+
+* High score: Client is highly engaged, responding, interacting.
+* Low score: Few or no interactions.
+
+This metric is vital for understanding whether the client is still warm and for determining the **timing of handoff between SDR and Closer**.
+
+### [FRAME-2.4] Margin ( `marginScore` )
+
+Reflects the **profitability** of the client, based on their average contribution margin per purchase.
+
+* High score: Purchases made with high margins.
+* Low score: Low-margin client, possibly due to discounts or cost-heavy operations.
+
+### [FRAME-2.5] Expansion ( `expansionScore` )
+
+Assesses the **growth potential** of the client in terms of cross-selling, up-selling, or increased order volume.
+
+* High score: Strong indications of growth or scalability.
+* Low score: Flat or declining purchasing behavior.
+
+---
+
+## [FRAME-3] frameCode – What It Represents
+
+The `frameCode` is a **5-character alphanumeric string**, where each character represents the score (0–5) of one dimension in the FRAME model, **in the following order**:
+
+### Example:
+
+ `35241`
+
+* Fidelity: 3  
+* Representativity: 5  
+* Activity: 2  
+* Margin: 4  
+* Expansion: 1
+
+This code gives a compact, interpretable snapshot of the client profile and can be used by AI agents to:
+
+* Evaluate client maturity
+* Recommend handoff timing between SDR and Closer
+* Suggest communication strategy
+* Adapt commission structure accordingly
+
+---
+
+## [FRAME-4] FRAME and the SDR–Closer Transition Strategy
+
+In a complex sales process:
+
+* The **SDR** is responsible for early-stage engagement, trust building, and qualification.
+* The **Closer** takes over as the relationship matures, focusing on proposal, negotiation, and retention.
+
+### [FRAME-4.1] FRAME-based Transition Guidelines
+
+* **Activity (A)** and **Fidelity (F)** are the most sensitive metrics for handoff timing.
+* When **Activity ≥ 3** and **Fidelity ≥ 3**, the Closer can start engaging.
+* When **Activity ≥ 4** and **Fidelity ≥ 4**, the SDR can begin withdrawing.
+* **Expansion (E)** informs who should lead the account long-term (e.g., potential upsells may justify keeping Closer in post-sale role).
+
+### [FRAME-4.2] Commission Logic Example (to be developed later):
+
+* During overlap, split commissions based on interaction volume or FRAME scores.
+* After handoff, Closer owns 100% of sales commissions unless SDR is still interacting significantly.
+
+---
+
+## [FRAME-5] Use Case for AI Agent
+
+The FRAME model and its `frameCode` serve as inputs for AI to:
+
+* **Interpret client health and lifecycle stage**
+* **Make role-transition suggestions between SDR and Closer**
+* **Determine engagement strategies**
+* **Prioritize accounts for outreach, follow-up, or review**
+* **Support commission allocation decisions**
+
+Further documentation will include **calculation logic** and **behavioral rules** for automation and training purposes.
+
+---

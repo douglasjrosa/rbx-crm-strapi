@@ -369,6 +369,146 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAppSettingAppSetting extends Struct.SingleTypeSchema {
+  collectionName: 'app_settings';
+  info: {
+    displayName: 'AppSetting';
+    pluralName: 'app-settings';
+    singularName: 'app-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    assemblyCostMargin: Schema.Attribute.Decimal;
+    averageTaxRateMargin: Schema.Attribute.Decimal;
+    changeLogs: Schema.Attribute.Component<
+      'app-setting-components.change-logs',
+      true
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fixedCostMargin: Schema.Attribute.Decimal;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::app-setting.app-setting'
+    > &
+      Schema.Attribute.Private;
+    pricingMargins: Schema.Attribute.Component<
+      'app-setting-components.pricing-margins',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    treatmentCostMargin: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBiBi extends Struct.CollectionTypeSchema {
+  collectionName: 'bis';
+  info: {
+    description: 'Business Intelligence metrics aggregated by period';
+    displayName: 'BI';
+    pluralName: 'bis';
+    singularName: 'bi';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    averageClientQualitativeRating: Schema.Attribute.Decimal;
+    averageOrderValue: Schema.Attribute.Decimal;
+    bestSellingProducts: Schema.Attribute.JSON;
+    businessGrowthRate: Schema.Attribute.Decimal;
+    contributionMarginRate: Schema.Attribute.Decimal;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    frameDistribution: Schema.Attribute.JSON;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::bi.bi'> &
+      Schema.Attribute.Private;
+    lostClientCount: Schema.Attribute.Integer;
+    newClientCount: Schema.Attribute.Integer;
+    periodEndDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    periodStartDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    periodType: Schema.Attribute.Enumeration<
+      ['daily', 'weekly', 'monthly', 'quarterly', 'yearly']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'monthly'>;
+    publishedAt: Schema.Attribute.DateTime;
+    salesByClientSegment: Schema.Attribute.JSON;
+    salesByRegion: Schema.Attribute.JSON;
+    slowestMovingProducts: Schema.Attribute.JSON;
+    topClientCount: Schema.Attribute.Integer;
+    topClientSalesPercentage: Schema.Attribute.Decimal;
+    totalContributionMargin: Schema.Attribute.Decimal;
+    totalOrderCount: Schema.Attribute.Integer;
+    totalRawMaterialUsed: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    totalSales: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiClientAnalyticClientAnalytic
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'client_analytics';
+  info: {
+    description: 'Client analytics and metrics for business analysis';
+    displayName: 'ClientAnalytic';
+    pluralName: 'client-analytics';
+    singularName: 'client-analytic';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    analysisEndDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    analysisStartDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    company: Schema.Attribute.Relation<'oneToOne', 'api::company.company'> &
+      Schema.Attribute.Required;
+    contributionMarginRate: Schema.Attribute.Decimal;
+    contributionMarginShare: Schema.Attribute.Decimal;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fidelityRating: Schema.Attribute.Decimal;
+    frameCode: Schema.Attribute.Integer;
+    frequencyRating: Schema.Attribute.Decimal;
+    idealReturnDate: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::client-analytic.client-analytic'
+    > &
+      Schema.Attribute.Private;
+    longestOrderInterval: Schema.Attribute.Integer;
+    profitabilityRating: Schema.Attribute.Decimal;
+    publishedAt: Schema.Attribute.DateTime;
+    qualitativeRating: Schema.Attribute.Decimal;
+    rawMaterialsUsageShare: Schema.Attribute.Decimal;
+    recency: Schema.Attribute.Integer;
+    recurrence: Schema.Attribute.Integer;
+    relativeQualitativeRating: Schema.Attribute.Decimal;
+    representativityRating: Schema.Attribute.Decimal;
+    salesShare: Schema.Attribute.Decimal;
+    shortestOrderInterval: Schema.Attribute.Integer;
+    totalContributionMargin: Schema.Attribute.Decimal;
+    totalRawMaterialsUsed: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    totalSales: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
   collectionName: 'companies';
   info: {
@@ -380,195 +520,53 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: false;
   };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
   attributes: {
-    address: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    addressComplement: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    addressNumber: Schema.Attribute.Integer &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    city: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    cnae: Schema.Attribute.BigInteger &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    address: Schema.Attribute.String;
+    addressComplement: Schema.Attribute.String;
+    addressNumber: Schema.Attribute.Integer;
+    city: Schema.Attribute.String;
+    cnae: Schema.Attribute.BigInteger;
     cnpj: Schema.Attribute.BigInteger &
       Schema.Attribute.Required &
-      Schema.Attribute.Unique &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    companySize: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    corporateReason: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    country: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    countryCode: Schema.Attribute.Integer &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+      Schema.Attribute.Unique;
+    companySize: Schema.Attribute.String;
+    corporateReason: Schema.Attribute.String;
+    country: Schema.Attribute.String;
+    countryCode: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    creditLimit: Schema.Attribute.Decimal &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    creditLimit: Schema.Attribute.Decimal;
     displayName: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.Unique &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    email: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    expiresAt: Schema.Attribute.Date &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    icmsTaxpayer: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    ie: Schema.Attribute.BigInteger &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    isActive: Schema.Attribute.Boolean &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Schema.Attribute.DefaultTo<true>;
-    locale: Schema.Attribute.String;
+      Schema.Attribute.Unique;
+    email: Schema.Attribute.String;
+    icmsTaxpayer: Schema.Attribute.String;
+    ie: Schema.Attribute.BigInteger;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::company.company'
-    >;
-    logoUrl: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    maximumPaymentTerm: Schema.Attribute.Integer &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    neighborhood: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    nfeEmail: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    phone: Schema.Attribute.BigInteger &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    postalCode: Schema.Attribute.BigInteger &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    > &
+      Schema.Attribute.Private;
+    logoUrl: Schema.Attribute.String;
+    maximumPaymentTerm: Schema.Attribute.Integer;
+    neighborhood: Schema.Attribute.String;
+    nfeEmail: Schema.Attribute.String;
+    phone: Schema.Attribute.BigInteger;
+    postalCode: Schema.Attribute.BigInteger;
     publishedAt: Schema.Attribute.DateTime;
-    seasonality: Schema.Attribute.Integer &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     seller: Schema.Attribute.Relation<
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    simplesNacional: Schema.Attribute.Boolean &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    state: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    simplesNacional: Schema.Attribute.Boolean;
+    state: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    website: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    website: Schema.Attribute.String;
   };
 }
 
@@ -641,6 +639,7 @@ export interface ApiDealDeal extends Struct.CollectionTypeSchema {
     negotiationAt: Schema.Attribute.DateTime;
     order: Schema.Attribute.Relation<'oneToOne', 'api::order.order'>;
     publishedAt: Schema.Attribute.DateTime;
+    rating: Schema.Attribute.Integer;
     reasonForLoss: Schema.Attribute.String;
     seller: Schema.Attribute.Relation<
       'oneToOne',
@@ -722,6 +721,7 @@ export interface ApiIssuerIssuer extends Struct.CollectionTypeSchema {
       'api::payment-method.payment-method'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    taxRate: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -760,6 +760,8 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     observations: Schema.Attribute.Text;
     orderDiscount: Schema.Attribute.Decimal;
     orderSubtotalValue: Schema.Attribute.Decimal;
+    orderTotalContributionMargin: Schema.Attribute.Decimal;
+    orderTotalRawMaterialCost: Schema.Attribute.Decimal;
     orderTotalValue: Schema.Attribute.Decimal;
     paymentMethod: Schema.Attribute.Relation<
       'oneToOne',
@@ -803,6 +805,67 @@ export interface ApiPaymentMethodPaymentMethod
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProductProduct extends Struct.CollectionTypeSchema {
+  collectionName: 'products';
+  info: {
+    description: 'Products available for sale';
+    displayName: 'Product';
+    pluralName: 'products';
+    singularName: 'product';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    averageTaxRate: Schema.Attribute.Decimal;
+    comissionTable: Schema.Attribute.JSON;
+    company: Schema.Attribute.Relation<'oneToOne', 'api::company.company'>;
+    contentName: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    currentComission: Schema.Attribute.Decimal;
+    currentComissionMargin: Schema.Attribute.Decimal;
+    customerCode: Schema.Attribute.String;
+    description: Schema.Attribute.String & Schema.Attribute.Required;
+    dimensionsUnit: Schema.Attribute.Enumeration<['mm', 'cm', 'm']> &
+      Schema.Attribute.DefaultTo<'cm'>;
+    externalHeight: Schema.Attribute.Decimal;
+    externalLength: Schema.Attribute.Decimal;
+    externalWidth: Schema.Attribute.Decimal;
+    fixedCostMargin: Schema.Attribute.Decimal;
+    internalCode: Schema.Attribute.String & Schema.Attribute.Unique;
+    internalHeight: Schema.Attribute.Decimal;
+    internalLength: Schema.Attribute.Decimal;
+    internalWidth: Schema.Attribute.Decimal;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    isPriceOutdated: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    itemType: Schema.Attribute.Enumeration<
+      ['finished', 'rawMaterial', 'accessory', 'service']
+    > &
+      Schema.Attribute.DefaultTo<'finished'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product.product'
+    > &
+      Schema.Attribute.Private;
+    materials: Schema.Attribute.JSON;
+    price: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    rawMaterialCost: Schema.Attribute.Decimal;
+    salesUnit: Schema.Attribute.Enumeration<
+      ['unit', 'kg', 'm', 'm2', 'm3', 'L']
+    > &
+      Schema.Attribute.DefaultTo<'unit'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    weight: Schema.Attribute.Decimal;
   };
 }
 
@@ -1319,6 +1382,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::app-setting.app-setting': ApiAppSettingAppSetting;
+      'api::bi.bi': ApiBiBi;
+      'api::client-analytic.client-analytic': ApiClientAnalyticClientAnalytic;
       'api::company.company': ApiCompanyCompany;
       'api::contact.contact': ApiContactContact;
       'api::deal.deal': ApiDealDeal;
@@ -1326,6 +1392,7 @@ declare module '@strapi/strapi' {
       'api::issuer.issuer': ApiIssuerIssuer;
       'api::order.order': ApiOrderOrder;
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod;
+      'api::product.product': ApiProductProduct;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

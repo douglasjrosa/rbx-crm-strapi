@@ -699,6 +699,438 @@
 						{
 							"name": ".gitkeep",
 							"type": "file"
+						},
+						{
+							"name": "bi",
+							"type": "directory",
+							"context": "Business Intelligence API for company performance analytics",
+							"children": [
+								{
+									"name": "content-types",
+									"type": "directory",
+									"children": [
+										{
+											"name": "bi",
+											"type": "directory",
+											"children": [
+												{
+													"name": "schema.json",
+													"type": "file",
+													"context": "BI data model schema",
+													"exports": [
+														{
+															"name": "kind",
+															"type": "const",
+															"context": "Type of content (collectionType)"
+														},
+														{
+															"name": "collectionName",
+															"type": "const",
+															"context": "Database collection name"
+														},
+														{
+															"name": "info",
+															"type": "object",
+															"context": "Content type metadata"
+														},
+														{
+															"name": "options",
+															"type": "object",
+															"context": "Content type options"
+														},
+														{
+															"name": "attributes",
+															"type": "object",
+															"context": "Field definitions for the content type"
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "controllers",
+									"type": "directory",
+									"context": "BI API controllers",
+									"children": [
+										{
+											"name": "bi.ts",
+											"type": "file",
+											"context": "Controller for BI endpoints",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core controller for BI API created using factories.createCoreController"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "routes",
+									"type": "directory",
+									"context": "BI API route definitions",
+									"children": [
+										{
+											"name": "bi.ts",
+											"type": "file",
+											"context": "Routes configuration for BI",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core router for BI API created using factories.createCoreRouter"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "services",
+									"type": "directory",
+									"context": "BI business logic services",
+									"children": [
+										{
+											"name": "bi.ts",
+											"type": "file",
+											"context": "Service implementation for BI",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core service for BI API created using factories.createCoreService"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "client-analytic",
+							"type": "directory",
+							"context": "Client Analytics API for client performance evaluation",
+							"children": [
+								{
+									"name": "content-types",
+									"type": "directory",
+									"children": [
+										{
+											"name": "client-analytic",
+											"type": "directory",
+											"children": [
+												{
+													"name": "schema.json",
+													"type": "file",
+													"context": "Client Analytic data model schema",
+													"exports": [
+														{
+															"name": "kind",
+															"type": "const",
+															"context": "Type of content (collectionType)"
+														},
+														{
+															"name": "collectionName",
+															"type": "const",
+															"context": "Database collection name"
+														},
+														{
+															"name": "info",
+															"type": "object",
+															"context": "Content type metadata"
+														},
+														{
+															"name": "options",
+															"type": "object",
+															"context": "Content type options"
+														},
+														{
+															"name": "attributes",
+															"type": "object",
+															"context": "Field definitions for the content type"
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "controllers",
+									"type": "directory",
+									"context": "Client Analytic API controllers",
+									"children": [
+										{
+											"name": "client-analytic.ts",
+											"type": "file",
+											"context": "Controller for client analytic endpoints",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core controller for client analytic API created using factories.createCoreController"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "routes",
+									"type": "directory",
+									"context": "Client Analytic API route definitions",
+									"children": [
+										{
+											"name": "client-analytic.ts",
+											"type": "file",
+											"context": "Routes configuration for client analytic",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core router for client analytic API created using factories.createCoreRouter"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "services",
+									"type": "directory",
+									"context": "Client Analytic business logic services",
+									"children": [
+										{
+											"name": "client-analytic.ts",
+											"type": "file",
+											"context": "Service implementation for client analytic",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core service for client analytic API created using factories.createCoreService"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "product",
+							"type": "directory",
+							"context": "Product management API",
+							"children": [
+								{
+									"name": "content-types",
+									"type": "directory",
+									"children": [
+										{
+											"name": "product",
+											"type": "directory",
+											"children": [
+												{
+													"name": "schema.json",
+													"type": "file",
+													"context": "Product data model schema",
+													"exports": [
+														{
+															"name": "kind",
+															"type": "const",
+															"context": "Type of content (collectionType)"
+														},
+														{
+															"name": "collectionName",
+															"type": "const",
+															"context": "Database collection name"
+														},
+														{
+															"name": "info",
+															"type": "object",
+															"context": "Content type metadata"
+														},
+														{
+															"name": "options",
+															"type": "object",
+															"context": "Content type options"
+														},
+														{
+															"name": "attributes",
+															"type": "object",
+															"context": "Field definitions for the content type"
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "controllers",
+									"type": "directory",
+									"context": "Product API controllers",
+									"children": [
+										{
+											"name": "product.ts",
+											"type": "file",
+											"context": "Controller for product endpoints",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core controller for product API created using factories.createCoreController"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "routes",
+									"type": "directory",
+									"context": "Product API route definitions",
+									"children": [
+										{
+											"name": "product.ts",
+											"type": "file",
+											"context": "Routes configuration for product",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core router for product API created using factories.createCoreRouter"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "services",
+									"type": "directory",
+									"context": "Product business logic services",
+									"children": [
+										{
+											"name": "product.ts",
+											"type": "file",
+											"context": "Service implementation for product",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core service for product API created using factories.createCoreService"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "app-setting",
+							"type": "directory",
+							"context": "Application settings API",
+							"children": [
+								{
+									"name": "content-types",
+									"type": "directory",
+									"children": [
+										{
+											"name": "app-setting",
+											"type": "directory",
+											"children": [
+												{
+													"name": "schema.json",
+													"type": "file",
+													"context": "App Setting data model schema",
+													"exports": [
+														{
+															"name": "kind",
+															"type": "const",
+															"context": "Type of content (collectionType)"
+														},
+														{
+															"name": "collectionName",
+															"type": "const",
+															"context": "Database collection name"
+														},
+														{
+															"name": "info",
+															"type": "object",
+															"context": "Content type metadata"
+														},
+														{
+															"name": "options",
+															"type": "object",
+															"context": "Content type options"
+														},
+														{
+															"name": "attributes",
+															"type": "object",
+															"context": "Field definitions for the content type"
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "controllers",
+									"type": "directory",
+									"context": "App Setting API controllers",
+									"children": [
+										{
+											"name": "app-setting.ts",
+											"type": "file",
+											"context": "Controller for app setting endpoints",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core controller for app setting API created using factories.createCoreController"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "routes",
+									"type": "directory",
+									"context": "App Setting API route definitions",
+									"children": [
+										{
+											"name": "app-setting.ts",
+											"type": "file",
+											"context": "Routes configuration for app setting",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core router for app setting API created using factories.createCoreRouter"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "services",
+									"type": "directory",
+									"context": "App Setting business logic services",
+									"children": [
+										{
+											"name": "app-setting.ts",
+											"type": "file",
+											"context": "Service implementation for app setting",
+											"exports": [
+												{
+													"name": "default",
+													"type": "function",
+													"context": "Core service for app setting API created using factories.createCoreService"
+												}
+											]
+										}
+									]
+								}
+							]
 						}
 					]
 				},
@@ -923,6 +1355,16 @@
 									"context": "Type definition for order items component"
 								},
 								{
+									"name": "AppSettingComponentsChangeLogs",
+									"type": "interface",
+									"context": "Type definition for app setting change logs component"
+								},
+								{
+									"name": "AppSettingComponentsPricingMargins",
+									"type": "interface",
+									"context": "Type definition for app setting pricing margins component"
+								},
+								{
 									"name": "Components",
 									"type": "interface",
 									"context": "Components namespace extension for Strapi types"
@@ -968,6 +1410,26 @@
 									"name": "ApiPaymentMethodPaymentMethod",
 									"type": "interface",
 									"context": "Type definition for payment method content type"
+								},
+								{
+									"name": "ApiProductProduct",
+									"type": "interface",
+									"context": "Type definition for product content type"
+								},
+								{
+									"name": "ApiBiBi",
+									"type": "interface",
+									"context": "Type definition for BI content type"
+								},
+								{
+									"name": "ApiClientAnalyticClientAnalytic",
+									"type": "interface",
+									"context": "Type definition for client analytic content type"
+								},
+								{
+									"name": "ApiAppSettingAppSetting",
+									"type": "interface",
+									"context": "Type definition for app setting content type"
 								},
 								{
 									"name": "Schemas",

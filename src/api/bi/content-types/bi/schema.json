@@ -1,0 +1,89 @@
+{
+	"kind": "collectionType",
+	"collectionName": "bis",
+	"info": {
+		"singularName": "bi",
+		"pluralName": "bis",
+		"displayName": "BI",
+		"description": "Business Intelligence metrics aggregated by period"
+	},
+	"options": {
+		"draftAndPublish": false
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"periodStartDate": {
+			"type": "date",
+			"required": true
+		},
+		"periodEndDate": {
+			"type": "date",
+			"required": true
+		},
+		"periodType": {
+			"type": "enumeration",
+			"enum": [
+				"daily",
+				"weekly",
+				"monthly",
+				"quarterly",
+				"yearly"
+			],
+			"default": "monthly",
+			"required": true
+		},
+		"totalRawMaterialUsed": {
+			"type": "decimal",
+			"required": true
+		},
+		"totalSales": {
+			"type": "decimal",
+			"required": true
+		},
+		"totalContributionMargin": {
+			"type": "decimal"
+		},
+		"contributionMarginRate": {
+			"type": "decimal"
+		},
+		"totalOrderCount": {
+			"type": "integer"
+		},
+		"averageOrderValue": {
+			"type": "decimal"
+		},
+		"topClientCount": {
+			"type": "integer"
+		},
+		"topClientSalesPercentage": {
+			"type": "decimal"
+		},
+		"newClientCount": {
+			"type": "integer"
+		},
+		"lostClientCount": {
+			"type": "integer"
+		},
+		"frameDistribution": {
+			"type": "json"
+		},
+		"averageClientQualitativeRating": {
+			"type": "decimal"
+		},
+		"businessGrowthRate": {
+			"type": "decimal"
+		},
+		"bestSellingProducts": {
+			"type": "json"
+		},
+		"slowestMovingProducts": {
+			"type": "json"
+		},
+		"salesByRegion": {
+			"type": "json"
+		},
+		"salesByClientSegment": {
+			"type": "json"
+		}
+	}
+}

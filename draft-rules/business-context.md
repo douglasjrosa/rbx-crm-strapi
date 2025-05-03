@@ -1,8 +1,3 @@
----
-description: Detailed business context of the current project. This content must to be considered whenever some architectural decision has to be made.
-globs: 
-alwaysApply: false
----
 # RBX CRM STRAPI - Business Context [BC]
 
 ## Documentation Consultation Guidelines
@@ -15,7 +10,9 @@ For AI Agent consumption:
 
 ## Quick Reference Index
 
-* [Busrview](mdc: [BC-2] [Innts](mdc:#bcific-requia Architecture](mdc:#bc-3-data-architecture)
+* [BC-1] [Business Overview](mdc:#bc-1-business-overview)
+* [BC-2] [Industry-Specific Requirements](mdc:#bc-2-industry-specific-requirements)
+* [BC-3] [Data Architecture](mdc:#bc-3-data-architecture)
 * [BC-4] [Key Business Workflows](mdc:#bc-4-key-business-workflows)
 * [BC-5] [User Roles & Permissions](mdc:#bc-5-user-roles--permissions)
 * [BC-6] [Key Performance Indicators](mdc:#bc-6-key-performance-indicators)

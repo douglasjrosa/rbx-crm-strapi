@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_app_setting_components_pricing_margins",
+  "info": {
+    "displayName": "pricingMargins",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "profitMargin": {
+      "type": "decimal"
+    },
+    "comissionMargin": {
+      "type": "decimal"
+    }
+  }
+}

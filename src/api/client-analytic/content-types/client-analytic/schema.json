@@ -1,0 +1,89 @@
+{
+	"kind": "collectionType",
+	"collectionName": "client_analytics",
+	"info": {
+		"singularName": "client-analytic",
+		"pluralName": "client-analytics",
+		"displayName": "ClientAnalytic",
+		"description": "Client analytics and metrics for business analysis"
+	},
+	"options": {
+		"draftAndPublish": false
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"analysisStartDate": {
+			"type": "date",
+			"required": true
+		},
+		"analysisEndDate": {
+			"type": "date",
+			"required": true
+		},
+		"totalRawMaterialsUsed": {
+			"type": "decimal",
+			"required": true
+		},
+		"rawMaterialsUsageShare": {
+			"type": "decimal"
+		},
+		"totalSales": {
+			"type": "decimal",
+			"required": true
+		},
+		"salesShare": {
+			"type": "decimal"
+		},
+		"totalContributionMargin": {
+			"type": "decimal"
+		},
+		"contributionMarginRate": {
+			"type": "decimal"
+		},
+		"contributionMarginShare": {
+			"type": "decimal"
+		},
+		"representativityRating": {
+			"type": "decimal"
+		},
+		"profitabilityRating": {
+			"type": "decimal"
+		},
+		"longestOrderInterval": {
+			"type": "integer"
+		},
+		"shortestOrderInterval": {
+			"type": "integer"
+		},
+		"recency": {
+			"type": "integer"
+		},
+		"idealReturnDate": {
+			"type": "date"
+		},
+		"recurrence": {
+			"type": "integer"
+		},
+		"frequencyRating": {
+			"type": "decimal"
+		},
+		"fidelityRating": {
+			"type": "decimal"
+		},
+		"qualitativeRating": {
+			"type": "decimal"
+		},
+		"relativeQualitativeRating": {
+			"type": "decimal"
+		},
+		"frameCode": {
+			"type": "integer"
+		},
+		"company": {
+			"type": "relation",
+			"relation": "oneToOne",
+			"target": "api::company.company",
+			"required": true
+		}
+	}
+}

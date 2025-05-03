@@ -1,33 +1,69 @@
 {
-  "collectionName": "components_order_components_items",
-  "info": {
-    "displayName": "items",
-    "icon": "layer"
-  },
-  "options": {},
-  "attributes": {
-    "productCode": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
-    },
-    "qty": {
-      "type": "integer"
-    },
-    "mounted": {
-      "type": "boolean",
-      "default": false
-    },
-    "export": {
-      "type": "boolean",
-      "default": false
-    },
-    "price": {
-      "type": "decimal"
-    },
-    "subtotal": {
-      "type": "decimal"
-    }
-  }
+	"collectionName": "components_order_components_items",
+	"info": {
+		"displayName": "items",
+		"icon": "layer",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"productCode": {
+			"type": "string"
+		},
+		"description": {
+			"type": "string"
+		},
+		"assemblyType": {
+			"type": "enumeration",
+			"enum": [
+				"disassembled",
+				"openLid",
+				"openBase",
+				"openSide",
+				"openHeadboard",
+				"screwedOpenLid",
+				"screwedOpenBase",
+				"screwedOpenSide",
+				"screwedOpenHeadboard"
+			],
+			"default": "disassembled",
+			"required": true
+		},
+		"assemblyCost": {
+			"type": "decimal"
+		},
+		"isExportCompliant": {
+			"type": "boolean",
+			"default": false
+		},
+		"treatmentCost": {
+			"type": "decimal"
+		},
+		"price": {
+			"type": "decimal"
+		},
+		"subtotal": {
+			"type": "decimal"
+		},
+		"qty": {
+			"type": "integer"
+		},
+		"itemTotalDiscount": {
+			"type": "decimal"
+		},
+		"itemTotalRawMaterialCost": {
+			"type": "decimal"
+		},
+		"itemTotalContributionMargin": {
+			"type": "decimal"
+		},
+		"total": {
+			"type": "decimal"
+		},
+		"product": {
+			"type": "relation",
+			"relation": "oneToOne",
+			"target": "api::product.product"
+		}
+	}
 }

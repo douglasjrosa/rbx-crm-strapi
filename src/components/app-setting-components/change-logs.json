@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_app_setting_components_change_logs",
+  "info": {
+    "displayName": "changeLogs",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "costMarginName": {
+      "type": "enumeration",
+      "enum": [
+        "fixedCostMargin",
+        "assemblyCostMargin",
+        "treatmentCostMargin",
+        "averageTaxRateMargin"
+      ]
+    },
+    "changedAt": {
+      "type": "datetime"
+    },
+    "changedTo": {
+      "type": "decimal"
+    }
+  }
+}
